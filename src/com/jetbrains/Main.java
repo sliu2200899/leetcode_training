@@ -1,5 +1,6 @@
 package com.jetbrains;
 
+import com.jetbrains.classic.SwapPairs;
 import com.jetbrains.master.*;
 import com.jetbrains.innerStructure.*;
 
@@ -60,13 +61,26 @@ public class Main {
 //        System.out.println(Arrays.toString(test));
 
         // remove Nth node from end of the list
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(2);
+//        l1.next.next = new ListNode(3);
+//        l1.next.next.next = new ListNode(4);
+//        l1.next.next.next.next = new ListNode(5);
+//
+//        ListNode out = RemoveNthFromEnd.removeNthFromEnd(l1, 2);
+//        while (out != null) {
+//            System.out.print(out.val + " ");
+//            out = out.next;
+//        }
+
+        // swap nodes
         ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);
         l1.next.next = new ListNode(3);
         l1.next.next.next = new ListNode(4);
         l1.next.next.next.next = new ListNode(5);
 
-        ListNode out = RemoveNthFromEnd.removeNthFromEnd(l1, 2);
+        ListNode out = SwapPairs.swapPairs(l1);
         while (out != null) {
             System.out.print(out.val + " ");
             out = out.next;
