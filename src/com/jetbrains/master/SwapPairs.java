@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.master;
 
 import com.jetbrains.innerStructure.ListNode;
 
@@ -7,19 +7,19 @@ public class SwapPairs {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
 
-        ListNode prevNode = dummy;
+        ListNode pre = dummy;
         while (head != null && head.next != null) {
             // Nodes to be swapped
             ListNode firstNode = head;
             ListNode secondNode = head.next;
 
             // Swapping
-            prevNode.next = secondNode;
+            pre.next = secondNode;
             firstNode.next = secondNode.next;
             secondNode.next = firstNode;
 
             // update the head and prevNode for next swap
-            prevNode = firstNode;
+            pre = firstNode;
             head = firstNode.next; // jump
         }
 

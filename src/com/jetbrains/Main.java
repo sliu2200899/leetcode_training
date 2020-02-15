@@ -1,13 +1,7 @@
 package com.jetbrains;
 
-import com.jetbrains.classic.SwapPairs;
-import com.jetbrains.master.*;
+import com.jetbrains.classic.DeleteDuplicates2;
 import com.jetbrains.innerStructure.*;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 
 public class Main {
 
@@ -74,13 +68,26 @@ public class Main {
 //        }
 
         // swap nodes
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(2);
+//        l1.next.next = new ListNode(3);
+//        l1.next.next.next = new ListNode(4);
+//        l1.next.next.next.next = new ListNode(5);
+//
+//        ListNode out = SwapPairs.swapPairs(l1);
+//        while (out != null) {
+//            System.out.print(out.val + " ");
+//            out = out.next;
+//        }
+
+        // delete duplicates
         ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);
         l1.next.next = new ListNode(3);
-        l1.next.next.next = new ListNode(4);
+        l1.next.next.next = new ListNode(3);
         l1.next.next.next.next = new ListNode(5);
 
-        ListNode out = SwapPairs.swapPairs(l1);
+        ListNode out = DeleteDuplicates2.deleteDuplicates(l1);
         while (out != null) {
             System.out.print(out.val + " ");
             out = out.next;
