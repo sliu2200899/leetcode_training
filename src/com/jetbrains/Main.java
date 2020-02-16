@@ -1,6 +1,7 @@
 package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
+import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
 import com.jetbrains.classic.MergeKLists;
 
@@ -119,13 +120,13 @@ public class Main {
         ListNode l1 = new ListNode(1);
         l1.next = new ListNode(2);
         l1.next.next = new ListNode(3);
-        l1.next.next.next = new ListNode(3);
+        l1.next.next.next = new ListNode(4);
         l1.next.next.next.next = new ListNode(5);
 
-        ListNode out = DeleteDuplicates2.deleteDuplicates(l1);
-        while (out != null) {
-            System.out.print(out.val + " ");
-            out = out.next;
+        ReorderList.reorderList(l1);
+        while (l1 != null) {
+            System.out.print(l1.val + " ");
+            l1 = l1.next;
         }
     }
 }

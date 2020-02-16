@@ -6,32 +6,42 @@ public class ReorderList {
     public static void reorderList(ListNode head) {
         if (head == null) return;
 
-        // get the length of the list
-        int i = 1;
-        ListNode cur = head;
-        while (cur != null) {
-            cur = cur.next;
-            i++;
-        }
-
-        int mid = (i % 2 == 0) ? i / 2 : (i + 1) / 2;
-
         // get the middle node in the list
-        cur = head;
-        ListNode prev = null;
-        for (int j = 0; j < mid; ++j) {
-            prev = cur;
-            cur = cur.next;
+        // get the middle node, just fast and slow pointer enough,
+        // but if you want to merge two pointers, you need pre pointer.
+        ListNode fast = head, slow = head, pre = null;
+        while (fast != null && fast.next != null) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
         }
+        if (pre == null) return;
+        pre.next = null;
 
-        prev.next = null;
         // reverse the latter part of the list
-        ListNode newAfterHead = reverseList(cur);
+        ListNode newAfterHead = reverseList(slow);
 
         // merge two list alternatively
-        ListNode before = head, after = newAfterHead;
-        cur = head;
-        boolean odd = true;
+        mergeTwoListAlternative(head, newAfterHead);
+    }
+
+    private static ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
+    }
+
+    private static void mergeTwoListAlternative(ListNode l1, ListNode l2) {
+        ListNode before = l1, after = l2;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = l1;
+        ListNode cur = dummy;
+        boolean odd = false;
         while (before != null && after != null) {
             if (odd) {
                 cur.next = after;
@@ -44,18 +54,11 @@ public class ReorderList {
             cur = cur.next;
         }
 
-        return;
-    }
-
-    private static ListNode reverseList(ListNode head) {
-        ListNode pre = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = pre;
-
-            pre = head;
-            head = next;
+        if (before != null) {
+            cur.next = before;
         }
-        return pre;
+        if (after != null) {
+            cur.next = after;
+        }
     }
 }
