@@ -2,6 +2,7 @@ package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
 import com.jetbrains.innerStructure.*;
+import com.jetbrains.classic.MergeKLists;
 
 public class Main {
 
@@ -75,6 +76,40 @@ public class Main {
 //        l1.next.next.next.next = new ListNode(5);
 //
 //        ListNode out = SwapPairs.swapPairs(l1);
+//        while (out != null) {
+//            System.out.print(out.val + " ");
+//            out = out.next;
+//        }
+
+        // delete duplicates
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(2);
+//        l1.next.next = new ListNode(3);
+//        l1.next.next.next = new ListNode(3);
+//        l1.next.next.next.next = new ListNode(5);
+//
+//        ListNode out = DeleteDuplicates2.deleteDuplicates(l1);
+//        while (out != null) {
+//            System.out.print(out.val + " ");
+//            out = out.next;
+//        }
+
+        // merge K sorted list
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(2);
+//        l1.next.next = new ListNode(3);
+//
+//        ListNode l2 = new ListNode(1);
+//        l2.next = new ListNode(3);
+//        l2.next.next = new ListNode(7);
+//
+//        ListNode l3 = new ListNode(2);
+//        l3.next = new ListNode(2);
+//        l3.next.next = new ListNode(9);
+//
+//        ListNode[] lists = {l1, l2, l3};
+//
+//        ListNode out = MergeKLists.mergeKList2(lists);
 //        while (out != null) {
 //            System.out.print(out.val + " ");
 //            out = out.next;
