@@ -1,6 +1,9 @@
 package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
+import com.jetbrains.classic.sorting.BubbleSort;
+import com.jetbrains.classic.sorting.InsertionSort;
+import com.jetbrains.classic.sorting.SelectionSort;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
 import com.jetbrains.classic.MergeKLists;
@@ -117,16 +120,37 @@ public class Main {
 //        }
 
         // delete duplicates
-        ListNode l1 = new ListNode(1);
-        l1.next = new ListNode(2);
-        l1.next.next = new ListNode(3);
-        l1.next.next.next = new ListNode(4);
-        l1.next.next.next.next = new ListNode(5);
+//        ListNode l1 = new ListNode(1);
+//        l1.next = new ListNode(2);
+//        l1.next.next = new ListNode(3);
+//        l1.next.next.next = new ListNode(4);
+//        l1.next.next.next.next = new ListNode(5);
+//
+//        ReorderList.reorderList(l1);
+//        while (l1 != null) {
+//            System.out.print(l1.val + " ");
+//            l1 = l1.next;
+//        }
 
-        ReorderList.reorderList(l1);
-        while (l1 != null) {
-            System.out.print(l1.val + " ");
-            l1 = l1.next;
+        // bubble sort
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        BubbleSort.sort(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+
+        // selection sort
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        SelectionSort.sort(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+
+        // insertion srot
+        int[] arr = {2, 1, 4, 6, 2, 9};
+        InsertionSort.sort(arr);
+        for (int i : arr) {
+            System.out.println(i);
         }
     }
 }
