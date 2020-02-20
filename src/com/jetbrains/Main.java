@@ -1,9 +1,7 @@
 package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
-import com.jetbrains.classic.sorting.BubbleSort;
-import com.jetbrains.classic.sorting.InsertionSort;
-import com.jetbrains.classic.sorting.SelectionSort;
+import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
 import com.jetbrains.classic.MergeKLists;
@@ -147,10 +145,25 @@ public class Main {
 //        }
 
         // insertion srot
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        InsertionSort.sort(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+
+        // merge sort
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        MergeSort.sort(arr, 0, arr.length - 1);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+
+        // quick sort
         int[] arr = {2, 1, 4, 6, 2, 9};
-        InsertionSort.sort(arr);
+        QuickSort.sort(arr, 0, arr.length - 1);
         for (int i : arr) {
             System.out.println(i);
         }
+
     }
 }
