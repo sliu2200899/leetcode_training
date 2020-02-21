@@ -26,14 +26,13 @@ public class QuickSort {
                 left++;
             }
 
+            // arr[right] = pivot is important!!!
             while (left <= right && arr[right] >= pivot) {
                 right--;
             }
 
             if (left <= right) {
-                int temp = arr[left];
-                arr[left] = arr[right];
-                arr[right] = temp;
+                swap(arr, left, right);
                 left++;
                 right--;
             }

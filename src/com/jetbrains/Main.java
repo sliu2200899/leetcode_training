@@ -5,6 +5,7 @@ import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
 import com.jetbrains.classic.MergeKLists;
+import com.jetbrains.master.MergeSortedArray;
 
 public class Main {
 
@@ -159,11 +160,18 @@ public class Main {
 //        }
 
         // quick sort
-        int[] arr = {2, 1, 4, 6, 2, 9};
-        QuickSort.sort(arr, 0, arr.length - 1);
-        for (int i : arr) {
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        QuickSort.sort(arr, 0, arr.length - 1);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+
+        // merge two sorted array (basic, no enough space for storing)
+        int[] arrA = {1,4,7,9};
+        int[] arrB = {7, 20, 100};
+        int[] out = MergeSortedArray.mergeTwoSortedArray(arrA, arrB);
+        for (int i : out) {
             System.out.println(i);
         }
-
     }
 }
