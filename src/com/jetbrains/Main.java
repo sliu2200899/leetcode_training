@@ -1,6 +1,7 @@
 package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
+import com.jetbrains.classic.SortColor;
 import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
@@ -167,10 +168,24 @@ public class Main {
 //        }
 
         // merge two sorted array (basic, no enough space for storing)
-        int[] arrA = {1,4,7,9};
-        int[] arrB = {7, 20, 100};
-        int[] out = MergeSortedArray.mergeTwoSortedArray(arrA, arrB);
-        for (int i : out) {
+//        int[] arrA = {1,4,7,9};
+//        int[] arrB = {7, 20, 100};
+//        int[] out = MergeSortedArray.mergeTwoSortedArray(arrA, arrB);
+//        for (int i : out) {
+//            System.out.println(i);
+//        }
+
+        // sort color
+//        int[] nums = {0,2,2,1,0,2,1};
+//        SortColor.sortColors(nums);
+//        for (int i : nums) {
+//            System.out.println(i);
+//        }
+
+        // counting sort
+        int[] nums = {0,2,2,1,0,2,1};
+        CountingSort.sort(nums, 3);
+        for (int i : nums) {
             System.out.println(i);
         }
     }
