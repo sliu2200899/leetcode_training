@@ -1,6 +1,7 @@
 package com.jetbrains;
 
 import com.jetbrains.classic.DeleteDuplicates2;
+import com.jetbrains.classic.MaxSubArray;
 import com.jetbrains.classic.SortColor;
 import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
@@ -183,10 +184,15 @@ public class Main {
 //        }
 
         // counting sort
-        int[] nums = {0,2,2,1,0,2,1};
-        CountingSort.sort(nums, 3);
-        for (int i : nums) {
-            System.out.println(i);
-        }
+//        int[] nums = {0,2,2,1,0,2,1};
+//        CountingSort.sort(nums, 3);
+//        for (int i : nums) {
+//            System.out.println(i);
+//        }
+
+        // maxSubArray
+        int[] nums = {0,-2,-2,-1,0,2,1,-5};
+        int res = MaxSubArray.maxSubArray(nums);
+        System.out.println(res);
     }
 }
