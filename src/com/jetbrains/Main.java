@@ -1,12 +1,9 @@
 package com.jetbrains;
 
-import com.jetbrains.classic.DeleteDuplicates2;
-import com.jetbrains.classic.MaxSubArray;
-import com.jetbrains.classic.SortColor;
+import com.jetbrains.classic.*;
 import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
-import com.jetbrains.classic.MergeKLists;
 import com.jetbrains.master.MergeSortedArray;
 
 public class Main {
@@ -191,8 +188,13 @@ public class Main {
 //        }
 
         // maxSubArray
+//        int[] nums = {0,-2,-2,-1,0,2,1,-5};
+//        int res = MaxSubArray.maxSubArray(nums);
+//        System.out.println(res);
+
+        // minSunArray
         int[] nums = {0,-2,-2,-1,0,2,1,-5};
-        int res = MaxSubArray.maxSubArray(nums);
+        int res = MinSubArray.minSubArray2(nums);
         System.out.println(res);
     }
 }
