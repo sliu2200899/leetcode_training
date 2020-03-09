@@ -26,10 +26,10 @@ public class MinSubArray {
         if (nums == null || nums.length == 0) return 0;
 
         // f[i] = f[i - 1] < 0 ? f[i - 1] + nums[i] : nums[i]   f[i] is the minimum sum that ends with current number...
-        int globalMin = nums[0], localMax = nums[0];
+        int globalMin = nums[0], localMin = nums[0];
         for (int i = 1; i < nums.length; ++i) {
-            localMax = Math.min(localMax, nums[i] + localMax);
-            globalMin = Math.min(globalMin, localMax);
+            localMin = Math.min(nums[i], localMin + nums[i]);
+            globalMin = Math.min(globalMin, localMin);
         }
 
         return globalMin;
