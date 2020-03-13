@@ -1,6 +1,7 @@
 package com.jetbrains.classic.search;
 
 import com.jetbrains.innerStructure.TreeNode;
+import com.jetbrains.innerStructure.TreeNodeParent;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -27,6 +28,31 @@ public class PreorderTraversal {
             }
         }
 
+        return res;
+    }
+
+    // preorder with parent pointer without stack
+    public List<Integer> preorderTraversal2(TreeNodeParent root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
+
+        TreeNodeParent cur = root;
+        while (cur != null) {
+            res.add(cur.val);
+
+            if (cur.left != null) {
+                cur = cur.left;
+            } else if (cur.right != null) {
+                cur = cur.right;
+            } else {
+                // cur.left = cur.right = null
+                while (cur.parent != null && (cur.parent.right == null || cur == cur.parent.right)) {
+                    cur = cur.parent;
+                }
+                if (cur.parent == null) break;
+                cur = cur.parent.right;
+            }
+        }
         return res;
     }
 }

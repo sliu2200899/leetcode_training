@@ -30,4 +30,25 @@ public class LevelTraversal {
 
         return res;
     }
+
+    // recursive level order
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(root, res, 0);
+        return res;
+    }
+
+    private void dfs(TreeNode root, List<List<Integer>> list, int height) {
+        if (root == null) {
+            return;
+        }
+        if (list.size() <= height) {
+            list.add(new ArrayList<Integer>());
+        }
+        list.get(height).add(root.val);
+        dfs(root.left, list, height + 1);
+        dfs(root.right, list, height + 1);
+
+        return;
+    }
 }
