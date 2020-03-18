@@ -3,6 +3,8 @@ package com.jetbrains.hard;
 import com.jetbrains.innerStructure.TreeNode;
 
 public class BuildTreePrePost {
+    // time complexity O(n^2)
+    // space: O(n)
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
         if (pre == null || post == null ||
                 pre.length == 0 || post.length == 0)
