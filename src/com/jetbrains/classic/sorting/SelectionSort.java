@@ -25,4 +25,21 @@ public class SelectionSort {
             }
         }
     }
+//
+//
+//    // 1, 2, 3, 4, 7, 9  -> improvement of the bubble sort, no swap just keep the location of the element that need to swap in each iteration
+//    public static void sort2(int[] arr) {
+//        if (arr == null) return;
+//
+//        int len = arr.length;
+//        for (int i = 0; i < len - 1; ++i) {
+//            int min = i;
+//            for (int j = 0; j < len - i - 1; ++j) {
+//
+//            }
+//        }
+//
+//
+//
+//    }
 }
