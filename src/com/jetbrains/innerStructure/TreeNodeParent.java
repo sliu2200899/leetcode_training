@@ -5,5 +5,5 @@ public class TreeNodeParent {
     public TreeNodeParent left;
     public TreeNodeParent right;
     public TreeNodeParent parent;
-    TreeNodeParent(int x) { this.val = x; }
+    public TreeNodeParent(int x) { this.val = x; }
 }

@@ -6,6 +6,8 @@ import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
 import com.jetbrains.master.MergeSortedArray;
 
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -193,8 +195,24 @@ public class Main {
 //        System.out.println(res);
 
         // minSunArray
-        int[] nums = {0,-2,-2,-1,0,2,1,-5};
-        int res = MinSubArray.minSubArray2(nums);
-        System.out.println(res);
+//        int[] nums = {0,-2,-2,-1,0,2,1,-5};
+//        int res = MinSubArray.minSubArray2(nums);
+//        System.out.println(res);
+
+        // lowestCommonAncester3
+        TreeNodeParent root = new TreeNodeParent(3);
+        root.left = new TreeNodeParent(2);
+        root.right = new TreeNodeParent(5);
+        root.parent = null;
+        root.left.left = new TreeNodeParent(4);
+        root.right.left = new TreeNodeParent(7);
+        root.left.parent = root;
+        root.right.parent = root;
+        root.left.left.parent = root.left;
+        root.right.left.parent = root.right;
+
+
+        TreeNodeParent p = LCAonBT.lowestCommonAncester3(root, root.left, root.right.left);
+        System.out.println(p.val);
     }
 }
