@@ -38,31 +38,23 @@ public class IsCompleteBinaryTree {
     }
 
     // use recursive approach to solve the problem
-    private int countNodes(TreeNode root) {
+    public boolean isCompleteTree2(TreeNode root) {
+        if (root == null) return true;
 
-        if (root == null) {
-            return 0;
-        }
-        return (1 + countNodes(root.left) + countNodes(root.right));
+        return helper(root, 0, countNode(root));
     }
 
-    private boolean isComplete(TreeNode root, int index, int num) {
-        // an empty tree is complete
-        if (root == null) {
-            return true;
-        }
-        // tree is not complete if index assigned to current node is more than number of nodes in tree.
-        if (index >= num) {
-            return false;
-        }
+    private boolean helper(TreeNode node, int index, int num) {
+        if (node == null) return true;
+        if (index >= num) return false;
 
-        // recur for left and right subtrees
-        return (isComplete(root.left, 2 * index + 1, num)
-                && (isComplete(root.right, 2 * index + 2, num));
+        return helper(node.left, index * 2 + 1, num) && helper(node.right, index *2 + 2, num);
     }
 
-    private boolean isComplete2(TreeNode root) {
-        return isComplete(root, 0, countNodes(root));
+    private int countNode(TreeNode root) {
+        if (root == null) return 0;
+
+        return 1 + countNode(root.left) + countNode(root.right);
     }
 
 }
