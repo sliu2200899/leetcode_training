@@ -1,5 +1,6 @@
 package com.jetbrains;
 
+//import com.jetbrains.OOD.Elevator;
 import com.jetbrains.classic.*;
 import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
@@ -200,19 +201,23 @@ public class Main {
 //        System.out.println(res);
 
         // lowestCommonAncester3
-        TreeNodeParent root = new TreeNodeParent(3);
-        root.left = new TreeNodeParent(2);
-        root.right = new TreeNodeParent(5);
-        root.parent = null;
-        root.left.left = new TreeNodeParent(4);
-        root.right.left = new TreeNodeParent(7);
-        root.left.parent = root;
-        root.right.parent = root;
-        root.left.left.parent = root.left;
-        root.right.left.parent = root.right;
+//        TreeNodeParent root = new TreeNodeParent(3);
+//        root.left = new TreeNodeParent(2);
+//        root.right = new TreeNodeParent(5);
+//        root.parent = null;
+//        root.left.left = new TreeNodeParent(4);
+//        root.right.left = new TreeNodeParent(7);
+//        root.left.parent = root;
+//        root.right.parent = root;
+//        root.left.left.parent = root.left;
+//        root.right.left.parent = root.right;
 
 
-        TreeNodeParent p = LCAonBT.lowestCommonAncester3(root, root.left, root.right.left);
-        System.out.println(p.val);
+//        TreeNodeParent p = LCAonBT.lowestCommonAncester3(root, root.left, root.right.left);
+
+        //OOD
+//        Elevator e = new Elevator();
+//
+//        System.out.println(e.sum(3.0, 5.8));
     }
 }
