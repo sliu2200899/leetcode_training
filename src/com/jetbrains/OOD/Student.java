@@ -1,10 +1,10 @@
 package com.jetbrains.OOD;
 
 public class Student {
-    public String name;
-    public Integer age;
-    public String number;
-    public String grade;
+    private String name;
+    private Integer age;
+    private String number;
+    private String grade;
 
     public Student(String name) {
         this.name = name;
