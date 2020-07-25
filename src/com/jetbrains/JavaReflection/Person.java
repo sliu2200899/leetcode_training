@@ -1,4 +1,4 @@
-package com.jetbrains.OOD;
+package com.jetbrains.JavaReflection;
 
 public class Person {
     private String name;

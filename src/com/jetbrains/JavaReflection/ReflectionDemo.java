@@ -1,8 +1,5 @@
-package com.jetbrains.OOD;
+package com.jetbrains.JavaReflection;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ReflectionDemo {
@@ -10,7 +7,7 @@ public class ReflectionDemo {
 //        Student student = new Student("Shu");
 //        System.out.println(student.getName());
 //
-//        Class studentClass = Class.forName("com.jetbrains.OOD.Student");
+//        Class studentClass = Class.forName("com.jetbrains.JavaReflection.Student");
 //        Student studentFromRef = (Student)studentClass.getConstructor(String.class, Integer.class).newInstance("Shu", 5);
 //        System.out.println(studentFromRef.getName());
 //

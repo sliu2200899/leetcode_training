@@ -1,4 +1,4 @@
-package com.jetbrains.OOD;
+package com.jetbrains.JavaReflection;
 
 public class Student {
     private String name;
