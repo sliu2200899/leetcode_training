@@ -1,4 +1,4 @@
-package com.jetbrains.JavaIO;
+package com.jetbrains.JavaIONIO;
 
 import java.util.Scanner;
 

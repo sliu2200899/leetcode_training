@@ -1,19 +1,11 @@
-package com.jetbrains.JavaIO;
+package com.jetbrains.JavaIONIO;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class ReadFile {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) {
 
         // method 1: BufferedReader
 //        File file = new File("/Users/sliu/Documents/code/java_code/wordcounttext.txt");
@@ -46,15 +38,26 @@ public class ReadFile {
 //        }
 
         // method 4: reading the text file as a string
-        String data = readFileAsString("/Users/sliu/Documents/code/java_code/wordcounttext.txt");
-        System.out.println(data);
+//        String data = readFileAsString("/Users/sliu/Documents/code/java_code/wordcounttext.txt");
+//        System.out.println(data);
+
+        // method 5: scanner with paths
+        try {
+            Scanner sc = new Scanner(Paths.get("/Users/sliu/Documents/code/java_code/wordcounttext.txt"), "UTF-8");
+            while (sc.hasNextLine()) {
+                System.out.println(sc.nextLine());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private static String readFileAsString(String fileName) throws Exception {
-        String data = "";
-        data = new String(Files.readAllBytes(Paths.get(fileName)));
-        return data;
-    }
+//    private static String readFileAsString(String fileName) throws Exception {
+//        String data = "";
+//        data = new String(Files.readAllBytes(Paths.get(fileName)));
+//        return data;
+//    }
 
 //    private static List<String> readFileInList(String fileName) {
 //        List<String> lines = Collections.emptyList();
