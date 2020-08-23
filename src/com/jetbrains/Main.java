@@ -5,6 +5,7 @@ import com.jetbrains.classic.*;
 import com.jetbrains.classic.sorting.*;
 import com.jetbrains.hard.ReorderList;
 import com.jetbrains.innerStructure.*;
+import com.jetbrains.master.LastPositionOfTarget;
 import com.jetbrains.master.MergeSortedArray;
 
 import java.util.List;
@@ -219,5 +220,10 @@ public class Main {
 //        Elevator e = new Elevator();
 //
 //        System.out.println(e.sum(3.0, 5.8));
+
+        // lastPositionOfTarget
+        int[] res = {1,2,2,5,5,6};
+        LastPositionOfTarget p = new LastPositionOfTarget();
+        System.out.println(p.lastPosition(res, 5));
     }
 }
