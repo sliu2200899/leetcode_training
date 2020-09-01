@@ -12,6 +12,9 @@ import java.util.List;
 
 public class Main {
 
+    //math english:  https://language.chinadaily.com.cn/2016-02/24/content_23607321.htm
+
+
     public static void main(String[] args) {
         // two sum
 //        TwoSum obj = new TwoSum();
