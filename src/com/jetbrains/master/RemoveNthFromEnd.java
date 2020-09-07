@@ -7,25 +7,25 @@ public class RemoveNthFromEnd {
         // time: O(n)
         // space: O(1)
 
-        ListNode pr1 = head;
-        int i = 0;
-        while (i < n) {
-            pr1= pr1.next;
-            i++;
+        if (head == null || n < 0) return null;
+
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = dummy;
+
+        while (n-- > 0) {
+            cur = cur.next;
         }
 
-        ListNode pr2 = head, prev = head;
-        while (pr1 != null) {
-            prev = pr2;
-            pr1 = pr1.next;
-            pr2 = pr2.next;
+        ListNode p1 = cur;
+        cur = dummy;
+        while (p1.next != null) {
+            p1 = p1.next;
+            cur = cur.next;
         }
 
-        if (pr2 == head) {
-            return head.next;
-        } else {
-            prev.next = pr2.next;
-            return head;
-        }
+        cur.next = cur.next.next;
+
+        return dummy.next;
     }
 }
