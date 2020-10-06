@@ -21,10 +21,14 @@ public class ReverseList {
         return reverseListInt(head, null);
     }
 
-    private ListNode reverseListInt(ListNode head, ListNode newHead) {
-        if (head == null) return newHead;
-        ListNode next = head.next;
-        head.next = newHead;
-        return reverseListInt(next, head);
+    private ListNode reverseListInt(ListNode node, ListNode tail) {
+        // base case
+        if (node == null) return tail;
+
+        // recursive case
+        ListNode next = node.next;
+        node.next = tail;
+
+        return reverseListInt(next, node);
     }
 }
