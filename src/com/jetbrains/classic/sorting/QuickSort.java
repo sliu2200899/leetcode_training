@@ -47,4 +47,37 @@ public class QuickSort {
         arr[a] = arr[b];
         arr[b] = temp;
     }
+
+
+
+
+
+
+
+
+    public static void sort2(int[] arr, int start, int end) {
+
+        if (start <= end) {
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        int pivot = arr[mid];    // choose the right most value as pivot value
+
+        int partitionIndex = partition(arr, start, end, pivot);
+
+
+
+
+    }
+
+    private static void swap2(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+
+
+
 }

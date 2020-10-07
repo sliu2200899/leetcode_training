@@ -159,11 +159,11 @@ public class Main {
 //        }
 
         // merge sort
-//        int[] arr = {2, 1, 4, 6, 2, 9};
-//        MergeSort.sort(arr, 0, arr.length - 1);
-//        for (int i : arr) {
-//            System.out.println(i);
-//        }
+        int[] arr = {2, 1, 4, 6, 2, 9};
+        MergeSort.sort(arr);
+        for (int i : arr) {
+            System.out.println(i);
+        }
 
         // quick sort
 //        int[] arr = {2, 1, 4, 6, 2, 9};
@@ -225,8 +225,8 @@ public class Main {
 //        System.out.println(e.sum(3.0, 5.8));
 
         // lastPositionOfTarget
-        int[] res = {1,2,2,5,5,6};
-        LastPositionOfTarget p = new LastPositionOfTarget();
-        System.out.println(p.lastPosition(res, 5));
+//        int[] res = {1,2,2,5,5,6};
+//        LastPositionOfTarget p = new LastPositionOfTarget();
+//        System.out.println(p.lastPosition(res, 5));
     }
 }

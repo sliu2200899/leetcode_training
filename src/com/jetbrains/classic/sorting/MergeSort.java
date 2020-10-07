@@ -1,51 +1,56 @@
 package com.jetbrains.classic.sorting;
 
 public class MergeSort {
-    public static void sort(int[] arr, int low, int high) {
-        if (low < high) {
-            int mid = low + (high - low) / 2;
 
-            sort(arr, low, mid);
-            sort(arr, mid + 1, high);
+    public static void sort(int[] arr) {
+        sortHelper(arr, 0, arr.length - 1);
+    }
 
-            merge(arr, low, mid, high);
+    private static void sortHelper(int[] arr, int start, int end) {
+        if (start < end) {
+            int mid = start + (end - start) / 2;
+            sortHelper(arr, start, mid);
+            sortHelper(arr, mid + 1, end);
+
+            merge(arr, start, mid, end);
         }
     }
 
-    public static void merge(int[] arr, int low, int mid, int high) {
-        // find sizes of two subarrays to be merged
-        int n1 = mid - low + 1;
-        int n2 = high - mid;
+    private static void merge(int[] arr, int start, int mid, int end) {
+        // find sizes of the subarray to be merged
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
 
-        // create tmp arrays
-        int[] lowArr = new int[n1];
-        int[] highArr = new int[n2];
+        // create temp arrays
+        int[] startArr = new int[n1];
+        int[] endArr = new int[n2];
 
         // copy data to temp arrays
         for (int i = 0; i < n1; ++i) {
-            lowArr[i] = arr[low + i];
+            startArr[i] = arr[i + start];
         }
 
         for (int i = 0; i < n2; ++i) {
-            highArr[i] = arr[mid + i + 1];
+            endArr[i] = arr[i + mid + 1];
         }
 
-        // merge the temp arrays
+        // merge two sorted temp array
         int i = 0, j = 0;
-        int k = low;
+        int base = start;
         while (i < n1 && j < n2) {
-            if (lowArr[i] <= highArr[j]) {
-                arr[k++] = lowArr[i++];
+            if (startArr[i] <= endArr[j]) {
+                arr[base++] = startArr[i++];
             } else {
-                arr[k++] = highArr[j++];
+                arr[base++] = endArr[j++];
             }
         }
 
         while (i < n1) {
-            arr[k++] = lowArr[i++];
+            arr[base++] = startArr[i++];
         }
-        while (j < n2) {
-            arr[k++] = highArr[j++];
+
+        while (i < n2) {
+            arr[base++] = endArr[j++];
         }
     }
 }

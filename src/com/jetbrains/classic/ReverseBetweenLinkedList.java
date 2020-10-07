@@ -33,54 +33,54 @@ public class ReverseBetweenLinkedList {
     }
 
     // more like raw methods
-    private class Tuple{
-        ListNode head;
-        ListNode tail;
-        public Tuple (ListNode h, ListNode t) {
-            this.head = h;
-            this.tail = t;
-        }
-    }
+
+    /*
+        this method is much more easier to understand and implement..
+     */
     public ListNode reverseBetween2(ListNode head, int m, int n) {
+        // sanity check
+        if (head == null || m > n) return null;
+
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        ListNode cur = dummy;
 
-        for (int i = 0; i < m - 1; ++i) {
+        ListNode cur = dummy, pre = null;
+        int i = 0;
+        while (i < m) {
+            pre = cur;
             cur = cur.next;
+            i++;
         }
 
-        ListNode reversePreHead = cur;
-        ListNode reverseHead = cur.next;
+        ListNode revBefore = pre;
+        ListNode sublistNewTail = cur;
 
-        cur = cur.next;
-
-        for (int i = 0; i < n - m + 1; ++i) {
+        while (i <= n) {
+            pre = cur;
             cur = cur.next;
+            i++;
         }
 
-        ListNode reverseTail = cur;
+        ListNode sublistNewHead = pre;
+        ListNode revAfter = cur;
 
-        Tuple t = reverseLinkedList(reverseHead, reverseTail);
-        reversePreHead.next = t.head;
+        reverseList(sublistNewTail, sublistNewHead);
 
-        t.tail.next = reverseTail;
+        revBefore.next = sublistNewHead;
+        sublistNewTail.next = revAfter;
 
         return dummy.next;
-
     }
 
-    private Tuple reverseLinkedList(ListNode head, ListNode tail) {
-        // return the head of the new list
-        ListNode pre = null, newTail = head;
-        while (head != tail) {
-            ListNode next = head.next;
-            head.next = pre;
+    private void reverseList(ListNode head, ListNode tail) {
+        ListNode cur = head, temp = null;
+        while (cur != tail) {
+            ListNode next = cur.next;
+            cur.next = temp;
 
-            pre = head;
-            head = next;
+            temp = cur;
+            cur = next;
         }
-
-        return new Tuple(pre, newTail);
+        tail.next = temp;
     }
 }
