@@ -159,18 +159,18 @@ public class Main {
 //        }
 
         // merge sort
-        int[] arr = {2, 1, 4, 6, 2, 9};
-        MergeSort.sort(arr);
-        for (int i : arr) {
-            System.out.println(i);
-        }
-
-        // quick sort
 //        int[] arr = {2, 1, 4, 6, 2, 9};
-//        QuickSort.sort(arr, 0, arr.length - 1);
+//        MergeSort.sort(arr);
 //        for (int i : arr) {
 //            System.out.println(i);
 //        }
+
+        // quick sort
+        int[] arr = {2, 1, 4, 6, 2, 9};
+        QuickSort.sort2(arr, 0, arr.length - 1);
+        for (int i : arr) {
+            System.out.println(i);
+        }
 
         // merge two sorted array (basic, no enough space for storing)
 //        int[] arrA = {1,4,7,9};
