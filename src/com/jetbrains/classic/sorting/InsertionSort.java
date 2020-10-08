@@ -9,7 +9,7 @@ public class InsertionSort {
             int tmp = arr[i]; // store the value temporarily
             int j = i;  // initially set to be the same as i
 
-            while (j > 0 && arr[j - 1] >= tmp) {
+            while (j > 0 && arr[j - 1] > tmp) {
                 // shift one by one
                 arr[j] = arr[j - 1];
                 j--;
