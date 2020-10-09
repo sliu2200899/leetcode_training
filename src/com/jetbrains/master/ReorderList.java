@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.master;
 
 import com.jetbrains.innerStructure.ListNode;
 

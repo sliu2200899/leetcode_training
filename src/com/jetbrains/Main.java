@@ -1,14 +1,7 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
-import com.jetbrains.classic.*;
 import com.jetbrains.classic.sorting.*;
-import com.jetbrains.hard.ReorderList;
-import com.jetbrains.innerStructure.*;
-import com.jetbrains.master.LastPositionOfTarget;
-import com.jetbrains.master.MergeSortedArray;
-
-import java.util.List;
 
 public class Main {
 
