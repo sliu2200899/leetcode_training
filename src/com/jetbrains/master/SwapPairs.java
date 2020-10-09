@@ -55,3 +55,4 @@ public class SwapPairs {
         // Now head is the second node
         return secondNode;
     }
+}
