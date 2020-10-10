@@ -1,7 +1,7 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
-import com.jetbrains.classic.sorting.*;
+import com.jetbrains.master.StackOfArray;
 
 public class Main {
 
@@ -159,11 +159,11 @@ public class Main {
 //        }
 
         // quick sort
-        int[] arr = {2, 1, 4, 6, 2, 9};
-        QuickSort.sort2(arr, 0, arr.length - 1);
-        for (int i : arr) {
-            System.out.println(i);
-        }
+//        int[] arr = {2, 1, 4, 6, 2, 9};
+//        QuickSort.sort2(arr, 0, arr.length - 1);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
 
         // merge two sorted array (basic, no enough space for storing)
 //        int[] arrA = {1,4,7,9};
@@ -221,5 +221,20 @@ public class Main {
 //        int[] res = {1,2,2,5,5,6};
 //        LastPositionOfTarget p = new LastPositionOfTarget();
 //        System.out.println(p.lastPosition(res, 5));
+
+        // Stack
+        StackOfArray<String> s = new StackOfArray<>();
+        s.push("aa");
+        s.push("bb");
+        s.push("cc");
+        s.push("dd");
+        System.out.println(s.size());
+
+        s.push("hello");
+        System.out.println(s.pop());
+
+        for(String i : s) {
+            System.out.println(i);
+        }
     }
 }
