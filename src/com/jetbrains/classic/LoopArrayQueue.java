@@ -14,7 +14,6 @@ public class LoopArrayQueue {
         n = capacity;
     }
 
-
     public boolean enqueue(String item) {
         // if (tail + 1) % n == head, queue is full
         if ((tail + 1) % n == head) {
@@ -24,7 +23,6 @@ public class LoopArrayQueue {
         tail = (tail + 1) % n;   // for the loop array
         return true;
     }
-
 
     public String dequeue() {
         // if head == tail, queue is empty
