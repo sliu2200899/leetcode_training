@@ -1,6 +1,7 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
+import com.jetbrains.classic.LoopArrayQueue;
 import com.jetbrains.master.StackOfArray;
 
 public class Main {
@@ -222,19 +223,31 @@ public class Main {
 //        LastPositionOfTarget p = new LastPositionOfTarget();
 //        System.out.println(p.lastPosition(res, 5));
 
-        // Stack
-        StackOfArray<String> s = new StackOfArray<>();
-        s.push("aa");
-        s.push("bb");
-        s.push("cc");
-        s.push("dd");
-        System.out.println(s.size());
+        // Stack®
+//        StackOfArray<String> s = new StackOfArray<>();
+//        s.push("aa");
+//        s.push("bb");
+//        s.push("cc");
+//        s.push("dd");
+//        System.out.println(s.size());
+//
+//        s.push("hello");
+//        System.out.println(s.pop());
+//
+//        for(String i : s) {
+//            System.out.println(i);
+//        }
 
-        s.push("hello");
-        System.out.println(s.pop());
+        // Queue
+        LoopArrayQueue s = new LoopArrayQueue(3);
+        System.out.println(s.enqueue("Orange"));
+        System.out.println(s.enqueue("Apple"));;
+        System.out.println(s.enqueue("Time"));;
+        System.out.println(s.enqueue("Banana"));;
 
-        for(String i : s) {
-            System.out.println(i);
-        }
+        System.out.println(s.dequeue());
+
+        s.printAllData();
+
     }
 }
