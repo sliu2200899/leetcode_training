@@ -5,14 +5,15 @@ import com.jetbrains.innerStructure.ListNode;
 public class MergeSort {
 
     public static void sort(int[] arr) {
-        sortHelper(arr, 0, arr.length - 1);
+        merge_sort(arr, 0, arr.length - 1);
     }
 
-    private static void sortHelper(int[] arr, int start, int end) {
+    private static void merge_sort(int[] arr, int start, int end) {
         if (start < end) {
             int mid = start + (end - start) / 2;
-            sortHelper(arr, start, mid);
-            sortHelper(arr, mid + 1, end);
+
+            merge_sort(arr, start, mid);
+            merge_sort(arr, mid + 1, end);
 
             merge(arr, start, mid, end);
         }

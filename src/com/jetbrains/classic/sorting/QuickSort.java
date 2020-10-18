@@ -1,45 +1,34 @@
 package com.jetbrains.classic.sorting;
 
+import java.util.Arrays;
+
 public class QuickSort {
-    public static void sort(int[] arr, int start, int end) {
+    public static void quick_sort(int[] arr, int start, int end) {
 
-        if (start >= end) {
-            return;
+        if (start < end) {
+            int pi = partition(arr, start, end);
+
+            quick_sort(arr, start, pi - 1);
+            quick_sort(arr, pi + 1, end);
         }
-
-        int mid = start + (end - start) / 2;
-        int pivot = arr[mid];    // choose the right most value as pivot value
-
-        swap(arr, mid, end);
-
-        int partitionIndex = partition(arr, start, end, pivot);
-
-        sort(arr, start, partitionIndex - 1);
-        sort(arr, partitionIndex  + 1, end);
     }
 
-    private static int partition(int[] arr, int start, int end, int pivot) {
+    private static int partition(int[] arr, int start, int end) {
+        int mid = start + (end - start) / 2;
+        int pivot = arr[mid];
+        swap(arr, mid, end);
 
-        int endIndex = end;
+        // int pivot = arr[end];
 
-        while (start <= end) {
-            while (start <= end && arr[start] < pivot) {
-                start++;
-            }
-
-            while (start <= end && arr[end] >= pivot) {
-                end--;
-            }
-
-            if (start <= end) {
-                swap(arr, start, end);
-                start++;
-                end--;
+        int i = start - 1;  // i is used to keep track of the smaller elements
+        for (int j = start; j < end; ++j) {  // j is the traversal pointer that scan through the array
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
             }
         }
-
-        swap(arr, start, endIndex);
-        return start;
+        swap(arr, i + 1, end);
+        return i + 1;
     }
 
     private static void swap(int[] arr, int a, int b) {
