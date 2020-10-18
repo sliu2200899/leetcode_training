@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 import com.jetbrains.classic.LoopArrayQueue;
 import com.jetbrains.classic.sorting.BubbleSort;
+import com.jetbrains.classic.sorting.CountingSort;
 import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.master.StackOfArray;
