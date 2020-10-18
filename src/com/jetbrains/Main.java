@@ -2,6 +2,8 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 import com.jetbrains.classic.LoopArrayQueue;
+import com.jetbrains.classic.sorting.BubbleSort;
+import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.master.StackOfArray;
 
 public class Main {
@@ -239,15 +241,15 @@ public class Main {
 //        }
 
         // Queue
-        LoopArrayQueue s = new LoopArrayQueue(3);
-        System.out.println(s.enqueue("Orange"));
-        System.out.println(s.enqueue("Apple"));;
-        System.out.println(s.enqueue("Time"));;
-        System.out.println(s.enqueue("Banana"));;
-
-        System.out.println(s.dequeue());
-
-        s.printAllData();
+//        LoopArrayQueue s = new LoopArrayQueue(3);
+//        System.out.println(s.enqueue("Orange"));
+//        System.out.println(s.enqueue("Apple"));;
+//        System.out.println(s.enqueue("Time"));;
+//        System.out.println(s.enqueue("Banana"));;
+//
+//        System.out.println(s.dequeue());
+//
+//        s.printAllData();
 
     }
 }
