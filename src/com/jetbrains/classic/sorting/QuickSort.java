@@ -66,8 +66,49 @@ public class QuickSort {
                 right--;
             }
         }
-
         quick_sort2(arr, start, right);
         quick_sort2(arr, left, end);
+    }
+
+    // preferred way to do
+    public static void quick_sort3(int[] arr, int start, int end) {
+
+        if (start >= end) {
+            return;
+        }
+
+        int partitionIndex = partition3(arr, start, end);
+
+        quick_sort3(arr, start, partitionIndex - 1);
+        quick_sort3(arr, partitionIndex  + 1, end);
+    }
+
+    private static int partition3(int[] arr, int start, int end) {
+
+        int mid = start + (end - start) / 2;
+        int pivot = arr[mid];    // choose the right most value as pivot value
+        swap(arr, mid, end);
+
+        int endIndex = end;
+
+        // put all the numbers equal to pivot to the right of the array
+        while (start <= end) {
+            while (start <= end && arr[start] < pivot) {
+                start++;
+            }
+
+            while (start <= end && arr[end] >= pivot) {
+                end--;
+            }
+
+            if (start <= end) {
+                swap(arr, start, end);
+                start++;
+                end--;
+            }
+        }
+
+        swap(arr, start, endIndex);
+        return start;
     }
 }

@@ -1,6 +1,7 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
+import com.jetbrains.classic.FindKLargest;
 import com.jetbrains.classic.LoopArrayQueue;
 import com.jetbrains.classic.sorting.BubbleSort;
 import com.jetbrains.classic.sorting.CountingSort;
@@ -253,5 +254,10 @@ public class Main {
 //
 //        s.printAllData();
 
+        //findKthLargest2
+        int[] nums = {1,2,3,4,5,6};
+        FindKLargest a = new FindKLargest();
+        int val = a.findKthLargest2(nums, 3);
+        System.out.println(val);
     }
 }
