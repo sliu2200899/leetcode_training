@@ -255,9 +255,9 @@ public class Main {
 //        s.printAllData();
 
         //findKthLargest2
-        int[] nums = {1,2,3,4,5,6};
-        FindKLargest a = new FindKLargest();
-        int val = a.findKthLargest2(nums, 3);
-        System.out.println(val);
+//        int[] nums = {1,2,3,4,5,6};
+//        FindKLargest a = new FindKLargest();
+//        int val = a.findKthLargest3(nums, 3);
+//        System.out.println(val);
     }
 }

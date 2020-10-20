@@ -7,33 +7,37 @@ public class QuickSort {
     public static void quick_sort(int[] arr, int start, int end) {
 
         if (start < end) {
-            int pi = partition(arr, start, end);
+            // 1. random
+//        Random rand = new Random();
+//        int pivot_index = rand.nextInt(end - start + 1) + start;
 
-            quick_sort(arr, start, pi - 1);
-            quick_sort(arr, pi + 1, end);
+            // 2. mid
+            int pivot_index = start + (end - start) / 2;
+
+            pivot_index = partition(arr, start, end, pivot_index);
+
+            quick_sort(arr, start, pivot_index - 1);
+            quick_sort(arr, pivot_index + 1, end);
         }
     }
 
-    private static int partition(int[] arr, int start, int end) {
-        // random
-//        Random rand = new Random();
-//        int index = rand.nextInt(end - start + 1) + start;
+    private static int partition(int[] arr, int start, int end, int pivot_index) {
 
-        int mid = start + (end - start) / 2;
-        int pivot = arr[mid];
-        swap(arr, mid, end);
+        if (start == end) return start;
 
-        // int pivot = arr[end];
+        int pivot = arr[pivot_index];
+        swap(arr, pivot_index, end);
 
-        int i = start - 1;  // i is used to keep track of the smaller elements
-        for (int j = start; j < end; ++j) {  // j is the traversal pointer that scan through the array
-            if (arr[j] < pivot) {
-                i++;
-                swap(arr, i, j);
+        // split the array into two parts:   ( smaller ones    |    larger or equal to pivot)
+        int store_index = start;  // store_index is used to keep track of all the smaller elements
+        for (int i = start; i <= end; ++i) {  // i is the traversal pointer that scan through the array
+            if (arr[i] < pivot) {
+                swap(arr, store_index, i);
+                store_index++;
             }
         }
-        swap(arr, i + 1, end);
-        return i + 1;
+        swap(arr, store_index, end);
+        return store_index;
     }
 
     private static void swap(int[] arr, int a, int b) {
