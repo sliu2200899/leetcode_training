@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class SortColor {
     public static void sortColors(int[] nums) {
         int left = 0, right = nums.length - 1;
-        int cur = 0, key = 1;
+        int cur = 0, key = 1;     // you need to know sort values
 
         while (cur <= right) {
             if (nums[cur] < key) {
