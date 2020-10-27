@@ -46,33 +46,58 @@ public class ThreeSum {
         how to come up with a generalized approach to solve this problem
      */
 
-    public List<List<Integer>> fourSum(int[] nums, int target) {
+    public List<List<Integer>> threeSum2(int[] nums) {
         Arrays.sort(nums);
-        return kSum(nums, target, 0, 4);
+        return kSum(nums, 0, 0, 3);
     }
-    public List<List<Integer>> kSum(int[] nums, int target, int start, int k) {
+
+    private List<List<Integer>> kSum(int[] nums, int target, int start, int k) {
         List<List<Integer>> res = new ArrayList<>();
-        if (start == nums.length || nums[start] * k > target || target > nums[nums.length - 1] * k)
+        // base case
+        if (start == nums.length || nums[start] * k > target || nums[nums.length - 1] * k < target) {
             return res;
-        if (k == 2)
+        }
+
+        if (k == 2) {
             return twoSum(nums, target, start);
-        for (int i = start; i < nums.length; ++i)
-            if (i == start || nums[i - 1] != nums[i]) {}
-//                for (var set : kSum(nums, target - nums[i], i + 1, k - 1)) {    //java 10 var
-//                    res.add(new ArrayList<>(Arrays.asList(nums[i])));
-//                    res.get(res.size() - 1).addAll(set);
-//                }
+        }
+
+        // recursive case
+        for (int i = start; i < nums.length; ++i) {
+            if (i != start && nums[i] == nums[i - 1]) continue;
+            List<List<Integer>> innerList = kSum(nums, target - nums[i], i + 1, k - 1);
+            for (List<Integer> list : innerList) {
+                res.add(new ArrayList(Arrays.asList(nums[i])));
+                res.get(res.size() - 1).addAll(list);
+            }
+        }
         return res;
     }
-    public List<List<Integer>> twoSum(int[] nums, int target, int start) {
+
+    private List<List<Integer>> twoSum(int[] nums, int target, int start) {
         List<List<Integer>> res = new ArrayList<>();
-        Set<Integer> s = new HashSet<>();
-        for (int i = start; i < nums.length; ++i) {
-            if (res.isEmpty() || res.get(res.size() - 1).get(1) != nums[i])
-                if (s.contains(target - nums[i]))
-                    res.add(Arrays.asList(target - nums[i], nums[i]));
-            s.add(nums[i]);
+        if (nums == null || nums.length == 0) return res;
+
+        int left = start, right = nums.length - 1;
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum < target) {
+                left++;
+            } else if (sum > target) {
+                right--;
+            } else {
+                res.add(Arrays.asList(nums[left], nums[right]));
+
+                while (left + 1 < right && nums[left] == nums[left + 1]) left++;
+                while (left < right - 1 && nums[right] == nums[right - 1]) right--;
+
+                if (left < right) {
+                    left++;
+                    right--;
+                }
+            }
         }
+
         return res;
     }
 }
