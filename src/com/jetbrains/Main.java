@@ -3,10 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 import com.jetbrains.classic.FindKLargest;
 import com.jetbrains.classic.LoopArrayQueue;
-import com.jetbrains.classic.sorting.BubbleSort;
-import com.jetbrains.classic.sorting.CountingSort;
-import com.jetbrains.classic.sorting.MergeSort;
-import com.jetbrains.classic.sorting.QuickSort;
+import com.jetbrains.classic.sorting.*;
 import com.jetbrains.master.StackOfArray;
 import com.jetbrains.openSourceCode.SkipList2;
 
@@ -262,13 +259,27 @@ public class Main {
 //        System.out.println(val);
 
         // skip list
-        SkipList2 sl = new SkipList2();
-        sl.insert2(4);
-        sl.insert2(9);
-        sl.insert2(1);
-        sl.insert2(2);
+//        SkipList2 sl = new SkipList2();
+//        sl.insert2(4);
+//        sl.insert2(9);
+//        sl.insert2(1);
+//        sl.insert2(2);
+//
+//        sl.printAll_beautiful();
 
-        sl.printAll_beautiful();
+//        // insertion sort
+//        int[] nums = {4,2,3,6,1,2,9};
+//        InsertionSort.sort2(nums);
+//        for (int i : nums) {
+//            System.out.println(i);
+//        }
+
+        // mergeSort 2
+        int[] nums = {4, 5, 4, 9, 4, 5};  // [0, 9]
+        CountingSort.sort(nums, 9);
+        for (int i : nums) {
+            System.out.println(i);
+        }
 
     }
 }
