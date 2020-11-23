@@ -275,10 +275,23 @@ public class Main {
 //        }
 
         // mergeSort 2
-        int[] nums = {4, 5, 4, 9, 4, 5};  // [0, 9]
-        CountingSort.sort(nums, 9);
-        for (int i : nums) {
-            System.out.println(i);
+//        int[] nums = {4, 5, 4, 9, 4, 5};  // [0, 9]
+//        CountingSort.sort(nums, 9);
+//        for (int i : nums) {
+//            System.out.println(i);
+//        }
+
+        // bucket sort
+        float[] arr = { (float)0.897, (float)0.565,
+                (float)0.656, (float)0.1234,
+                (float)0.665, (float)0.3434 };
+
+        int n = arr.length;
+        BucketSort.sort(arr, n);
+
+        System.out.println("Sorted array is ");
+        for (float el : arr) {
+            System.out.print(el + " ");
         }
 
     }
