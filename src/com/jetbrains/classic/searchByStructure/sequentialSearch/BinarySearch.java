@@ -1,5 +1,11 @@
 package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
+
+/*
+ binary search only applied to the sequential data and
+ */
+
+
 public class BinarySearch {
     /**
      * @param A an integer array sorted in ascending order
@@ -32,6 +38,94 @@ public class BinarySearch {
         }
         if (nums[end] == target) {
             return end;
+        }
+        return -1;
+    }
+
+    // preferred method
+    // very basic no duplicates, and find some specific value
+
+    public int binarySearchBasic(int[] a, int n, int value) {
+        int start = 0, end = n - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (a[mid] > value) {
+                end = mid - 1;
+            } else if (a[mid] < value) {
+                start = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+
+    // if we have duplicates in the sorted array
+    // and we try to find the first element in the array
+    public int binarySearchFindFirst(int[] a, int n, int value) {
+        int start = 0, end = n - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (a[mid] > value) {
+                end = mid - 1;
+            } else if (a[mid] < value) {
+                start = mid + 1;
+            } else {
+                if (mid == 0 || a[mid - 1] != value) return mid;
+                else end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+
+    // we try to find the last element in the array
+    public int binarySearchFindLast(int[] a, int n, int value) {
+        int start = 0, end = n - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (a[mid] > value) {
+                end = mid - 1;
+            } else if (a[mid] < value) {
+                start = mid + 1;
+            } else {
+                if (mid == n - 1 || a[mid + 1] != value) return mid;
+                else start = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    // we try to find the first elements that is large or equal to the specific element
+    public int binarySearchFindFirstLarge(int[] a, int n, int value) {
+        int start = 0, end = n -1 ;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (a[mid] < value) {
+                start = mid + 1;
+            } else {
+                if (mid == 0 || a[mid - 1] < value) return mid;
+                else end = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+
+    // we try to find the last elements that is smaller or equal to the specific element
+    public int binarySearchFindLastSmaller(int[] a, int n, int value) {
+        int start = 0, end = n -1 ;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (a[mid] > value) {
+                end = mid - 1;
+            }
+            else {
+                if (mid == n - 1 || a[mid + 1] > value) return mid;
+                else start = mid + 1;
+            }
+
         }
         return -1;
     }
