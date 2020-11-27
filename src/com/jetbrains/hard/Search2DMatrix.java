@@ -1,4 +1,4 @@
-package com.jetbrains.master;
+package com.jetbrains.hard;
 
 public class Search2DMatrix {
 
@@ -139,4 +139,42 @@ public class Search2DMatrix {
 
         return false;
     }
+
+
+    // follow up: search matrix with following properties:
+    // 1. Integers in each row are sorted in ascending from left to right.
+    // 2. Integers in each column are sorted in ascending from top to bottom.
+
+    /*
+        we just need to narrow the search space.
+        First, we initialize a (row, col) pointer to the bottom-left of the matrix.[1]
+        Then, until we find target and return true we do the following:
+            if the currently-pointed-to value is larger than target we can move one row "up".
+            Otherwise, if the currently-pointed-to value is smaller than target, we can move one column "right".
+            It is not too tricky to see why doing this will never prune the correct answer;
+            because the rows are sorted from left-to-right, we know that every value to the right of the current value is larger.
+            Therefore, if the current value is already larger than target, we know that every value to its right will also be too large.
+            A very similar argument can be made for the columns, so this manner of search will always find target in the matrix (if it is present).
+     */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
+            return false;
+
+        int m = matrix.length, n = matrix[0].length;
+
+        int row = m - 1, col = 0;
+        while (row >= 0 && col < n) {
+            if (matrix[row][col] > target) {
+                row--;
+            } else if (matrix[row][col] < target) {
+                col++;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

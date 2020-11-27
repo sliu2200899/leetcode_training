@@ -82,56 +82,58 @@ public class FindKLargest {
 
     /*
         another quick select
+        preferred way to solve problem....
+        time:  O(n)
      */
-    public int partition3(int[] nums, int start, int end, int pivot_index) {
+    public int findKthLargest3(int[] nums, int k) {
+        if (nums == null || nums.length == 0) return 0;
+        return quick_select(nums, nums.length - k, 0, nums.length - 1);
+    }
 
-        // 1. move pivot to end
+    // return N-k th smallest element in the array
+    private int quick_select(int[] nums, int k, int start, int end) {
+        if (start == end) {
+            return nums[start];
+        }
+        // choose pivot_index
+        Random random = new Random();
+        int pivot_index = start + random.nextInt(end - start);
+
+        pivot_index = partition(nums, start, end, pivot_index);
+
+        if (k == pivot_index) return nums[pivot_index];
+        else if (k < pivot_index) return quick_select(nums, k, start, pivot_index - 1);
+        else return quick_select(nums, k, pivot_index + 1, end);
+    }
+
+    private int partition(int[] nums, int start, int end, int pivot_index) {
+
+        // move pivot to end
         int pivot = nums[pivot_index];
         swap(nums, pivot_index, end);
+        int endIndex = end;
 
-        // 2. move all smaller elements to the left
-        int store_index = start;
-        for (int i = start; i <= end; i++) {
-            if (nums[i] < pivot) {
-                swap(nums, store_index, i);
-                store_index++;
+        while (start <= end) {
+            while (start <= end && nums[start] < pivot) {
+                start++;
+            }
+            while (start <= end && nums[end] >= pivot) {
+                end--;
+            }
+            if (start <= end) {
+                swap(nums, start, end);
+                start++;
+                end--;
             }
         }
-
-        // 3. move pivot to its final place
-        swap(nums, store_index, end);
-
-        return store_index;
+        swap(nums, start, endIndex);
+        return start;
     }
 
-    public int quickselect3(int[] nums, int start, int end, int k_smallest) {
-    /*
-        Returns the k-th smallest element of list within left..right.
-    */
-
-        if (start == end) // If the list contains only one element,
-            return nums[start];  // return that element
-
-        // select a random pivot_index
-        Random random_num = new Random();
-        int pivot_index = start + random_num.nextInt(end - start);
-
-        pivot_index = partition3(nums, start, end, pivot_index);
-
-        // the pivot is on (N - k)th smallest position
-        if (k_smallest == pivot_index)
-            return nums[k_smallest];
-            // go left side
-        else if (k_smallest < pivot_index)
-            return quickselect3(nums, start, pivot_index - 1, k_smallest);
-        // go right side
-        return quickselect3(nums, pivot_index + 1, end, k_smallest);
-    }
-
-    public int findKthLargest3(int[] nums, int k) {
-        int size = nums.length;
-        // kth largest is (N - k)th smallest
-        return quickselect3(nums, 0, size - 1, size - k);
-    }
+//    private void swap(int[] nums, int a, int b) {
+//        int temp = nums[a];
+//        nums[a] = nums[b];
+//        nums[b] = temp;
+//    }
 
 }
