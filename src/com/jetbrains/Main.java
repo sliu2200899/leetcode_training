@@ -4,8 +4,13 @@ package com.jetbrains;
 import com.jetbrains.classic.FindKLargest;
 import com.jetbrains.classic.LoopArrayQueue;
 import com.jetbrains.classic.sorting.*;
+import com.jetbrains.innerStructure.ListNode;
+import com.jetbrains.master.AddTwoNumbers;
+import com.jetbrains.master.ReversePlus;
 import com.jetbrains.master.StackOfArray;
 import com.jetbrains.openSourceCode.SkipList2;
+
+import java.util.LinkedList;
 
 public class Main {
 
@@ -282,16 +287,28 @@ public class Main {
 //        }
 
         // bucket sort
-        float[] arr = { (float)0.897, (float)0.565,
-                (float)0.656, (float)0.1234,
-                (float)0.665, (float)0.3434 };
+//        float[] arr = { (float)0.897, (float)0.565,
+//                (float)0.656, (float)0.1234,
+//                (float)0.665, (float)0.3434 };
+//
+//        int n = arr.length;
+//        BucketSort.sort(arr, n);
+//
+//        System.out.println("Sorted array is ");
+//        for (float el : arr) {
+//            System.out.print(el + " ");
+//        }
 
-        int n = arr.length;
-        BucketSort.sort(arr, n);
+        //ReversePlus
+        ListNode l1 = new ListNode(9);
+        l1.next = new ListNode(9);
+        l1.next.next = new ListNode(9);
 
-        System.out.println("Sorted array is ");
-        for (float el : arr) {
-            System.out.print(el + " ");
+        ReversePlus r = new ReversePlus();
+        ListNode tr = r.plus(l1);
+        while (tr != null) {
+            System.out.println(tr.val);
+            tr = tr.next;
         }
 
     }

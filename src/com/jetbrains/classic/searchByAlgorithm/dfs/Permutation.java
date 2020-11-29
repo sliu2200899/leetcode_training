@@ -35,22 +35,45 @@ public class Permutation {
     }
 
     // follow up: what if the nums array contains duplicates
+    /*
+        First of all, let us review the general idea of permutation with an example.
+
+        Given the input array [1, 1, 2], to generate a permutation of the array, we could follow the
+        Depth-First Search (DFS) approach, or more precisely the backtracking technique as one will see later.
+
+        let's walk through the example with paper and pencil as follows:
+        1. Given the input of [1, 1, 2], at the first stage, we have 2 choices to pick a number as the first number in the final permutation,
+        i.e. 1 and 2. Suppose that we pick the number 1, now the remaining numbers would become [1, 2].
+        Note: The reason that we have only 2 choices instead of 3, is that there is a duplicate in the given input.
+        Picking any of the duplicate numbers as the first number of the permutation would lead us to the same permutation at the end.
+        Should the numbers in the array be all unique, we would then have the same number of choices as the length of the array.
+
+        2. At the second stage, we now then have again 2 choices, i.e. [1, 2]. Let us pick again the number 1,
+        which leaves us the only remaining number 2.
+
+        3. Now at the third stage, we have only one candidate number left, i.e. [2]. We then pick the last remaining number,
+        which leads to a final permutation sequence of [1, 1, 2].
+
+        4. Moreover, we need to revisit each of the above stages, and make a different choice in order to try out all possibilities.
+        The reversion of the choices is what we call backtracking.
+     */
+    // We illustrate all potential exploration in the following graph where each node represents a choice at a specific stage:
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         if (nums == null) return res;
 
-        Set<List<Integer>> set = new HashSet<>();
+        Set<String> set = new HashSet<>();
         dfs2(nums, res, new ArrayList<>(), new boolean[nums.length], set);
 
         return res;
     }
 
-    private void dfs2(int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] visited, Set<List<Integer>> set) {
+    private void dfs2(int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] visited, Set<String> set) {
         // base case
         if (list.size() == nums.length) {
-            if (!set.contains(list)) {
+            if (!set.contains(list.toString())) {
                 List<Integer> tmp = new ArrayList<>(list);
-                set.add(tmp);
+                set.add(tmp.toString());
                 res.add(tmp);
             }
             return;
