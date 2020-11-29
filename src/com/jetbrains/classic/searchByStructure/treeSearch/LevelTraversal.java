@@ -38,16 +38,16 @@ public class LevelTraversal {
         return res;
     }
 
-    private void dfs(TreeNode root, List<List<Integer>> list, int height) {
+    private void dfs(TreeNode root, List<List<Integer>> list, int depth) {
         if (root == null) {
             return;
         }
-        if (list.size() <= height) {
+        if (list.size() <= depth) {
             list.add(new ArrayList<Integer>());
         }
-        list.get(height).add(root.val);
-        dfs(root.left, list, height + 1);
-        dfs(root.right, list, height + 1);
+        list.get(depth).add(root.val);
+        dfs(root.left, list, depth + 1);
+        dfs(root.right, list, depth + 1);
 
         return;
     }

@@ -13,6 +13,10 @@ import java.util.List;
    2. how to process current node
    3. how to release the connection
  */
+
+/*
+    this is new data structure: Threaded binary tree
+ */
 public class MorriesTraversal {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
@@ -33,13 +37,13 @@ public class MorriesTraversal {
 
                 if (pre.right == null) {
                     // build the connection
+                    // res.add(cur.val); // preorder traversal
                     pre.right = cur;
-                    //(preorder ... res.add(cur))
                     cur = cur.left;
                 } else {
                     // release the connection
                     pre.right = null;
-                    res.add(cur.val);
+                    res.add(cur.val); // inorder traversal
                     cur = cur.right;
                 }
             }
