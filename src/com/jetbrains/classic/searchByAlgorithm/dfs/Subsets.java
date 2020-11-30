@@ -60,8 +60,9 @@ public class Subsets {
     // follow up: what if the nums array contains duplicates?
     // the key is that
     /*
-        if we have not visited the first number, we should take the duplicates into consideration.
-        However, if we have visited this number, we should just ignore.
+        if we have not visited the first number, we just ignore.
+
+        However, if we have visited this number, we should take teh duplicates into consideration.
 
         the difference between 3 sum with dup is that in this problem we need to consider the situation like
          [1, 2, 2]
@@ -84,11 +85,13 @@ public class Subsets {
         for (int i = start; i < nums.length; ++i) {
             if (i != 0 && nums[i] == nums[i - 1] && !visited[i - 1]) continue;
 
-            visited[i] = true;
-            list.add(nums[i]);
-            helper2(nums, res, list, i + 1, visited);
-            list.remove(list.size() - 1);
-            visited[i] = false;
+            if (!visited[i]) {
+                visited[i] = true;
+                list.add(nums[i]);
+                helper2(nums, res, list, i + 1, visited);
+                list.remove(list.size() - 1);
+                visited[i] = false;
+            }
         }
     }
 }

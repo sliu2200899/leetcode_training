@@ -1,9 +1,6 @@
 package com.jetbrains.classic.searchByAlgorithm.dfs;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Permutation {
     public List<List<Integer>> permute(int[] nums) {
@@ -58,17 +55,56 @@ public class Permutation {
         The reversion of the choices is what we call backtracking.
      */
     // We illustrate all potential exploration in the following graph where each node represents a choice at a specific stage:
+    // preferred way to solve the problem
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         if (nums == null) return res;
 
+        Arrays.sort(nums);
+        List<Integer> list = new ArrayList<>();
+        dfs2(res, list, nums, new boolean[nums.length]);
+        return res;
+    }
+
+    private void dfs2(List<List<Integer>> res, List<Integer> list, int[] nums, boolean[] visited) {
+        if (nums.length == list.size()) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; ++i) {
+            if (i != 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {
+                continue;
+            }
+
+            if (!visited[i]) {
+                visited[i] = true;
+                list.add(nums[i]);
+                dfs2(res, list, nums, visited);
+                list.remove(list.size() - 1);
+                visited[i] = false;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+    public List<List<Integer>> permuteUnique2(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null) return res;
+
         Set<String> set = new HashSet<>();
-        dfs2(nums, res, new ArrayList<>(), new boolean[nums.length], set);
+        dfs3(nums, res, new ArrayList<>(), new boolean[nums.length], set);
 
         return res;
     }
 
-    private void dfs2(int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] visited, Set<String> set) {
+    private void dfs3(int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] visited, Set<String> set) {
         // base case
         if (list.size() == nums.length) {
             if (!set.contains(list.toString())) {
@@ -85,7 +121,7 @@ public class Permutation {
 
             visited[i] = true;
             list.add(nums[i]);
-            dfs2(nums, res, list, visited, set);
+            dfs3(nums, res, list, visited, set);
             list.remove(list.size() - 1);
             visited[i] = false;
         }

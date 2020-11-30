@@ -1,16 +1,9 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
-import com.jetbrains.classic.FindKLargest;
-import com.jetbrains.classic.LoopArrayQueue;
-import com.jetbrains.classic.sorting.*;
-import com.jetbrains.innerStructure.ListNode;
-import com.jetbrains.master.AddTwoNumbers;
-import com.jetbrains.master.ReversePlus;
-import com.jetbrains.master.StackOfArray;
-import com.jetbrains.openSourceCode.SkipList2;
+import com.jetbrains.master.CombinationSum;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
 
@@ -300,16 +293,23 @@ public class Main {
 //        }
 
         //ReversePlus
-        ListNode l1 = new ListNode(9);
-        l1.next = new ListNode(9);
-        l1.next.next = new ListNode(9);
+//        ListNode l1 = new ListNode(9);
+//        l1.next = new ListNode(9);
+//        l1.next.next = new ListNode(9);
+//
+//        ReversePlus r = new ReversePlus();
+//        ListNode tr = r.plus(l1);
+//        while (tr != null) {
+//            System.out.println(tr.val);
+//            tr = tr.next;
+//        }
 
-        ReversePlus r = new ReversePlus();
-        ListNode tr = r.plus(l1);
-        while (tr != null) {
-            System.out.println(tr.val);
-            tr = tr.next;
+        //CombinationSum
+        int[] nums = {2, 3, 6, 7};
+        CombinationSum cs = new CombinationSum();
+        List<List<Integer>> res = cs.combinationSum(nums, 7);
+        for (List<Integer> item: res) {
+            System.out.println(item);
         }
-
     }
 }
