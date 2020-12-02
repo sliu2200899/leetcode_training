@@ -43,6 +43,30 @@ public class pathSum {
         Note: A leaf is a node with no children.
 
         algo:
+The intuition for this approach is pretty straightforward. The problem statement asks us to find all root to leaf
+paths in a given binary tree. If you simply consider the depth first traversal on a tree, all it does is traverse
+once branch after another. All we need to do here is to simply execute the depth first traversal and maintain two things
+along the way:
+
+    A running sum of all the nodes traversed till that point in recursion and
+    A list of all those nodes
+
+If ever the sum becomes equal to the required sum, and the node where this happens is a leaf node, we can simply
+add the list of nodes to our final solution. We keep on doing this for every branch of the tree and we will get
+all the root to leaf paths in this manner that add up to a certain value. Basically, these paths are branches
+and hence the depth first traversal makes the most sense here. We can also use the breadth first approach for
+solving this problem. However, that would be super heavy on memory and is not a recommended approach for this
+very problem. We will look into more details towards the end.
+
+Algorithm
+
+We'll define a function called recurseTree which will take the following parameters
+
+    node which represents the current node we are on during recursion
+    remainingSum which represents the remaining sum that we need to find going down the tree. We can also pass the current sum in our recursive calls. However, then we'd also need to pass the required sum as an additional variable since we'd have to compare the current sum against that value. By passing in remaining sum, we can avoid having to pass additional variable and just see if the remaining sum is 0 (or equal to the value of the current node).
+Finally, we'll have to pass a list of nodes here which will simply contain the list of all the nodes we have seen till now on the current branch. Let's call this pathNodes.
+The following examples assume the sum to be found is 22.
+
 
      */
     public List<List<Integer>> pathSum2(TreeNode root, int sum) {
