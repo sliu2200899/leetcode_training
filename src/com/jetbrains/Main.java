@@ -1,9 +1,8 @@
 package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
-import com.jetbrains.master.CombinationSum;
 
-import java.util.List;
+import java.util.Random;
 
 public class Main {
 
@@ -305,11 +304,31 @@ public class Main {
 //        }
 
         //CombinationSum
-        int[] nums = {2, 3, 6, 7};
-        CombinationSum cs = new CombinationSum();
-        List<List<Integer>> res = cs.combinationSum(nums, 7);
-        for (List<Integer> item: res) {
-            System.out.println(item);
+//        int[] nums = {2, 3, 6, 7};
+//        CombinationSum cs = new CombinationSum();
+//        List<List<Integer>> res = cs.combinationSum(nums, 7);
+//        for (List<Integer> item: res) {
+//            System.out.println(item);
+//        }
+
+        // random numbers
+        int[] count = new int[10];
+
+        System.out.println((int)(Math.random() * 30 + 1));
+        Random r = new Random(1);
+        for (int i = 0; i < 6; i++) {
+            System.out.print(r.nextInt(10) +  "\t");
         }
+
+
+
+//        for (int i = 0; i < 10000; ++i) {
+//            int[] sampled = ReservoirSampling.reserviorSampling(5, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
+//            for (int num : sampled) count[num]++;
+//        }
+//
+//        for (int i = 0; i < 10; ++i) {
+//            System.out.println("Count of " + i + " " + count[i] + " times");
+//        }
     }
 }
