@@ -2,6 +2,10 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.dsGraph.BasicGraphBFS;
+import com.jetbrains.classic.dsGraph.BasicGraphDFS;
+import com.jetbrains.innerStructure.Graph;
+
 import java.util.Random;
 
 public class Main {
@@ -312,13 +316,13 @@ public class Main {
 //        }
 
         // random numbers
-        int[] count = new int[10];
-
-        System.out.println((int)(Math.random() * 30 + 1));
-        Random r = new Random(1);
-        for (int i = 0; i < 6; i++) {
-            System.out.print(r.nextInt(10) +  "\t");
-        }
+//        int[] count = new int[10];
+//
+//        System.out.println((int)(Math.random() * 30 + 1));
+//        Random r = new Random(1);
+//        for (int i = 0; i < 6; i++) {
+//            System.out.print(r.nextInt(10) +  "\t");
+//        }
 
 
 
@@ -330,5 +334,21 @@ public class Main {
 //        for (int i = 0; i < 10; ++i) {
 //            System.out.println("Count of " + i + " " + count[i] + " times");
 //        }
+
+        // graph bfs
+//        Graph g = new Graph(4);
+//        g.addEdge(0, 2);
+//        g.addEdge(1, 2);
+//        g.addEdge(1, 3);
+//        BasicGraphBFS gBFS = new BasicGraphBFS();
+//        gBFS.bfs(2, 3, g.numVertices(), g.getAdj());
+
+        // graph dfs
+        Graph g = new Graph(4);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(1, 3);
+        BasicGraphDFS gDFS = new BasicGraphDFS();
+        gDFS.dfs(2, 3, g.numVertices(), g.getAdj());
     }
 }
