@@ -4,6 +4,7 @@ package com.jetbrains;
 
 import com.jetbrains.classic.dsGraph.BasicGraphBFS;
 import com.jetbrains.classic.dsGraph.BasicGraphDFS;
+import com.jetbrains.hard.ReversePairs;
 import com.jetbrains.innerStructure.Graph;
 
 import java.util.Random;
@@ -344,11 +345,17 @@ public class Main {
 //        gBFS.bfs(2, 3, g.numVertices(), g.getAdj());
 
         // graph dfs
-        Graph g = new Graph(4);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(1, 3);
-        BasicGraphDFS gDFS = new BasicGraphDFS();
-        gDFS.dfs(2, 3, g.numVertices(), g.getAdj());
+//        Graph g = new Graph(4);
+//        g.addEdge(0, 2);
+//        g.addEdge(1, 2);
+//        g.addEdge(1, 3);
+//        BasicGraphDFS gDFS = new BasicGraphDFS();
+//        gDFS.dfs(2, 3, g.numVertices(), g.getAdj());
+
+        // reverse pairs
+        int[] nums = {2,4,1,3,5};
+        ReversePairs rp = new ReversePairs();
+        rp.reversePairs2(nums);
+        System.out.println(rp.getCount());
     }
 }
