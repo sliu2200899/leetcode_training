@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 public class BasicGraphDFS {
+    /*
+        time: O(E)  E is the number of the edges because number of edge is large than number of vertices
+        space: O(V)  V is the number of the vertices
+     */
     boolean found =  false;
     LinkedList<Integer>[] adj;
 

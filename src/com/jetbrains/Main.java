@@ -4,6 +4,7 @@ package com.jetbrains;
 
 import com.jetbrains.classic.dsGraph.BasicGraphBFS;
 import com.jetbrains.classic.dsGraph.BasicGraphDFS;
+import com.jetbrains.classic.dsGraph.ValidTree;
 import com.jetbrains.hard.ReversePairs;
 import com.jetbrains.innerStructure.Graph;
 
@@ -353,9 +354,14 @@ public class Main {
 //        gDFS.dfs(2, 3, g.numVertices(), g.getAdj());
 
         // reverse pairs
-        int[] nums = {2,4,1,3,5};
-        ReversePairs rp = new ReversePairs();
-        rp.reversePairs2(nums);
-        System.out.println(rp.getCount());
+//        int[] nums = {2,4,1,3,5};
+//        ReversePairs rp = new ReversePairs();
+//        rp.reversePairs2(nums);
+//        System.out.println(rp.getCount());
+
+        // graph valid tree
+        ValidTree vt = new ValidTree();
+        int[][] edges = {{0, 1}, {0,2}, {0,3}, {1,4}};
+        System.out.println(vt.validTree(5, edges));
     }
 }
