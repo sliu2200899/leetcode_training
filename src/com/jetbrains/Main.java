@@ -7,6 +7,7 @@ import com.jetbrains.classic.dsGraph.BasicGraphDFS;
 import com.jetbrains.classic.dsGraph.ValidTree;
 import com.jetbrains.hard.ReversePairs;
 import com.jetbrains.innerStructure.Graph;
+import com.jetbrains.master.MaxOperations;
 
 import java.util.Random;
 
@@ -355,13 +356,20 @@ public class Main {
 
         // reverse pairs
 //        int[] nums = {2,4,1,3,5};
-//        ReversePairs rp = new ReversePairs();
-//        rp.reversePairs2(nums);
-//        System.out.println(rp.getCount());
+//        int[] nums = {-1, -2};
+        int[] nums = {4,3,2,1};
+        ReversePairs rp = new ReversePairs();
+        rp.reversePairs2(nums);
+        System.out.println(rp.getCount());
 
         // graph valid tree
-        ValidTree vt = new ValidTree();
-        int[][] edges = {{0, 1}, {0,2}, {0,3}, {1,4}};
-        System.out.println(vt.validTree(5, edges));
+//        ValidTree vt = new ValidTree();
+//        int[][] edges = {{0, 1}, {0,2}, {0,3}, {1,4}};
+//        System.out.println(vt.validTree(5, edges));
+
+        //max operations
+//        int[] nums = {3,1,3,4,3};
+//        MaxOperations m = new MaxOperations();
+//        System.out.println(m.maxOperations(nums, 6));
     }
 }

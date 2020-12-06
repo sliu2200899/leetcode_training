@@ -79,22 +79,22 @@ public class ReversePairs {
             rightArr[i] = A[mid + 1 + i];
         }
 
-        int curLeft = lenLeft - 1, curRight = lenRight - 1, cur = end - start;
-        while (curLeft >=0  && curRight >=0) {
-            if (leftArr[curLeft] > rightArr[curRight]) {
-                A[start + cur--] =  leftArr[curLeft--];
-                count += (curRight);
+        int i = 0, j = 0, cur = 0;
+        while (i < lenLeft  && j < lenRight) {
+            if (leftArr[i] > rightArr[j]) {
+                A[start + cur++] =  rightArr[j++];
+                count += (mid - (i + start) + 1);
             } else {
-                A[start + cur--] =  rightArr[curRight--];
+                A[start + cur++] =  leftArr[i++];
             }
         }
 
-        while (curLeft >= 0) {
-            A[start + cur--] =  leftArr[curLeft--];
+        while (i < lenLeft) {
+            A[start + cur++] =  leftArr[i++];
         }
 
-        while (curRight >= 0) {
-            A[start + cur--] =  rightArr[curRight--];
+        while (j < lenRight) {
+            A[start + cur++] =  rightArr[j++];
         }
     }
 
