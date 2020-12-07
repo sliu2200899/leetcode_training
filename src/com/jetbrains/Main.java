@@ -357,10 +357,10 @@ public class Main {
         // reverse pairs
 //        int[] nums = {2,4,1,3,5};
 //        int[] nums = {-1, -2};
-        int[] nums = {4,3,2,1};
-        ReversePairs rp = new ReversePairs();
-        rp.reversePairs2(nums);
-        System.out.println(rp.getCount());
+//        int[] nums = {4,3,2,1};
+//        ReversePairs rp = new ReversePairs();
+//        rp.reversePairs2(nums);
+//        System.out.println(rp.getCount());
 
         // graph valid tree
 //        ValidTree vt = new ValidTree();
@@ -371,5 +371,8 @@ public class Main {
 //        int[] nums = {3,1,3,4,3};
 //        MaxOperations m = new MaxOperations();
 //        System.out.println(m.maxOperations(nums, 6));
+
+        // quick select
+        int[]
     }
 }
