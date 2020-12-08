@@ -5,6 +5,7 @@ package com.jetbrains;
 import com.jetbrains.classic.dsGraph.BasicGraphBFS;
 import com.jetbrains.classic.dsGraph.BasicGraphDFS;
 import com.jetbrains.classic.dsGraph.ValidTree;
+import com.jetbrains.classic.sorting.QuickSelect;
 import com.jetbrains.hard.ReversePairs;
 import com.jetbrains.innerStructure.Graph;
 import com.jetbrains.master.MaxOperations;
@@ -373,6 +374,8 @@ public class Main {
 //        System.out.println(m.maxOperations(nums, 6));
 
         // quick select
-
+        int[] nums = {7,6,5,4,3,2,1};
+        QuickSelect q = new QuickSelect();
+        System.out.println(q.findKthLargest3(nums, 2));
     }
 }

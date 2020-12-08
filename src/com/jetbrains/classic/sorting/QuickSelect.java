@@ -28,6 +28,7 @@ from O(n log n) to O(n), with a worst case of O(n^2).
 public class QuickSelect {
     public int findKthLargest3(int[] nums, int k) {
         if (nums == null || nums.length == 0) return 0;
+        // convert it to finding the N - kth smallest element in the array ()
         return quick_select(nums, nums.length - k, 0, nums.length - 1);
     }
 
