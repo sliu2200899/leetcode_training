@@ -9,6 +9,7 @@ import com.jetbrains.classic.sorting.QuickSelect;
 import com.jetbrains.hard.ReversePairs;
 import com.jetbrains.innerStructure.Graph;
 import com.jetbrains.master.MaxOperations;
+import com.jetbrains.master.TopKFreqElements;
 
 import java.util.Random;
 
@@ -374,8 +375,16 @@ public class Main {
 //        System.out.println(m.maxOperations(nums, 6));
 
         // quick select
-        int[] nums = {7,6,5,4,3,2,1};
-        QuickSelect q = new QuickSelect();
-        System.out.println(q.findKthLargest3(nums, 2));
+//        int[] nums = {7,6,5,4,3,2,1};
+//        QuickSelect q = new QuickSelect();
+//        System.out.println(q.findKthLargest3(nums, 2));
+
+        // top k freq elements
+        int[] nums = {1,1,1,2,2,3};
+        TopKFreqElements t = new TopKFreqElements();
+        int[] res = t.topKFrequent2(nums, 2);
+        for (int i : res) {
+            System.out.println(i);
+        }
     }
 }
