@@ -2,16 +2,9 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
-import com.jetbrains.classic.dsGraph.BasicGraphBFS;
-import com.jetbrains.classic.dsGraph.BasicGraphDFS;
-import com.jetbrains.classic.dsGraph.ValidTree;
-import com.jetbrains.classic.sorting.QuickSelect;
-import com.jetbrains.hard.ReversePairs;
-import com.jetbrains.innerStructure.Graph;
-import com.jetbrains.master.MaxOperations;
-import com.jetbrains.master.TopKFreqElements;
+import com.jetbrains.master.SpiralMatrix;
 
-import java.util.Random;
+import java.util.List;
 
 public class Main {
 
@@ -380,10 +373,18 @@ public class Main {
 //        System.out.println(q.findKthLargest3(nums, 2));
 
         // top k freq elements
-        int[] nums = {1,1,1,2,2,3};
-        TopKFreqElements t = new TopKFreqElements();
-        int[] res = t.topKFrequent2(nums, 2);
-        for (int i : res) {
+//        int[] nums = {1,1,1,2,2,3};
+//        TopKFreqElements t = new TopKFreqElements();
+//        int[] res = t.topKFrequent2(nums, 2);
+//        for (int i : res) {
+//            System.out.println(i);
+//        }
+
+        // spiral matrix
+        int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
+        SpiralMatrix sm = new SpiralMatrix();
+        List<Integer> list = sm.spiralOrder(matrix);
+        for (int i : list) {
             System.out.println(i);
         }
     }
