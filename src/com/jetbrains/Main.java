@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.master.SpiralMatrix;
+import com.jetbrains.mj.PalindromSubstring1;
 
 import java.util.List;
 
@@ -381,11 +382,15 @@ public class Main {
 //        }
 
         // spiral matrix
-        int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
-        SpiralMatrix sm = new SpiralMatrix();
-        List<Integer> list = sm.spiralOrder(matrix);
-        for (int i : list) {
-            System.out.println(i);
-        }
+//        int[][] matrix = {{1,2,3}, {4,5,6}, {7,8,9}};
+//        SpiralMatrix sm = new SpiralMatrix();
+//        List<Integer> list = sm.spiralOrder(matrix);
+//        for (int i : list) {
+//            System.out.println(i);
+//        }
+        // palindromic substring
+        String s = "codesignal";
+        PalindromSubstring1 p = new PalindromSubstring1();
+        System.out.println(p.process(s));
     }
 }
