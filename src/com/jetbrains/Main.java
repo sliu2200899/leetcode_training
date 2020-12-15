@@ -4,6 +4,7 @@ package com.jetbrains;
 
 import com.jetbrains.master.SpiralMatrix;
 import com.jetbrains.mj.PalindromSubstring1;
+import com.jetbrains.mj.SongDuration;
 
 import java.util.List;
 
@@ -389,8 +390,13 @@ public class Main {
 //            System.out.println(i);
 //        }
         // palindromic substring
-        String s = "codesignal";
-        PalindromSubstring1 p = new PalindromSubstring1();
-        System.out.println(p.process(s));
+//        String s = "codesignal";
+//        PalindromSubstring1 p = new PalindromSubstring1();
+//        System.out.println(p.process(s));
+
+        // SongDuration
+        int[] time = {30, 20, 150, 100, 40};
+        SongDuration s = new SongDuration();
+        System.out.println(s.process(time));
     }
 }
