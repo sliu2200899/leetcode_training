@@ -2,6 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.searchByAlgorithm.dfs.WordSearch;
 import com.jetbrains.master.SpiralMatrix;
 import com.jetbrains.mj.PalindromSubstring1;
 import com.jetbrains.mj.SongDuration;
@@ -395,8 +396,13 @@ public class Main {
 //        System.out.println(p.process(s));
 
         // SongDuration
-        int[] time = {30, 20, 150, 100, 40};
-        SongDuration s = new SongDuration();
-        System.out.println(s.process(time));
+//        int[] time = {30, 20, 150, 100, 40};
+//        SongDuration s = new SongDuration();
+//        System.out.println(s.process(time));
+
+        // WordSearch
+        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
+        WordSearch w = new WordSearch();
+        System.out.println(w.exist(board, "SEE"));
     }
 }
