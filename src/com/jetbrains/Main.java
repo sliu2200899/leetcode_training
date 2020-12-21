@@ -2,12 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
-import com.jetbrains.classic.searchByAlgorithm.dfs.WordSearch;
-import com.jetbrains.master.SpiralMatrix;
-import com.jetbrains.mj.PalindromSubstring1;
-import com.jetbrains.mj.SongDuration;
-
-import java.util.List;
+import com.jetbrains.classic.stringMatch.WildcardMatching;
 
 public class Main {
 
@@ -401,8 +396,14 @@ public class Main {
 //        System.out.println(s.process(time));
 
         // WordSearch
-        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
-        WordSearch w = new WordSearch();
-        System.out.println(w.exist(board, "SEE"));
+//        char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
+//        WordSearch w = new WordSearch();
+//        System.out.println(w.exist(board, "SEE"));
+
+        // wildcard matching
+        char[] pattern = "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".toCharArray();
+        char[] text = "b*b*ab**ba*b**b***bba".toCharArray();
+        WildcardMatching w = new WildcardMatching(pattern, "b*b*ab**ba*b**b***bba".length());
+        System.out.println(w.match(text, "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".length()));
     }
 }
