@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.stringMatch.WildcardMatching;
+import com.jetbrains.hard.FormArray;
 
 public class Main {
 
@@ -401,9 +402,16 @@ public class Main {
 //        System.out.println(w.exist(board, "SEE"));
 
         // wildcard matching
-        char[] pattern = "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".toCharArray();
-        char[] text = "b*b*ab**ba*b**b***bba".toCharArray();
-        WildcardMatching w = new WildcardMatching(pattern, "b*b*ab**ba*b**b***bba".length());
-        System.out.println(w.match(text, "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".length()));
+//        char[] pattern = "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".toCharArray();
+//        char[] text = "b*b*ab**ba*b**b***bba".toCharArray();
+//        WildcardMatching w = new WildcardMatching(pattern, "b*b*ab**ba*b**b***bba".length());
+//        System.out.println(w.match(text, "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".length()));
+
+        // form array
+        int[] arr = {91, 4, 64, 78};
+        int[][] pieces = {{78}, {4, 64}, {91}};
+
+        FormArray fa = new FormArray();
+        System.out.println(fa.canFormArray(arr, pieces));
     }
 }
