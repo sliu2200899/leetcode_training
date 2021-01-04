@@ -2,6 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.ClimbingStairs;
 import com.jetbrains.classic.stringMatch.WildcardMatching;
 import com.jetbrains.hard.FormArray;
 
@@ -408,10 +409,15 @@ public class Main {
 //        System.out.println(w.match(text, "bbbbbbbabbaabbabbbbaaabbabbabaaabbababbbabbbabaaabaab".length()));
 
         // form array
-        int[] arr = {91, 4, 64, 78};
-        int[][] pieces = {{78}, {4, 64}, {91}};
+//        int[] arr = {91, 4, 64, 78};
+//        int[][] pieces = {{78}, {4, 64}, {91}};
+//
+//        FormArray fa = new FormArray();
+//        System.out.println(fa.canFormArray(arr, pieces));
 
-        FormArray fa = new FormArray();
-        System.out.println(fa.canFormArray(arr, pieces));
+        //
+        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        ClimbingStairs c = new ClimbingStairs();
+        System.out.println(c.minCostClimbingStairs2(arr));
     }
 }

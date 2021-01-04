@@ -104,4 +104,30 @@ public class ClimbingStairs {
     }
 
 
+    public int minCostClimbingStairs2(int[] cost) {
+        int len = cost.length;
+
+        // i is the index of the floor, and dp[i] represents the min cost to the nth step
+        // dp[n] = min(dp[n-1]+cost[n-1], dp[n-2]+cost[n-2])
+        // ans = dp[n]
+        // in this case, we don't need any intialization any more.
+        int[] dp = new int[len + 1];
+        for (int i = 2; i <= len; ++i) {
+            dp[i] = Math.min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2]);
+        }
+        return dp[len];
+    }
+
+    // space: O(1)   # same pattern, just two variables are used instead of an array
+    public int minCostClimbingStairs3(int[] cost) {
+        int len = cost.length;
+
+        int last = 0, secondLast = 0;
+        for (int i = 2; i <= len; ++i) {
+            int curr = Math.min(last + cost[i-1], secondLast + cost[i-2]);
+            secondLast = last;
+            last = curr;
+        }
+        return last;
+    }
 }
