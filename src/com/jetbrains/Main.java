@@ -2,9 +2,12 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.BestTimeSellStock;
 import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.ClimbingStairs;
+import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.MaxSubArray;
 import com.jetbrains.classic.stringMatch.WildcardMatching;
 import com.jetbrains.hard.FormArray;
+import com.sun.tools.javac.code.Type;
 
 public class Main {
 
@@ -416,8 +419,20 @@ public class Main {
 //        System.out.println(fa.canFormArray(arr, pieces));
 
         //
-        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
-        ClimbingStairs c = new ClimbingStairs();
-        System.out.println(c.minCostClimbingStairs2(arr));
+//        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+//        ClimbingStairs c = new ClimbingStairs();
+//        System.out.println(c.minCostClimbingStairs2(arr));
+
+        // maxSubArray print all elements
+//        int[] arr = {-2,1,-3,4,-1,2,1,-5,4};
+//
+//        for(int i : MaxSubArray.maxSubArray3(arr)) {
+//            System.out.println(i);
+//        }
+
+        // best time sell stock
+        int[] arr = {1,2,4,2,5,7,2,4,9,0};
+        BestTimeSellStock b = new BestTimeSellStock();
+        b.maxProfit3(arr);
     }
 }

@@ -57,8 +57,8 @@ public class LongestArithmeticSubsequence {
     }
 
     /*
-        for the sake of cleanness
-            for (int i = 0; i < arr.length; ++i) {
+
+        for (int i = 0; i < arr.length; ++i) {
             map.put(arr[i], map.getOrDefault(arr[i] - difference, 0) + 1);
             ans = Math.max(ans, map.get(arr[i]));
         }
