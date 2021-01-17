@@ -6,6 +6,24 @@ public class HouseRobber {
     /*
         version 1: simple just require not adjcent houses can be robbed
 
+        money: 2 1 1 2
+        can be converted into a binary string, which represents the operation rob(1), not rob(0)
+        ...
+        0, 1, 1, 0 | invalid
+        0, 1, 0, 1 | 3
+        1, 0, 1, 0 | 3
+        1, 0, 0, 1 | 4
+        ...
+
+        if Brute Force: O(2^n)  TLE
+
+        Recursion + Memorization
+        for a given house i, we have two options
+        1. skip it
+        2. take the money if we didn't robber house i - 1
+
+        rob(n) = max(rob(n-2) + money[n], rob(n-1))
+
         time: O(n)
         space: O(n)
      */
@@ -26,6 +44,18 @@ public class HouseRobber {
         }
 
         return dp[nums.length - 1];
+    }
+
+    /*
+        improve the code
+     */
+    private int rob11(int[] arr) {
+        int[] dp = new int[arr.length];
+        for (int i = 0; i < arr.length; ++i) {
+            dp[i] = Math.max((i>1? dp[i-2]:0) + arr[i],
+                    (i>0?dp[i-1]:0));
+        }
+        return dp[arr.length - 1];
     }
 
     /*
