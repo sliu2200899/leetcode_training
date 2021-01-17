@@ -126,4 +126,65 @@ public class BestTimeSellStock {
         }
         return dp[m][n-1];
     }
+
+    /*
+        sell stock with cooldown
+        this dp has some feature like: multiple states that need to be kept track of
+
+        rest
+        |   \
+        |    sold
+        |    /
+       hold
+
+       3 states  (the operations that user can implement in this state)
+         rest:   rest, buy
+         hold:   rest, sell
+         sold:   rest
+
+       hold[i]:  max(hold[i-1], rest[i-1] - prices[i])
+       sold[i]:  hold[i-1] + prices[i]
+       rest[i]:  max(rest[i-1], sold[i-1])
+
+       init:  rest[0] = sold[0] = 0, hold[0] = Integer.MIN_VALUE
+       ans: max(rest[i], sold[i])
+
+       time: O(n)
+       space: O(n) -> O(1)
+     */
+
+    public int maxProfit4(int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
+        int n = prices.length;
+
+        int[] sold = new int[n+1];
+        int[] rest = new int[n+1];
+        int[] hold = new int[n+1];
+        hold[0] = Integer.MIN_VALUE;
+
+        for (int i = 1; i <= n; ++i) {
+            hold[i] = Math.max(hold[i-1], rest[i-1] - prices[i-1]);
+            rest[i] = Math.max(rest[i-1], sold[i-1]);
+            sold[i] = hold[i-1] + prices[i-1];
+        }
+        return Math.max(rest[n], sold[n]);
+    }
+
+    /*
+        improve teh space complexity from O(n) to O(1)
+     */
+    public int maxProfit5(int[] prices) {
+
+        int sold = 0;
+        int rest = 0;
+        int hold = Integer.MIN_VALUE;
+        for (int price : prices) {
+            int prev = sold;
+            sold = hold + price;
+            hold = Math.max(hold, rest - price);
+            rest = Math.max(rest, prev);
+        }
+
+        return Math.max(rest, sold);
+    }
 }
