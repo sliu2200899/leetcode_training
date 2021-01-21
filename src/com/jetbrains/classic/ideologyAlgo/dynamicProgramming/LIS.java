@@ -24,7 +24,25 @@ public class LIS {
             }
         }
 
+        /*
+            print LIS values
+         */
+        printLIS(dp, dp.length-1, nums, max);
+
         return max;
+    }
+
+    private void printLIS(int[] lis, int lisIndex, int[] arr, int max) {
+        if (max == 0) {
+            return;
+        }
+
+        if (lis[lisIndex] == max) {
+            printLIS(lis, lisIndex-1, arr, max-1);
+            System.out.println(arr[lisIndex] + " ");
+        } else {
+            printLIS(lis, lisIndex-1, arr, max);
+        }
     }
 
     /*

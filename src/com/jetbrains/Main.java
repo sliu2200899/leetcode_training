@@ -2,9 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
-import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.BestTimeSellStock;
-import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.ClimbingStairs;
-import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.MaxSubArray;
+import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.*;
 import com.jetbrains.classic.stringMatch.WildcardMatching;
 import com.jetbrains.hard.FormArray;
 import com.sun.tools.javac.code.Type;
@@ -431,8 +429,18 @@ public class Main {
 //        }
 
         // best time sell stock
-        int[] arr = {1,2,4,2,5,7,2,4,9,0};
-        BestTimeSellStock b = new BestTimeSellStock();
-        b.maxProfit3(arr);
+//        int[] arr = {1,2,4,2,5,7,2,4,9,0};
+//        BestTimeSellStock b = new BestTimeSellStock();
+//        b.maxProfit3(arr);
+
+        //LIS
+        int[] arr = {1, 2, 4, 2, 3};
+        LIS lis = new LIS();
+        System.out.println(lis.lengthOfLIS(arr));
+
+        // NLIS
+//        int[] arr = {1, 2, 4, 2, 3};
+//        NLIS numLIS = new NLIS();
+//        System.out.println(numLIS.findNumberOfLIS(arr));
     }
 }
