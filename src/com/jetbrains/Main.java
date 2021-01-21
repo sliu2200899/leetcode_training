@@ -2,10 +2,13 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.ideologyAlgo.backtracking.PalindromePartition;
 import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.*;
 import com.jetbrains.classic.stringMatch.WildcardMatching;
 import com.jetbrains.hard.FormArray;
 import com.sun.tools.javac.code.Type;
+
+import java.util.List;
 
 public class Main {
 
@@ -434,13 +437,21 @@ public class Main {
 //        b.maxProfit3(arr);
 
         //LIS
-        int[] arr = {1, 2, 4, 2, 3};
-        LIS lis = new LIS();
-        System.out.println(lis.lengthOfLIS(arr));
+//        int[] arr = {1, 2, 4, 2, 3};
+//        LIS lis = new LIS();
+//        System.out.println(lis.lengthOfLIS(arr));
 
         // NLIS
 //        int[] arr = {1, 2, 4, 2, 3};
 //        NLIS numLIS = new NLIS();
 //        System.out.println(numLIS.findNumberOfLIS(arr));
+
+        // Palindrome Partition
+        String s = "aab";
+        PalindromePartition p = new PalindromePartition();
+        List<List<String>> res = p.partition2(s);
+        for (List<String> l : res) {
+            System.out.println(l.toString());
+        }
     }
 }
