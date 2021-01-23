@@ -447,11 +447,16 @@ public class Main {
 //        System.out.println(numLIS.findNumberOfLIS(arr));
 
         // Palindrome Partition
+//        String s = "aab";
+//        PalindromePartition p = new PalindromePartition();
+//        List<List<String>> res = p.partition2(s);
+//        for (List<String> l : res) {
+//            System.out.println(l.toString());
+//        }
+
+        // Palindrome Partition 2
         String s = "aab";
-        PalindromePartition p = new PalindromePartition();
-        List<List<String>> res = p.partition2(s);
-        for (List<String> l : res) {
-            System.out.println(l.toString());
-        }
+        PalindromePartition2 p = new PalindromePartition2();
+        System.out.println(p.minCut(s));
     }
 }
