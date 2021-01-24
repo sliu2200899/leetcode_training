@@ -21,4 +21,26 @@ public class InsertionSort {
             }
         }
     }
+
+    /*
+        insertion sort
+
+     */
+    public static void sort2(int[] arr) {
+        if (arr == null) return;
+
+        int n = arr.length;
+
+        for (int i = 1; i < n; ++i) {
+            int target = arr[i];
+
+            int j = i-1;
+            while (j >= 0 && arr[j] > target) {
+                arr[j+1] = arr[j];
+                --j;
+            }
+
+            arr[j+1] = target;
+        }
+    }
 }

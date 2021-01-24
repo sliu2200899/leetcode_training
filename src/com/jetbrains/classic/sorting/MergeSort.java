@@ -110,4 +110,63 @@ public class MergeSort {
 
         return dummy.next;
     }
+
+    /*
+        merge sort practice
+        merge(left)
+        merge(right)
+        sort()
+     */
+
+    public static void merge2(int[] arr) {
+        //
+        if (arr == null) return;
+
+        mergeSort2(arr, 0, arr.length-1);
+    }
+
+    private static void mergeSort2(int[] arr, int start, int end) {
+        if (start < end) {
+            int mid = start + (end - start) / 2;
+            mergeSort2(arr, start, mid);
+            mergeSort2(arr, mid+1, end);
+
+            sort2(arr, start, mid, end);
+        }
+    }
+
+    private static void sort2(int[] arr, int start, int mid, int end) {
+        if (start >= end) return;
+
+        // create an extra array to store the elements
+        int left = mid - start + 1;
+        int right = end - mid;
+
+        int[] l_arr = new int[left];
+        for (int i=0; i < left; ++i) {
+            l_arr[i] = arr[start+i];
+        }
+
+        int[] r_arr = new int[right];
+        for (int i=0; i < right; ++i) {
+            r_arr[i] = arr[mid+1+i];
+        }
+
+        int i = 0, j = 0, cur = start;
+        while (i < left && j < right) {
+            if (l_arr[i] < r_arr[j]) {
+                arr[cur++] =  l_arr[i++];
+            } else {
+                arr[cur++] = r_arr[j++];
+            }
+        }
+
+        while (i < left) {
+            arr[cur++] = l_arr[i++];
+        }
+
+        while (j < right) {
+            arr[cur++] = r_arr[j++];
+        }
+    }
 }

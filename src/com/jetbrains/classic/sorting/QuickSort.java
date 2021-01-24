@@ -115,4 +115,52 @@ public class QuickSort {
         swap(arr, start, endIndex);
         return start;
     }
+
+
+    /*
+        quick sort
+     */
+    public static void quick_sort4(int[] arr) {
+        if (arr == null) return;
+
+        sort4(arr, 0, arr.length - 1);
+    }
+
+    private static void sort4(int[] arr, int start, int end) {
+        if (start < end) {
+            // partition
+            int partition_index = partition4(arr, start, end);
+
+            // sort4
+            sort4(arr, start, partition_index-1);
+
+            sort4(arr, partition_index+1, end);
+        }
+    }
+
+    private static int partition4(int[] arr, int start, int end) {
+        // get the partition element
+        // put all the elements smaller than the partition element to the left part, and all the elements larger or equal to the partition element to teh right part.
+
+        Random r = new Random();
+        int partition_index = r.nextInt(end - start + 1) + start;
+        int p_value = arr[partition_index];
+
+        swap(arr, partition_index, end);
+        int end_index = end;
+
+        while (start <= end) {
+            while (start <= end && arr[start] < p_value) start++;
+            while (start <= end && arr[end] >= p_value) end--;
+
+            if (start <= end) {
+                swap(arr, start, end);
+                start++;
+                end--;
+            }
+        }
+        // .... end start ...
+        swap(arr, start, end_index);
+        return start;
+    }
 }

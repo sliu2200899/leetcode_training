@@ -4,6 +4,9 @@ package com.jetbrains;
 
 import com.jetbrains.classic.ideologyAlgo.backtracking.PalindromePartition;
 import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.*;
+import com.jetbrains.classic.sorting.InsertionSort;
+import com.jetbrains.classic.sorting.MergeSort;
+import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.classic.stringMatch.WildcardMatching;
 import com.jetbrains.hard.FormArray;
 import com.sun.tools.javac.code.Type;
@@ -153,24 +156,24 @@ public class Main {
 
         // insertion srot
 //        int[] arr = {2, 1, 4, 6, 2, 9};
-//        InsertionSort.sort(arr);
+//        InsertionSort.sort2(arr);
 //        for (int i : arr) {
 //            System.out.println(i);
 //        }
 
         // merge sort
 //        int[] arr = {2, 1, 4, 6, 2, 9};
-//        MergeSort.sort(arr);
+//        MergeSort.merge2(arr);
 //        for (int i : arr) {
 //            System.out.println(i);
 //        }
 
         // quick sort
-//        int[] arr = {2, 1, 3, 6, 1, 3, 5};
-//        QuickSort.quick_sort(arr, 0, arr.length - 1);
-//        for (int i : arr) {
-//            System.out.println(i);
-//        }
+        int[] arr = {2, 1, 3, 6, 1, 3, 5};
+        QuickSort.quick_sort4(arr);
+        for (int i : arr) {
+            System.out.println(i);
+        }
 
         // merge two sorted array (basic, no enough space for storing)
 //        int[] arrA = {1,4,7,9};
@@ -455,8 +458,8 @@ public class Main {
 //        }
 
         // Palindrome Partition 2
-        String s = "aab";
-        PalindromePartition2 p = new PalindromePartition2();
-        System.out.println(p.minCut(s));
+//        String s = "aab";
+//        PalindromePartition2 p = new PalindromePartition2();
+//        System.out.println(p.minCut(s));
     }
 }
