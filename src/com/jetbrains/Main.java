@@ -169,11 +169,11 @@ public class Main {
 //        }
 
         // quick sort
-        int[] arr = {2, 1, 3, 6, 1, 3, 5};
-        QuickSort.quick_sort4(arr);
-        for (int i : arr) {
-            System.out.println(i);
-        }
+//        int[] arr = {2, 1, 3, 6, 1, 3, 5};
+//        QuickSort.quick_sort4(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
 
         // merge two sorted array (basic, no enough space for storing)
 //        int[] arrA = {1,4,7,9};
@@ -461,5 +461,10 @@ public class Main {
 //        String s = "aab";
 //        PalindromePartition2 p = new PalindromePartition2();
 //        System.out.println(p.minCut(s));
+
+        // edit distance
+        String a = "horse", b = "ros";
+        EditDistance e = new EditDistance();
+        System.out.println(e.minDistance(a, b));
     }
 }
