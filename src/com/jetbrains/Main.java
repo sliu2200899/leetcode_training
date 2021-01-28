@@ -463,8 +463,13 @@ public class Main {
 //        System.out.println(p.minCut(s));
 
         // edit distance
-        String a = "horse", b = "ros";
-        EditDistance e = new EditDistance();
-        System.out.println(e.minDistance(a, b));
+//        String a = "horse", b = "ros";
+//        EditDistance e = new EditDistance();
+//        System.out.println(e.minDistance(a, b));
+
+        //longestPalindrome2
+        String s = "ababc";
+        LongestPalindromicSubstring l = new LongestPalindromicSubstring();
+        System.out.println(l.longestPalindrome2(s));
     }
 }
