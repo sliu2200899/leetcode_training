@@ -59,7 +59,12 @@ public class LongestPalindromicSubstring {
         boolean[][] DP = new boolean[n][n];
         for(int i = n - 1; i >= 0; i--) {
             for(int j = i; j < n; j++) {
-                DP[i][j] = s.charAt(i) == s.charAt(j) && (j - 1 <= i + 1 || DP[i+1][j-1]);
+                if (j-i <= 1) {  // process the abba
+                    DP[i][j] = s.charAt(i) == s.charAt(j);
+                } else {
+                    DP[i][j] = s.charAt(i) == s.charAt(j) && DP[i+1][j-1];
+                }
+//                 (j - 1 <= i + 1 || );
                 if(DP[i][j] && (j - i > end - start)) {
                     start = i;
                     end = j;
