@@ -1,4 +1,4 @@
-package com.jetbrains.classic.ideologyAlgo.dynamicProgramming;
+package com.jetbrains.classic.stringMatch;
 
 public class RegularExpressionMatching {
     public boolean isMatch(String s, String p) {
@@ -71,21 +71,42 @@ public class RegularExpressionMatching {
         space: O(TP)
      */
     public boolean isMatch3(String text, String pattern) {
-        boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];   // dp[i][j] represents match result, does text[i:] and pattern[j:] match?
-        dp[text.length()][pattern.length()] = true;
 
-        for (int i = text.length(); i >= 0; i--){
-            for (int j = pattern.length() - 1; j >= 0; j--){
-                boolean first_match = (i < text.length() &&
-                        (pattern.charAt(j) == text.charAt(i) ||
-                                pattern.charAt(j) == '.'));
-                if (j + 1 < pattern.length() && pattern.charAt(j+1) == '*'){
-                    dp[i][j] = dp[i][j+2] || first_match && dp[i+1][j];
+        char[] t = text.toCharArray();
+        char[] p = pattern.toCharArray();
+
+        boolean[][] dp = new boolean[text.length() + 1][pattern.length() + 1];   // dp[i][j] represents match result, does text[:i] and pattern[:j] match?
+
+        dp[0][0] = true;
+
+        // deal with patterns like a* or a*b* or a*b*c*
+        for (int i = 1; i < dp[0].length; ++i) {
+            if (p[i-1] == '*') {
+                dp[0][i] = dp[0][i-2];
+            }
+        }
+
+        /*
+            dp[i][j] = dp[i-1][j-1]         if str[i] == pattern[j] || pattern[j] == '.'
+                       if pattern[j] == '*'   two situations    dp[i][j-2]
+                                                                dp[i-1][j]    if str[i] == pattern[j-1] || pattern[j-1] == '.'
+
+                       false
+         */
+        for (int i = 1; i < dp.length; ++i) {
+            for (int j = 1; j < dp[0].length; ++j) {
+                if (p[j-1] == '.' || p[j-1] == t[i-1]) {
+                    dp[i][j] = dp[i-1][j-1];
+                } else if (p[j-1] == '*') {
+                    dp[i][j] = dp[i][j-2];
+                    if (p[j-2] == '.' || p[j-2] == t[i-1]) {
+                        dp[i][j] = dp[i][j] || dp[i-1][j];
+                    }
                 } else {
-                    dp[i][j] = first_match && dp[i+1][j+1];
+                    dp[i][j] = false;
                 }
             }
         }
-        return dp[0][0];
+        return dp[t.length][p.length];
     }
 }

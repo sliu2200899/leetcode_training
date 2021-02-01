@@ -50,6 +50,9 @@ public class WildcardMatching {
 
     // DP
     /*
+           refer to: https://www.youtube.com/watch?v=3ZDZ-N0EPV0&t=82s&ab_channel=TusharRoy-CodingMadeSimple
+
+
            why we use DP?
                we notice that the final result is just true or false, and this problem has some optimal substructure, where
                we need to check if the newly constructed string matches the pattern
@@ -64,38 +67,46 @@ public class WildcardMatching {
 
                if  p[j] is '?'   cur char definitely matches, we only need to check dp[i - 1][j - 1]
 
-               if  p[j] is '*'
+               if  p[j] is '*'   dp[i-1][j] || dp[i][j-1]    dp[i-1][j] means if match when * represents this character      dp[i][j-1] means if match when * represents zero sequence
 
      */
     public boolean isMatch2(String s, String p) {
-        if (s == null || p == null) return false;
 
-        int n = s.length();
-        int m = p.length();
+        char[] str = s.toCharArray();
+        char[] pattern = p.toCharArray();
 
-        boolean[][] dp = new boolean[n + 1][m + 1];
+        // replace multiple * with one *
+        // e.g. a**b****c --> a*b*c
 
-        // dp base condition for the two empty string
-        dp[0][0] = true;
-
-        // initialize the dp[0][i]
-        for (int i = 1; i <= m; ++i) {
-            if (p.charAt(i - 1) == '*' && dp[0][i - 1]) {
-                dp[0][i] = true;
-            }
+        int writeIndex = 0;
+        for (int i = 0; i < pattern.length; ++i) {
+            if (pattern[i] == '*' && i != 0 && pattern[i-1] == '*') continue;
+            pattern[writeIndex++] = pattern[i];
         }
 
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 1; j <= m; ++j) {
-                if (p.charAt(j - 1) == '?' ||
-                        s.charAt(i - 1) == p.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                } else if (p.charAt(j - 1) == '*') {
-                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+        boolean[][] dp = new boolean[str.length+1][writeIndex+1];
+        dp[0][0] = true;
+
+        if (writeIndex > 0 && pattern[0] == '*') {
+            dp[0][1] = true;
+        }
+
+        /*
+            dp[i][j] represents whether s[:i] can match p[:j]
+            dp[i][j] = dp[i-1][j-1]  if str[i] == pattern[j] || pattern[j] == '?'
+                       dp[i-1][j] || dp[i][j-1] if pattern[j] == '*'
+                       false
+        */
+        for (int i = 1; i < dp.length; ++i) {
+            for (int j = 1; j < dp[0].length; ++j) {
+                if (pattern[j-1] == '?' || str[i-1] == pattern[j-1]) {
+                    dp[i][j] = dp[i-1][j-1];
+                } else if (pattern[j-1] == '*') {
+                    dp[i][j] = dp[i-1][j] || dp[i][j-1];
                 }
             }
         }
 
-        return dp[n][m];
+        return dp[str.length][writeIndex];
     }
 }
