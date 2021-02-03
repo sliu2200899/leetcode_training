@@ -468,8 +468,13 @@ public class Main {
 //        System.out.println(e.minDistance(a, b));
 
         //longestPalindrome2
-        String s = "ababc";
-        LongestPalindromicSubstring l = new LongestPalindromicSubstring();
-        System.out.println(l.longestPalindrome2(s));
+//        String s = "ababc";
+//        LongestPalindromicSubstring l = new LongestPalindromicSubstring();
+//        System.out.println(l.longestPalindrome2(s));
+
+        // backpack01
+        int[] arr = {3,4,8,5};
+        Backpack01 b = new Backpack01();
+        System.out.println(b.backPack2(10, arr));
     }
 }
