@@ -51,7 +51,7 @@ public class Backpack01 {
         only impact the dp array not A array
         only impact on the row as a whole, ie.  entire calculation %2
      */
-    public int backPack2(int m, int[] A) {
+    public int backPack1improve(int m, int[] A) {
         // dp[i][j] for the first i elements, can we make sum of j
         boolean[][] dp = new boolean[2][m+1];
 
@@ -70,7 +70,7 @@ public class Backpack01 {
     }
 
     /*
-        follow up:
+        backpack 2
         这次每个元素除了 size 之外也具有 value，就变成了更典型的 01 背包问题。
 
         dp 结构一致，而采用 int[][] 来记录
@@ -80,7 +80,7 @@ public class Backpack01 {
         A & V: Given n items with size A[i] and value V[i]
         return: the maximum value
      */
-    public int backPack3(int m, int[] A, int[] V) {
+    public int backPack2(int m, int[] A, int[] V) {
         /*              j
               0 1 2 3 4 5 6 7 8 9 10
             0 0 0 0 0 0 0 0 0 0 0 0
@@ -114,4 +114,50 @@ public class Backpack01 {
         return dp[A.length][m];
     }
 
+    /*
+        backpack 3
+
+        Given n kinds of items, and each kind of item has an infinite number available. The i-th item has size A[i] and value V[i].
+        Also given a backpack with size m. What is the maximum value you can put into the backpack?
+
+     */
+
+    public int backPack3(int[] A, int[] V, int m) {
+        // write your code here
+
+        /*
+            dp[i]  represents maximum value you can put into the backPack in the first ith element in A
+                    j
+            A = [2, 3, 5, 7]
+                    i
+            0 1 2 3 4 5 6 7 8 9 10
+            0 0 1 5 5 6
+
+            dp[i] = max(dp[i- A[j]]+ V[j])   where 0 < i <= m and 0 <= j < A.length and only if i - A[j] >= 0
+
+            dp[1] = 0
+            dp[2] = dp[0]+V[0] = 1
+            dp[3] = max(dp[3-2] + V[0], dp[3-3] + V[1])
+            dp[4] = max(dp[4-2] + V[0], dp[4-3] + V[1])
+            dp[5] = max(dp[5-2] + V[0], dp[5-3] + V[1], dp[5-5] + V[2])
+            ...
+        */
+
+        if (A == null || A.length == 0) return 0;
+
+        int n = A.length;
+
+        int[] dp = new int[m+1];
+        dp[0] = 0;
+
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 0; j < A.length; ++j) {
+                if (i - A[j] >= 0) {
+                    dp[i] = Math.max(dp[i], dp[i - A[j]] + V[j]);
+                }
+            }
+        }
+
+        return dp[m];
+    }
 }
