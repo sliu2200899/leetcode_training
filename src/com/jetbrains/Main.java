@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.ideologyAlgo.backtracking.PalindromePartition;
+import com.jetbrains.classic.ideologyAlgo.backtracking.TargetSum;
 import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.*;
 import com.jetbrains.classic.sorting.InsertionSort;
 import com.jetbrains.classic.sorting.MergeSort;
@@ -473,8 +474,13 @@ public class Main {
 //        System.out.println(l.longestPalindrome2(s));
 
         // backpack01
-        int[] arr = {3,4,8,5};
-        Backpack01 b = new Backpack01();
-        System.out.println(b.backPack2(10, arr));
+//        int[] arr = {3,4,8,5};
+//        Backpack01 b = new Backpack01();
+//        System.out.println(b.backPack2(10, arr));
+
+        // target sum
+        int[] arr = {1, 1, 1, 1, 1};
+        TargetSum t = new TargetSum();
+        System.out.println(t.findTargetSumWays3(arr, 3));
     }
 }
