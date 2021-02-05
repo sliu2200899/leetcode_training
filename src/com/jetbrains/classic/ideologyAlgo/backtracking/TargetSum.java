@@ -73,7 +73,7 @@ public class TargetSum {
     }
 
     /*
-
+        has some problems...
      */
     public int findTargetSumWays3(int[] nums, int S) {
         if (nums == null || nums.length == 0) {
@@ -88,7 +88,7 @@ public class TargetSum {
         if (S < -sum || S > sum) {return 0;}
 
         int[][] dp = new int[n+1][2*sum + 1];
-        dp[n][0] = 1;
+        dp[n][sum] = 1;
 
         for (int i = n-1; i >= 0; --i) {
             for (int j = 0; j < 2*sum +1; ++j) {
