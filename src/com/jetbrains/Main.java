@@ -479,7 +479,7 @@ public class Main {
 //        System.out.println(b.backPack2(10, arr));
 
         // target sum
-        int[] arr = {1, 1, 1, 1, 1};
+        int[] arr = {1, 1, 1, 1, 1, 2};
         TargetSum t = new TargetSum();
         System.out.println(t.findTargetSumWays3(arr, 3));
     }
