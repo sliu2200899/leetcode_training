@@ -2,17 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
-import com.jetbrains.classic.ideologyAlgo.backtracking.PalindromePartition;
-import com.jetbrains.classic.ideologyAlgo.backtracking.TargetSum;
-import com.jetbrains.classic.ideologyAlgo.dynamicProgramming.*;
-import com.jetbrains.classic.sorting.InsertionSort;
-import com.jetbrains.classic.sorting.MergeSort;
-import com.jetbrains.classic.sorting.QuickSort;
-import com.jetbrains.classic.stringMatch.WildcardMatching;
-import com.jetbrains.hard.FormArray;
-import com.sun.tools.javac.code.Type;
-
-import java.util.List;
+import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 
 public class Main {
 
@@ -485,5 +475,10 @@ public class Main {
 
         // for some test
         // word1
+
+        // remove invalid parenthesis
+        String s = "()())()";
+        RemoveInvalidParenthesis r = new RemoveInvalidParenthesis();
+        System.out.println(r.removeInvalidParentheses(s));
     }
 }

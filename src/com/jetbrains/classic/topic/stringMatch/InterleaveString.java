@@ -1,4 +1,4 @@
-package com.jetbrains.classic.stringMatch;
+package com.jetbrains.classic.topic.stringMatch;
 
 public class InterleaveString {
     public boolean isInterleave(String s1, String s2, String s3) {

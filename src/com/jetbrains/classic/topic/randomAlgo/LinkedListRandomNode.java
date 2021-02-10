@@ -1,4 +1,4 @@
-package com.jetbrains.classic.randomAlgo;
+package com.jetbrains.classic.topic.randomAlgo;
 
 import com.jetbrains.innerStructure.ListNode;
 

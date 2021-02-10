@@ -1,4 +1,4 @@
-package com.jetbrains.classic.randomAlgo;
+package com.jetbrains.classic.topic.randomAlgo;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jetbrains.classic.dsTree;
+package com.jetbrains.classic.dataStructure.dsTree;
 
 import com.jetbrains.innerStructure.TreeNode;
 

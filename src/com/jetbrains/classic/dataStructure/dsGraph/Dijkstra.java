@@ -1,4 +1,4 @@
-package com.jetbrains.classic.dsGraph;
+package com.jetbrains.classic.dataStructure.dsGraph;
 
 import java.util.LinkedList;
 

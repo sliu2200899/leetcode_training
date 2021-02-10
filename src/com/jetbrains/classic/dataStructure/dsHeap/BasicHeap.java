@@ -1,4 +1,4 @@
-package com.jetbrains.classic.dsHeap;
+package com.jetbrains.classic.dataStructure.dsHeap;
 
 public class BasicHeap {
 
