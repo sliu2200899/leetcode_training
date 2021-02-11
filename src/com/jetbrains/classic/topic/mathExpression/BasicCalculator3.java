@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.topic.mathExpression;
 
 import java.math.BigInteger;
 import java.util.ArrayDeque;

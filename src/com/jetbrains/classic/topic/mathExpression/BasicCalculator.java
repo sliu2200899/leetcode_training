@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.topic.mathExpression;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -157,5 +157,9 @@ public class BasicCalculator {
 
         return result + (sign * operand);
     }
+
+    /*
+
+     */
 
 }
