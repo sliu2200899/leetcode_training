@@ -13,81 +13,100 @@ public class WordSearch2 {
      */
 
 
-    private TrieNode root = new TrieNode();
+    /*
+        algo:
+            build trie based on the words
+            for loop the matrix
+                dfs()
 
-    ArrayList<String> _result = new ArrayList<String>();
-    char[][] _board = null;
+            dfs()
+                // base case
+                if cell's isTerminated == true
+                    add cell string to list
 
-    private class TrieNode {
-        public TrieNode[] children = new TrieNode[26];
-        public String word = null;
+                if (trie's node == null)
+                    return false
 
-        public TrieNode () {
-        }
-    }
+                // recursive case
+                for all 4 directions
+                    generate newNode
+                    dfs(newNode)
 
-    private void insert(String word) {
-        TrieNode p = root;
-        for (int i = 0; i < word.length(); ++i) {
-            int index = word.charAt(i) - 'a';
-            if (p.children[index] == null) {
-                TrieNode node = new TrieNode();
-                p.children[index] = node;
-            }
-            p = p.children[index];
-        }
-        p.word = word;
-    }
-
+    */
     public List<String> findWords(char[][] board, String[] words) {
+        List<String> res = new ArrayList<>();
+        if (board == null || board.length == 0 || board[0].length == 0) return res;
 
+        int m = board.length, n = board[0].length;
         for (String s: words) {
-            this.insert(s);
+            insert(s);
         }
 
-        this._board = board;
-
-        int m = board.length;
-        int n = board[0].length;
-
-        for (int i = 0; i < m; ++i) {
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0;  i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                if (root.children[board[i][j] - 'a'] != null)
-                    backtracking(i, j, root);
+                dfs(board, res, i, j, visited, root);
             }
         }
-
-        return _result;
+        return res;
     }
 
-    private void backtracking(int row, int col, TrieNode parent) {
-
-        Character letter = this._board[row][col];
-        TrieNode currNode = parent.children[letter - 'a'];
-
-        // check if there is any match
-        if (currNode.word != null) {
-            this._result.add(currNode.word);
-            currNode.word = null;
+    private void dfs(char[][] board, List<String> res, int row, int col, boolean[][] visited, TrieNode parent) {
+        // base case
+        if (row < 0 || row >= board.length || col < 0 || col >= board[0].length || visited[row][col] || parent.children[board[row][col] - 'a'] == null) {
+            return;
         }
 
-        // mark the current letter before the exploration
-        this._board[row][col] = '#';
+        // recursive case
+        Character letter = board[row][col];
+        TrieNode curNode = parent.children[letter - 'a'];
+
+        if (curNode.isTerminated) {
+            res.add(curNode.word);
+            curNode.word = null;
+            curNode.isTerminated = false;
+        }
+
+        visited[row][col] = true;
 
         for (int[] pair : pairs) {
-            int newX = pair[0] + row;
-            int newY = pair[1] + col;
+            int x = pair[0] + row;
+            int y = pair[1] + col;
 
-            if (newX < 0 || newX >= this._board.length || newY < 0 || newY >= this._board[0].length || this._board[newX][newY] == '#') continue;
-
-            if (currNode.children[this._board[newX][newY] - 'a'] != null) {
-                backtracking(newX, newY, currNode);
-            }
+            dfs(board, res, x, y, visited, curNode);
         }
 
-        // end of the exploration, restore teh original letter in the board
-        this._board[row][col] = letter;
+        visited[row][col] = false;
     }
 
-    private int[][] pairs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+    private TrieNode root = new TrieNode('/');
+
+    private void insert(String s) {
+        TrieNode p = root;
+        for (int i = 0; i < s.length(); ++i) {
+            int index = s.charAt(i) - 'a';
+            if (p.children[index] == null) {
+                TrieNode newNode = new TrieNode(s.charAt(i));
+                p.children[index] = newNode;
+            }
+
+            p = p.children[index];
+        }
+        p.isTerminated = true;
+        p.word = s;
+    }
+
+
+    private class TrieNode {
+        public char data;
+        public TrieNode[] children = new TrieNode[26];
+        public boolean isTerminated = false;
+        public String word;
+
+        public TrieNode(char data) {
+            this.data = data;
+        }
+    }
+
+    private int[][] pairs = new int[][]{{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
 }

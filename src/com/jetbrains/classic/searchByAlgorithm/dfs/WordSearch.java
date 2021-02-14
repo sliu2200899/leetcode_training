@@ -41,6 +41,8 @@ public class WordSearch {
 
         boolean[][] isVisited = new boolean[m][n];
 
+        // we use double for loop because the problem ask us to check if there exist some words
+        // but we don't know where to start, in this case, we should use double for loop
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (dfs(board, i, j, word, 0, isVisited) ) {
@@ -56,28 +58,25 @@ public class WordSearch {
         if (index >= word.length())
             return true;
 
-        // step 2: check the boundaries
+        // step 2: check the boundaries     // in this case, we should put the checking here, but for other situation we need to put it inside the for loop
         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] != word.charAt(index) || isVisited[i][j])
             return false;
 
         // step 3: explore the neighbors in DFS
-        boolean ret = false;
-
         isVisited[i][j] = true;  // board[i][j] = '#';
 
         for (int[] pair : pairs) {
             int newX = pair[0] + i;
             int newY = pair[1] + j;
 
-            ret = dfs(board, newX, newY, word, index + 1, isVisited);
-            if (ret) {
-                break;
+            if(dfs(board, newX, newY, word, index + 1, isVisited)) {
+                return true;
             }
         }
 
         isVisited[i][j] = false;  // board[i][j] = word.charAt(index);
 
-        return ret;
+        return false;
     }
 
     private int[][] pairs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};

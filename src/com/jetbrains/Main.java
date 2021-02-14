@@ -2,7 +2,10 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.searchByAlgorithm.bfs.Matrix01;
 import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
+
+import java.util.Arrays;
 
 public class Main {
 
@@ -477,8 +480,16 @@ public class Main {
         // word1
 
         // remove invalid parenthesis
-        String s = "()())()";
-        RemoveInvalidParenthesis r = new RemoveInvalidParenthesis();
-        System.out.println(r.removeInvalidParentheses(s));
+//        String s = "()())()";
+//        RemoveInvalidParenthesis r = new RemoveInvalidParenthesis();
+//        System.out.println(r.removeInvalidParentheses(s));
+
+        // 01 matrix
+        int[][] matrix = new int[][]{{0 ,0, 0}, {0, 1, 0}, {1, 1, 1}};
+        Matrix01 m = new Matrix01();
+        int[][] res = m.updateMatrix2(matrix);
+        for (int[] tmp  : res) {
+            System.out.println(Arrays.toString(tmp));
+        }
     }
 }
