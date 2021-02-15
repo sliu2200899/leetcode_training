@@ -3,9 +3,13 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.searchByAlgorithm.bfs.Matrix01;
+import com.jetbrains.classic.searchByAlgorithm.bfs.ShortestBridge;
+import com.jetbrains.classic.searchByAlgorithm.bfs.WordLadder;
 import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -485,11 +489,22 @@ public class Main {
 //        System.out.println(r.removeInvalidParentheses(s));
 
         // 01 matrix
-        int[][] matrix = new int[][]{{0 ,0, 0}, {0, 1, 0}, {1, 1, 1}};
-        Matrix01 m = new Matrix01();
-        int[][] res = m.updateMatrix2(matrix);
-        for (int[] tmp  : res) {
-            System.out.println(Arrays.toString(tmp));
-        }
+//        int[][] matrix = new int[][]{{0 ,0, 0}, {0, 1, 0}, {1, 1, 1}};
+//        Matrix01 m = new Matrix01();
+//        int[][] res = m.updateMatrix2(matrix);
+//        for (int[] tmp  : res) {
+//            System.out.println(Arrays.toString(tmp));
+//        }
+
+        // ShortestBridge
+//        int[][] matrix = new int[][]{{0 ,1}, {1, 0}};
+//        ShortestBridge s = new ShortestBridge();
+//        System.out.println(s.shortestBridge(matrix));
+
+        //ladderLength2
+        String begin = "hit", end = "cog";
+        List<String> wordList = new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"));
+        WordLadder w = new WordLadder();
+        System.out.println(w.ladderLength2(begin, end, wordList));
     }
 }
