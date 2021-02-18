@@ -5,6 +5,7 @@ package com.jetbrains;
 import com.jetbrains.classic.searchByAlgorithm.bfs.Matrix01;
 import com.jetbrains.classic.searchByAlgorithm.bfs.ShortestBridge;
 import com.jetbrains.classic.searchByAlgorithm.bfs.WordLadder;
+import com.jetbrains.classic.searchByAlgorithm.bfs.WordLadder2;
 import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 
 import java.util.ArrayList;
@@ -504,7 +505,7 @@ public class Main {
         //ladderLength2
         String begin = "hit", end = "cog";
         List<String> wordList = new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"));
-        WordLadder w = new WordLadder();
-        System.out.println(w.ladderLength2(begin, end, wordList));
+        WordLadder2 w = new WordLadder2();
+        System.out.println(w.findLadders(begin, end, wordList));
     }
 }
