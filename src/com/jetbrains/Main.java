@@ -6,6 +6,7 @@ import com.jetbrains.classic.searchByAlgorithm.bfs.Matrix01;
 import com.jetbrains.classic.searchByAlgorithm.bfs.ShortestBridge;
 import com.jetbrains.classic.searchByAlgorithm.bfs.WordLadder;
 import com.jetbrains.classic.searchByAlgorithm.bfs.WordLadder2;
+import com.jetbrains.classic.topic.mathExpression.AddOperators;
 import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 
 import java.util.ArrayList;
@@ -503,9 +504,15 @@ public class Main {
 //        System.out.println(s.shortestBridge(matrix));
 
         //ladderLength2
-        String begin = "hit", end = "cog";
-        List<String> wordList = new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"));
-        WordLadder2 w = new WordLadder2();
-        System.out.println(w.findLadders(begin, end, wordList));
+//        String begin = "hit", end = "cog";
+//        List<String> wordList = new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"));
+//        WordLadder2 w = new WordLadder2();
+//        System.out.println(w.findLadders(begin, end, wordList));
+
+        // add operators
+        String num = "00";
+        int target = 0;
+        AddOperators a = new AddOperators();
+        a.addOperators(num, target).forEach(System.out::println);
     }
 }
