@@ -52,7 +52,7 @@ public class PostOrderTraversal {
 
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            list.addFirst(node.val);    // most important, the difference between preorder and post order
+            list.add(0, node.val);    // most important, the difference between preorder and post order
 
             if (node.left != null) {
                 stack.push(node.left);
