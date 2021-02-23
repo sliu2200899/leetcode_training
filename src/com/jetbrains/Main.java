@@ -3,6 +3,9 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.array.subarraysum.SubarraySum2;
+import com.jetbrains.classic.topic.twoPointers.ValidPalindrome;
+
+import javax.xml.validation.Validator;
 
 public class Main {
 
@@ -507,8 +510,13 @@ public class Main {
 //        a.addOperators(num, target).forEach(System.out::println);
 
         // subarray sum
-        int[] arr = {1,2,3,4};
-        SubarraySum2 s = new SubarraySum2();
-        System.out.println(s.subarraySumII3(arr, 1, 3));
+//        int[] arr = {1,2,3,4};
+//        SubarraySum2 s = new SubarraySum2();
+//        System.out.println(s.subarraySumII3(arr, 1, 3));
+
+        // valid palindrom 2
+        String s = "abca";
+        ValidPalindrome v = new ValidPalindrome();
+        System.out.println(v.validPalindrome2(s));
     }
 }
