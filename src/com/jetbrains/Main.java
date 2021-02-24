@@ -4,6 +4,7 @@ package com.jetbrains;
 
 import com.jetbrains.classic.array.subarraysum.SubarraySum2;
 import com.jetbrains.classic.topic.twoPointers.ValidPalindrome;
+import com.jetbrains.master.RemoveDuplicate;
 
 import javax.xml.validation.Validator;
 
@@ -515,8 +516,13 @@ public class Main {
 //        System.out.println(s.subarraySumII3(arr, 1, 3));
 
         // valid palindrom 2
-        String s = "abca";
-        ValidPalindrome v = new ValidPalindrome();
-        System.out.println(v.validPalindrome2(s));
+//        String s = "abca";
+//        ValidPalindrome v = new ValidPalindrome();
+//        System.out.println(v.validPalindrome2(s));
+
+        // remove duplicates
+        int[] nums = {0,0,1,1,1,1,2,3,3};
+        RemoveDuplicate r = new RemoveDuplicate();
+        System.out.println(r.removeDuplicates2(nums));
     }
 }
