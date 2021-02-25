@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.classic.topic.twoPointers.clashing;
 
 import java.util.*;
 

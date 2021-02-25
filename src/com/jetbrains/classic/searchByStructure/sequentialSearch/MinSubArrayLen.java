@@ -1,7 +1,36 @@
-package com.jetbrains.master;
+package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
 public class MinSubArrayLen {
     public int minSubArrayLen(int s, int[] nums) {
+        /*
+
+            analyze:
+                i, j where i faster runner and j slow runner
+                iterate through the nums array, compute the cumulative sum during the process, and
+                at the same time, we need to move j to get the minimal length of a subarray under the constraint.
+
+            algo:
+                j
+                sum, len
+                for i in nums
+                    sum += nums[i]
+                    while (sum >= target) {
+                        len = max(len, i - j + 1)
+                        sum -= nums[j];
+                        j++;
+                    }
+
+            test:
+                target = 7, nums = [2,3,1,2,4,3]
+                                        j   i
+
+                j   2
+                sum 7
+                len 4
+
+
+        */
+
         if (nums == null || nums.length == 0) return 0;
 
         int index = 0, sum = 0, len = Integer.MAX_VALUE;

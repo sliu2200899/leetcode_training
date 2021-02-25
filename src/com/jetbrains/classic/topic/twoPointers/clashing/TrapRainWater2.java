@@ -1,4 +1,4 @@
-package com.jetbrains.classic.topic.twoPointers;
+package com.jetbrains.classic.topic.twoPointers.clashing;
 
 import java.util.PriorityQueue;
 

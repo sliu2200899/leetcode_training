@@ -2,11 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
-import com.jetbrains.classic.array.subarraysum.SubarraySum2;
-import com.jetbrains.classic.topic.twoPointers.ValidPalindrome;
 import com.jetbrains.master.RemoveDuplicate;
-
-import javax.xml.validation.Validator;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.classic.topic.twoPointers.slidingWindow;
 
 import java.util.HashMap;
 import java.util.Map;
