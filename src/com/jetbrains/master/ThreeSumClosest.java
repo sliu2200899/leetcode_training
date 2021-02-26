@@ -4,31 +4,78 @@ import java.util.Arrays;
 
 public class ThreeSumClosest {
     public int threeSumClosest(int[] nums, int target) {
+        /*
+            analyze:
+                sort(nums)
+                i, j, k
+                iterate the array
+                    sum
+                    compare sum and target
+                    check the diff sum - target
+
+
+            algo:
+
+                sort(nums)
+                for i
+                    int first = nums[i]
+                    int left = i + 1, right = nums.length - 1;
+                    int diff = Integer.MAX_VALUE, res = 0;
+                    while (left < right) {
+                        int sum = ...
+                        if (sum > target) {
+
+                            right--;
+
+                        } else if (sum < target) {
+
+                            left++;
+
+                        } else {
+                            return target;
+                        }
+
+                        if (diff > abs(sum - target)) {
+                            diff = abs(sum - target)
+                            res = sum
+                        }
+                    }
+
+                    return res;
+
+            test:
+
+
+        */
+
         if (nums == null || nums.length == 0) return 0;
 
-        // sort the array
+        int n = nums.length;
+
         Arrays.sort(nums);
 
-        // two pointers to solve the problem
-        int diff = Integer.MAX_VALUE;
-        int sumRst = Integer.MAX_VALUE;
-        for (int i = 0; i < nums.length; ++i) {
-            int j = i;
-            int left = j + 1, right = nums.length - 1;
+        int diff = Integer.MAX_VALUE, res = 0;
+        for (int i = 0; i < n - 2; ++i) {
+            int first = nums[i];
+
+            int left = i + 1, right = n - 1;
             while (left < right) {
-                int sum = nums[j] + nums[left] + nums[right];
-                if (Math.abs(sum - target) < diff) {
-                    diff = Math.abs(sum - target);
-                    sumRst = sum;
-                }
-                if (sum < target) {
-                    left++;
-                } else {
+                int sum = first + nums[left] + nums[right];
+                if (sum > target) {
                     right--;
+                }
+                else if (sum < target) {
+                    left++;
+                }
+                else {
+                    return target;
+                }
+                if (diff > Math.abs(sum - target)) {
+                    diff = Math.abs(sum - target);
+                    res = sum;
                 }
             }
         }
-
-        return sumRst;
+        return res;
     }
 }
