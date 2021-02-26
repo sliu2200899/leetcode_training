@@ -1,11 +1,11 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.topic.twoPointers.slidingWindow;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.PriorityQueue;
 
 public class MaxSlidingWindow {
-    // just use priorityqueue to store the elements in the windows
+    // just use priorityqueue to store the elements in the windows   TLE
     // time compleity is O(nlogn)
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums == null || nums.length == 0) return new int[0];
@@ -34,6 +34,32 @@ public class MaxSlidingWindow {
 
     // time complexity is O(n)
     // space is O(n)
+    /*
+
+    Algorithm
+
+        The algorithm is quite straigthforward :
+
+        Process the first k elements separately to initiate the deque.
+
+        Iterate over the array. At each step :
+            enque(deque, nums[i])
+            res[i - k + 1] = deque.peekFirst()
+            deque(deque, nums[i - k + 1])
+
+
+        enque:
+            remove all the elements that is smaller than the current element
+            Keep only elements that is larger than the cur in the sliding window
+            in this case, first element in the deque is the largest element in the sliding window
+
+        deque
+            remove teh elements if deque.peekFirst() == num
+
+
+        Return the output array.
+
+     */
     public int[] maxSlidingWindow2(int[] nums, int k) {
         if (nums == null || nums.length == 0) return new int[0];
 
@@ -54,6 +80,10 @@ public class MaxSlidingWindow {
         return rst;
     }
 
+    /*
+        use deque to solve the problem
+        here deque is a combination of queue and stack
+     */
     private void enqueue(Deque<Integer> deque, int num) {
         while (!deque.isEmpty() && deque.peekLast() < num) {
             deque.pollLast();

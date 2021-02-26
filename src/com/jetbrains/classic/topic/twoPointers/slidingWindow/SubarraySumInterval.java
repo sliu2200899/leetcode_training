@@ -1,6 +1,6 @@
 package com.jetbrains.classic.topic.twoPointers.slidingWindow;
 
-public class SubarraySum2 {
+public class SubarraySumInterval {
 
     /*
     Given an integer array, find a subarray where the sum of numbers is in a given interval. Your code should return the number of possible answers. (The element in the array should be positive)

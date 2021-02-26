@@ -517,8 +517,8 @@ public class Main {
 //        System.out.println(v.validPalindrome2(s));
 
         // remove duplicates
-        int[] nums = {0,0,1,1,1,1,2,3,3};
-        RemoveDuplicate r = new RemoveDuplicate();
-        System.out.println(r.removeDuplicates2(nums));
+//        int[] nums = {0,0,1,1,1,1,2,3,3};
+//        RemoveDuplicate r = new RemoveDuplicate();
+//        System.out.println(r.removeDuplicates2(nums));
     }
 }

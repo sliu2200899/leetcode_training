@@ -1,6 +1,6 @@
 package com.jetbrains.classic.topic.twoPointers.slidingWindow;
 
-public class MinSubArrayLen {
+public class MinimumSizeSubarraySum {
     public int minSubArrayLen(int s, int[] nums) {
         /*
 
