@@ -1,4 +1,4 @@
-package com.jetbrains.classic.topic.math;
+package com.jetbrains.classic.topic.mathBit;
 
 public class ProductExceptSelf {
     public int[] productExceptSelf(int[] nums) {

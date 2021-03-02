@@ -1,4 +1,4 @@
-package com.jetbrains.classic.topic.math;
+package com.jetbrains.classic.topic.mathBit;
 
 import java.util.HashMap;
 import java.util.Map;
