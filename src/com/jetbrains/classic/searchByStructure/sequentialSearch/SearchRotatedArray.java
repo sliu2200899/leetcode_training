@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
 public class SearchRotatedArray {
 
