@@ -9,7 +9,15 @@ public class FindMinimumValueRotatedArray {
         if (nums == null || nums.length == 0) return -1;
 
         int n = nums.length;
+        if (n == 1) {
+            return nums[0];
+        }
+
         int start = 0, end = n - 1;
+
+        if (nums[end] > nums[start]) {
+            return nums[start];
+        }
         /*
         The minimum element must satisfy one of two conditions:
                 1) If rotate, A[min] < A[min - 1];
@@ -18,9 +26,10 @@ public class FindMinimumValueRotatedArray {
         If not, there are 2 conditions as well: If it is greater than both left and right element, then minimum element should be on its right,
             otherwise on its left.
         */
-        while (start < end) {
+        while(start <= end) {
             int mid = start + (end - start) / 2;
-            if (mid != 0 && nums[mid] < nums[mid - 1]) {
+
+            if(mid != 0 && nums[mid] < nums[mid - 1]) {
                 return nums[mid];
             }
 
@@ -30,9 +39,52 @@ public class FindMinimumValueRotatedArray {
                 end = mid - 1;
             }
         }
-
-        return nums[start];
+        return -1;
     }
+
+    /*
+        preferred way to solve the problem would be like reduce the search scope
+     */
+    public int findMin2(int[] nums) {
+        int n = nums.length;
+
+        int start = 0, end = n - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] > nums[end]) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        return Math.min(nums[start], nums[end]);
+    }
+
+    /*
+        follow up: if it contains some duplicates in the original array
+     */
+    public int findMinDuplicate(int[] nums) {
+        int n = nums.length;
+
+        int start = 0, end = n - 1;
+
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] < nums[end]) {
+                end = mid;
+            } else if (nums[mid] > nums[end]) {
+                start = mid;
+            } else {
+                end--;
+            }
+        }
+
+        return Math.min(nums[start], nums[end]);
+    }
+
+
+
+
 
     // just narrow the range to two elements and then choose the smaller one among them.
     public int findMinOld(int[] nums) {
