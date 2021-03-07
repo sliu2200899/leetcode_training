@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.topic.mathBit;
 
 public class SqrtMath {
 

@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
 public class PowMath {
 
@@ -13,6 +13,19 @@ public class PowMath {
         After that, for all i that satisfy b_i = 1, we can multiply x ^ (2 ^ i) to the result.
         This also requires O(log n) time.
      */
+    /*
+      analyze:
+        x = 2.00000, n = 10
+        1024.00000
+
+             3210
+             i
+        n    1010.
+
+             1 * x ^2 * x ^ (2^3)
+        x^10 = x^(2^3) * x^(2^1)
+
+        */
     public double myPow(double x, int n) {
         long abs = Math.abs((long)n);
         double base = x, res = 1.0;
