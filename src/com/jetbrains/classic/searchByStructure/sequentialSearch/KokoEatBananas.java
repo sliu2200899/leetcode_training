@@ -22,9 +22,9 @@ public class KokoEatBananas {
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (canEatAll(piles, mid, h)) {
-                start = mid + 1;
-            } else {
                 end = mid - 1;
+            } else {
+                start = mid + 1;
             }
         }
 
