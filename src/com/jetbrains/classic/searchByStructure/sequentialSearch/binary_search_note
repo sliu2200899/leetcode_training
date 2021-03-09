@@ -1,0 +1,23 @@
+code pattern
+    no duplicates, and find some specific value
+    find the first target element in the array
+    find the last target element in the array
+    find the first element that is large or equal to the specific element
+    find the last element that is less or equal to the specific element
+
+
+classic problems
+    search insert position
+    search value in rotated sorted array
+    find minimum value in rotated sorted array
+    find peak element
+    sqrt
+    pow
+    median of two sorted array
+    koko eat bananas
+
+
+key point in the explanation
+    1. regardless of the rotation rules, at least 1 potion is still sorted
+    2. get rid of half of the unqualified elements per iteration
+    3. find the sorted potion and do a range check
