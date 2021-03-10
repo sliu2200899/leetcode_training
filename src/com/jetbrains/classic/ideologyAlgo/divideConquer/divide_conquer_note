@@ -1,0 +1,9 @@
+
+
+classic problems:
+
+key note in the explanation:
+    process:
+        1. dividing it into b smaller instances,
+        2. solving some or all of them (in general, solving a of them), using the same algorithm recursively.
+        3. combining the solutions to the a smaller problems to get the solution to the original problem.

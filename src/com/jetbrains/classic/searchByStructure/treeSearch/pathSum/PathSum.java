@@ -1,11 +1,11 @@
-package com.jetbrains.classic.searchByStructure.treeSearch;
+package com.jetbrains.classic.searchByStructure.treeSearch.pathSum;
 
 import com.jetbrains.innerStructure.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class pathSum {
+public class PathSum {
     /*
         pathSum 1:
         Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all
@@ -17,9 +17,9 @@ public class pathSum {
         with a sum decreased by the current node value. If node is a leaf, one checks if the the current sum is zero,
         i.e if the initial sum was discovered.
 
-        time: we visit each node exactly once, thus the time complexity is O(N), where NN is the number of nodes.
+        time: we visit each node exactly once, thus the time complexity is O(N), where N is the number of nodes.
         Space complexity : in the worst case, the tree is completely unbalanced, e.g. each node has only
-        one child node, the recursion call would occur NN times (the height of the tree), therefore the storage
+        one child node, the recursion call would occur N times (the height of the tree), therefore the storage
         to keep the call stack would be O(N). But in the best case (the tree is completely balanced),
         the height of the tree would be log(N). Therefore, the space complexity in this case would be
         O(log(N)).

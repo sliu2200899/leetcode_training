@@ -9,6 +9,7 @@ classic problems:
     vertical order traversal
     morris traversal
 
+    path sum
 
 
 
@@ -16,4 +17,9 @@ classic problems:
 
 
 key note in the explanation:
+    explain what is different traversal
+    use which data structure
+    how to use that to solve the problem during the process
 
+
+    recursion in tree traversal:
