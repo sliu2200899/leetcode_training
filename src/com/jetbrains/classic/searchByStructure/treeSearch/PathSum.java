@@ -1,9 +1,11 @@
-package com.jetbrains.classic.searchByStructure.treeSearch.pathSum;
+package com.jetbrains.classic.searchByStructure.treeSearch;
 
 import com.jetbrains.innerStructure.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PathSum {
     /*
@@ -93,6 +95,79 @@ The following examples assume the sum to be found is 22.
         helper(root.left, res, list, sum - root.val);
         helper(root.right, res, list, sum - root.val);
         list.remove(list.size() - 1);
+    }
+
+
+    /*
+        pathSUm 3:
+            The path does not need to start or end at the root or a leaf, but it must go downwards (traveling only from parent nodes to child nodes).
+
+            Find the number of paths that sum to a given value.
+
+        analysis:
+            the problem doesn't specify that the path should go from root to leaf. only specify the path should go downward.
+            so we can find the number of the path starting at the root node. In addition to that, we should find those path
+            that start at the left subtree and right subtree.
+     */
+
+    public int pathSum(TreeNode root, int sum) {
+        if (root == null) return 0;
+
+        return findPath(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+    }
+
+    private int findPath(TreeNode root, int sum) {
+        // base case
+        if (root == null) return 0;
+
+        // recursive case
+        int res = 0;
+        if(sum == root.val) {
+            // the reason why I don't return directly, because there could be other valid path even if we have found the valid one.
+            // for example, target = 8, and our path is like 5 - 3 - 1 - -1,   5 - 3 is a valid path, and 5 - 3 - 1 - -1 is also a valid one.
+            res++;
+        }
+
+        res += findPath(root.left, sum - root.val);
+        res += findPath(root.right, sum - root.val);
+
+        return res;
+    }
+
+    /*
+        follow up:
+            optimization: time: O(n)
+            good article:  https://leetcode.com/problems/path-sum-iii/solution/
+     */
+    int count = 0;
+    int k;
+    Map<Integer, Integer> map = new HashMap<>();
+
+    public int pathSum31(TreeNode root, int sum) {
+        k = sum;
+        preorder(root, 0);
+        return count;
+    }
+
+    private void preorder(TreeNode node, int currSum) {
+        if (node == null) {
+            return;
+        }
+
+        currSum += node.val;
+
+        if (currSum == k) {
+            count++;
+        }
+
+        count += map.getOrDefault(currSum - k, 0);
+
+        map.put(currSum, map.getOrDefault(currSum, 0) + 1);
+
+        preorder(node.left, currSum);
+        preorder(node.right, currSum);
+
+        map.put(currSum, map.get(currSum) - 1);
     }
 
 }

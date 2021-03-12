@@ -1,4 +1,4 @@
-package com.jetbrains.classic;
+package com.jetbrains.classic.searchByStructure.treeSearch;
 
 import com.jetbrains.innerStructure.TreeNode;
 import com.jetbrains.innerStructure.TreeNodeParent;
@@ -6,16 +6,64 @@ import com.jetbrains.innerStructure.TreeNodeParent;
 import java.util.*;
 
 public class LCAonBT {
+    /*
+        LCA of a BST
+     */
+    // simple, just skip
+
+    /*
+        LCA of BT
+        recursion solve the problem...
+     */
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        // get all the nodes from root to p
+        List<TreeNode> listP = new ArrayList<>();
+        getNodes(root, p, listP, new ArrayList<TreeNode>());
+
+        // get all the nodes from root to q
+        List<TreeNode> listQ = new ArrayList<>();
+        getNodes(root, q, listQ, new ArrayList<TreeNode>());
+
+        // find their LCA
+        TreeNode prev = null;
+        int cur = 0;
+        while (cur != listQ.size() && cur != listP.size()) {
+            if (listQ.get(cur).val != listP.get(cur).val) {
+                return prev;
+            }
+
+            prev = listP.get(cur);
+            cur++;
+        }
+        return prev;
+    }
+
+    private void getNodes(TreeNode node, TreeNode target, List<TreeNode> list, List<TreeNode> tmp) {
+        if (node.val == target.val) {
+            tmp.add(node);
+            for (TreeNode n : tmp) {
+                list.add(n);
+            }
+            return;
+        }
+
+        tmp.add(node);
+        if (node.left != null) getNodes(node.left, target, list, tmp);
+        if (node.right != null) getNodes(node.right, target, list, tmp);
+        tmp.remove(tmp.size() - 1);
+    }
+
+    // preferred way
     // use DC to explore the binary tree,
     // if we find either p or q, we just return the node
     // otherwise, we search the p or q in left or right subtree.
     // if both left and right is not null, the current node is the LCA
     // otherwise, we return the left or right node which is not null.
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) return root;
 
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        TreeNode left = lowestCommonAncestor2(root.left, p, q);
+        TreeNode right = lowestCommonAncestor2(root.right, p, q);
 
         if (left != null && right != null) return root;
         return left == null ? right : left;
@@ -58,10 +106,8 @@ public class LCAonBT {
         return root;
     }
 
-
-
-    // we need to consider the node doesn't exist in the tree (LCAonBT)
-    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+    // follow up: we need to consider the node doesn't exist in the tree (LCAonBT)
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
         // clarify the validness and existance. what if root. or at least one of the node is empty?
         if (root == null || p == null || q == null) return null;
 
@@ -89,7 +135,7 @@ public class LCAonBT {
     }
 
 
-    // what if the node has parent pointer
+    // follow up: what if the node has parent pointer
     // can use a hashset, everytime,
     public static TreeNodeParent lowestCommonAncester3(TreeNodeParent root, TreeNodeParent p, TreeNodeParent q) {
         if (root == null || q == null || p == null) return null;

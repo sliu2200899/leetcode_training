@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class SubarraySum1 {
     /*
-        leetcode 560
         Given an integer array, find a subarray where the sum of numbers is zero. Your code should return the index of the first number and the index of the last number.
 
         Example
@@ -25,7 +24,7 @@ public class SubarraySum1 {
         // sum: 0
         Map<Integer, Integer> map = new HashMap<>();
         int sum = 0;
-        map.put(0, -1);
+        map.put(0, -1);   // use hashmap to store the sum and its index...
         for (int i = 0; i < nums.length; ++i) {
             sum += nums[i];
             if (map.containsKey(sum)) {
@@ -54,4 +53,33 @@ public class SubarraySum1 {
                break;
            }
      */
+
+    /*
+        follow up: leetcode 560
+        return the total number of continuous subarrays whose sum equals to k.
+
+     */
+    public int subarraySum(int[] nums, int k) {
+        int currSum = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int count = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            currSum += nums[i];
+
+            // situation 1: continuous subarray that starts with the beginning of the array
+            if (currSum == k) {
+                count++;
+            }
+
+            // situation 2: number of times the curr_sum - k has occurred already, determines the
+            // number of times a subarray with sum k has occurred upto the current index
+            count += map.getOrDefault(currSum - k, 0);
+
+            map.put(currSum, map.getOrDefault(currSum, 0) + 1);
+        }
+
+        return count;
+    }
+
 }
