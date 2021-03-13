@@ -2,6 +2,7 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.master.RemoveDuplicate;
@@ -162,11 +163,11 @@ public class Main {
 //        }
 
         // quick sort
-        int[] arr = {2, 1, 3, 6, 1, 3, 5};
-        QuickSort.quick_sort5(arr);
-        for (int i : arr) {
-            System.out.println(i);
-        }
+//        int[] arr = {2, 1, 3, 6, 1, 3, 5};
+//        QuickSort.quick_sort5(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
 
         // merge two sorted array (basic, no enough space for storing)
 //        int[] arrA = {1,4,7,9};
@@ -522,5 +523,8 @@ public class Main {
 //        int[] nums = {0,0,1,1,1,1,2,3,3};
 //        RemoveDuplicate r = new RemoveDuplicate();
 //        System.out.println(r.removeDuplicates2(nums));
+
+        //LongestUniValue
+        LongestUniValue l = new LongestUniValue();
     }
 }
