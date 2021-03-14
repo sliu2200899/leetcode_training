@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByAlgorithm.dfs;
+package com.jetbrains.classic.advancedDataStructure.dsTrie;
 
 import java.util.ArrayList;
 import java.util.List;
