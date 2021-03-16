@@ -1,11 +1,11 @@
-package com.jetbrains.classic.searchByStructure.combineSearch;
+package com.jetbrains.classic.searchByStructure.treeSearch.bst;
 
 import com.jetbrains.innerStructure.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class TreeLinkedList {
+public class KthSmallestBST {
     /*
         Kth Smallest Element in a BST
         Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
