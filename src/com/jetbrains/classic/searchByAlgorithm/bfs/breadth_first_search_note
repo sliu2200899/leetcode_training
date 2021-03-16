@@ -2,7 +2,10 @@ code pattern
 
 
 classic problem
-
+    01matrix  ->  explore from 0 to 1
+    number of islands -> explore from 1 to 1
+    word ladder
+    topological sort
 
 
 key note in the explanation

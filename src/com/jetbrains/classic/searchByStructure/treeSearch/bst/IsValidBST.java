@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.searchByStructure.treeSearch.bst;
 
 import com.jetbrains.innerStructure.TreeNode;
 
@@ -6,6 +6,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class IsValidBST {
+    /*
+        two points need to pay attention to:
+            1. class Tuple should contains TreeNode min, max
+            2. in hte recursive function, we should address when to return a false first, then address when to return a true.
+     */
     public class Tuple{
         boolean isValid;
         TreeNode min;
@@ -30,13 +35,14 @@ public class IsValidBST {
         Tuple left = helper(root.left);
         Tuple right = helper(root.right);
 
-        // how to return a false
+        // when to return a false
         if (!left.isValid || !right.isValid ||
                 (left.max != null && root.val <= left.max.val) ||
                 (right.min != null && root.val >= right.min.val)) {
             return new Tuple(false, null, null);
         }
 
+        // when to return a true
         TreeNode min = left.min == null ? root : left.min;
         TreeNode max = right.max == null ? root : right.max;
 

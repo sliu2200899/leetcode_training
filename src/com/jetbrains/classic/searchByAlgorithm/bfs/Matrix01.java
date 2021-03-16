@@ -78,6 +78,12 @@ public class Matrix01 {
     /*
         solution 2: using bfs one time
 
+        A better brute force: Looking over the entire matrix appears wasteful and hence, we can use Breadth First Search(BFS) to limit the search to the nearest 0 found for each 1.
+        As soon as a 0 appears during the BFS, we know that the 0 is nearest, and hence, we move to the next 1.
+
+        Think again: But, in this approach, we will only be able to update the distance of one 1 using one BFS, which could in fact, result in slightly higher complexity
+        than the Approach #1 brute force. But hey,this could be optimised if we start the BFS from 0s and thereby, updating the distances of all the 1s in the path.
+
         time: O(rc)
         space: O(rc)
      */
