@@ -2,10 +2,13 @@ package com.jetbrains;
 
 //import com.jetbrains.OOD.Elevator;
 
+import com.jetbrains.classic.advancedDataStructure.dsGraph.NumberOfConnectedComponentsUndire;
 import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.master.RemoveDuplicate;
+
+import java.sql.SQLOutput;
 
 public class Main {
 
@@ -525,6 +528,11 @@ public class Main {
 //        System.out.println(r.removeDuplicates2(nums));
 
         //LongestUniValue
-        LongestUniValue l = new LongestUniValue();
+//        LongestUniValue l = new LongestUniValue();
+
+        // number of connected components in undirected graph
+        NumberOfConnectedComponentsUndire gf = new NumberOfConnectedComponentsUndire();
+        int[][] edges = new int[][]{{0,1},{1,2},{3,4}};
+        System.out.println(gf.countComponents(5, edges));
     }
 }
