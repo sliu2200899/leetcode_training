@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByStructure.treeSearch;
+package com.jetbrains.classic.topic.linkedlist;
 
 import com.jetbrains.innerStructure.TreeNode;
 
