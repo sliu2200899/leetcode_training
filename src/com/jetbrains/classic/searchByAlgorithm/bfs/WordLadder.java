@@ -76,57 +76,81 @@ public class WordLadder {
         3. Actually, we don't even need to build the adjacency list graph explicitly using a HashMap<String, ArrayList>,
             since we keep all the nodes we can reach in the queue of each level of BFS. This can be seen as the keys of the HashMap are the strings that in the queue,
             and values are the strings that satisfy the 1 character apart in the wordList. Thus, we avoid the time cost of build map for those nodes we don't need to visit.
+
+
+        time: O(M * N * 26) where M is the length of words and N is the total number of words in the input word list. Similar to one directional, bidirectional also takes
+                O(M * N) time for finding out all the transformations. But the search time reduces to half, since the two parallel searches meet somewhere in the middle.
+        space:  O(M * N) to store all M transformations for each of the N words in the all_combo_dict dictionary, same as one directional.
+                But bidirectional reduces the search space. It narrows down because of meeting in the middle.
      */
     public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
 
-        HashSet<String> set = new HashSet<>(wordList);
-        if(!set.contains(endWord))
+        Set<String> set = new HashSet<>(wordList);
+        if (!set.contains(endWord)) {
             return 0;
+        }
 
-        Queue<String> queue = new ArrayDeque<>();
-        queue.add(beginWord);
-        int depth = 1;
+        Map<String, String> nodeToParent = new HashMap<>();
 
-        while(!queue.isEmpty()){
-            // System.out.println(queue.toString());
-            // System.out.println(depth);
+        Deque<String> queue = new LinkedList<>();
+        queue.offer(beginWord);
+
+        int num = 1;
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            for(int i = 0; i < size; i++){
-                String curr = queue.poll();
+            for (int i = 0; i < size; ++i) {
+                String cur = queue.poll();
 
-                for(String neig : neighbors(curr, set)){
-
-                    if(neig.equals(endWord)){
-                        return depth+1;
-                    }
-                    queue.offer(neig);
+                if (cur.equals(endWord)) {
+                    printPath(endWord, nodeToParent);
+                    return num;
+                }
+                for (String neighbor : getNeighbors(cur, set)) {
+                    set.remove(neighbor);
+                    queue.offer(neighbor);
+                    nodeToParent.put(neighbor, cur);
                 }
             }
 
-            depth++;
+            num++;
         }
 
         return 0;
     }
 
-    public List<String> neighbors(String s, HashSet<String> wordList){
-        List<String> res = new LinkedList<>();
+    private void printPath(String endWord, Map<String, String> map) {
 
-        for(int i=0;i<s.length();i++){
-            char [] chars = s.toCharArray();
-            for(char ch = 'a'; ch <= 'z'; ch++){
-                chars[i] = ch;
-                String word = new String(chars);
+        Deque<String> stack = new ArrayDeque<>();
+        while (endWord != null) {
+            stack.push(endWord);
+            endWord = map.get(endWord);
+        }
 
-                if(word.equals(s))
-                    continue;
-                if(wordList.remove(word)){
-                    //System.out.println(word);
-                    res.add(word);
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop() + " ");
+        }
+    }
+
+    private List<String> getNeighbors(String cur, Set<String> set) {
+        List<String> list = new ArrayList<>();
+        char[] arr = cur.toCharArray();
+
+        for (int i = 0; i < arr.length; ++i) {
+            char c = arr[i];
+            for (char ch = 'a'; ch <= 'z'; ++ch) {
+                if (ch == c) continue;
+
+                arr[i] = ch;
+
+                if (set.contains(String.valueOf(arr))) {
+                    list.add(String.valueOf(arr));
                 }
+
+                arr[i] = c;
             }
         }
-        return res;
+
+        return list;
     }
 
     /*
