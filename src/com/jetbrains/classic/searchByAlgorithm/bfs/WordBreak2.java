@@ -1,4 +1,4 @@
-package com.jetbrains.classic.ideologyAlgo.dynamicProgramming;
+package com.jetbrains.classic.searchByAlgorithm.bfs;
 
 import java.util.*;
 
