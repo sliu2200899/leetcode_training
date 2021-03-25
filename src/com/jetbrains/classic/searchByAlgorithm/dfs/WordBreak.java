@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByAlgorithm.bfs;
+package com.jetbrains.classic.searchByAlgorithm.dfs;
 
 import java.util.*;
 

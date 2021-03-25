@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.advancedDataStructure.dsGraph.NumberOfConnectedComponentsUndire;
+import com.jetbrains.classic.searchByAlgorithm.dfs.ConcatenatedWords;
 import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSort;
@@ -531,8 +532,13 @@ public class Main {
 //        LongestUniValue l = new LongestUniValue();
 
         // number of connected components in undirected graph
-        NumberOfConnectedComponentsUndire gf = new NumberOfConnectedComponentsUndire();
-        int[][] edges = new int[][]{{0,1},{1,2},{3,4}};
-        System.out.println(gf.countComponents(5, edges));
+//        NumberOfConnectedComponentsUndire gf = new NumberOfConnectedComponentsUndire();
+//        int[][] edges = new int[][]{{0,1},{1,2},{3,4}};
+//        System.out.println(gf.countComponents(5, edges));
+
+        //findAllConcatenatedWordsInADict
+        String[] str = {"cat","dog","catdog"};
+        ConcatenatedWords c = new ConcatenatedWords();
+        System.out.println(c.findAllConcatenatedWordsInADict(str));
     }
 }
