@@ -7,9 +7,12 @@ import com.jetbrains.classic.searchByAlgorithm.dfs.ConcatenatedWords;
 import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSort;
+import com.jetbrains.classic.topic.design.KthFreqElementsStream;
 import com.jetbrains.master.RemoveDuplicate;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
 
@@ -537,8 +540,25 @@ public class Main {
 //        System.out.println(gf.countComponents(5, edges));
 
         //findAllConcatenatedWordsInADict
-        String[] str = {"cat","dog","catdog"};
-        ConcatenatedWords c = new ConcatenatedWords();
-        System.out.println(c.findAllConcatenatedWordsInADict(str));
+//        String[] str = {"cat","dog","catdog"};
+//        ConcatenatedWords c = new ConcatenatedWords();
+//        System.out.println(c.findAllConcatenatedWordsInADict(str));
+
+        // Kth frequent elements stream
+        int k = 4;
+        int[] arr = {5, 2, 1, 3, 2, 1, 3, 1, 2, 5, 5};
+        KthFreqElementsStream s = new KthFreqElementsStream();
+
+        System.out.println(Arrays.toString(s.read(5, 3)));
+        System.out.println(Arrays.toString(s.read(2, 3)));
+        System.out.println(Arrays.toString(s.read(1, 3)));
+        System.out.println(Arrays.toString(s.read(3, 3)));
+        System.out.println(Arrays.toString(s.read(2, 3)));
+        System.out.println(Arrays.toString(s.read(1, 3)));
+        System.out.println(Arrays.toString(s.read(3, 3)));
+        System.out.println(Arrays.toString(s.read(1, 3)));
+        System.out.println(Arrays.toString(s.read(2, 3)));
+        System.out.println(Arrays.toString(s.read(5, 3)));
+        System.out.println(Arrays.toString(s.read(5, 3)));
     }
 }
