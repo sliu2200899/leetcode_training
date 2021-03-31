@@ -545,20 +545,27 @@ public class Main {
 //        System.out.println(c.findAllConcatenatedWordsInADict(str));
 
         // Kth frequent elements stream
-        int k = 4;
-        int[] arr = {5, 2, 1, 3, 2, 1, 3, 1, 2, 5, 5};
-        KthFreqElementsStream s = new KthFreqElementsStream();
+//        int k = 4;
+//        int[] arr = {5, 2, 1, 3, 2, 1, 3, 1, 2, 5, 5};
+//        KthFreqElementsStream s = new KthFreqElementsStream();
+//
+//        System.out.println(Arrays.toString(s.read(5, 3)));
+//        System.out.println(Arrays.toString(s.read(2, 3)));
+//        System.out.println(Arrays.toString(s.read(1, 3)));
+//        System.out.println(Arrays.toString(s.read(3, 3)));
+//        System.out.println(Arrays.toString(s.read(2, 3)));
+//        System.out.println(Arrays.toString(s.read(1, 3)));
+//        System.out.println(Arrays.toString(s.read(3, 3)));
+//        System.out.println(Arrays.toString(s.read(1, 3)));
+//        System.out.println(Arrays.toString(s.read(2, 3)));
+//        System.out.println(Arrays.toString(s.read(5, 3)));
+//        System.out.println(Arrays.toString(s.read(5, 3)));
 
-        System.out.println(Arrays.toString(s.read(5, 3)));
-        System.out.println(Arrays.toString(s.read(2, 3)));
-        System.out.println(Arrays.toString(s.read(1, 3)));
-        System.out.println(Arrays.toString(s.read(3, 3)));
-        System.out.println(Arrays.toString(s.read(2, 3)));
-        System.out.println(Arrays.toString(s.read(1, 3)));
-        System.out.println(Arrays.toString(s.read(3, 3)));
-        System.out.println(Arrays.toString(s.read(1, 3)));
-        System.out.println(Arrays.toString(s.read(2, 3)));
-        System.out.println(Arrays.toString(s.read(5, 3)));
-        System.out.println(Arrays.toString(s.read(5, 3)));
+        // random
+        System.out.println((int)(Math.random() * 20));
+        System.out.println((int)(Math.random() * 20));
+        System.out.println((int)(Math.random() * 20));
+        System.out.println((int)(Math.random() * 20));
+        System.out.println((int)(Math.random() * 20));
     }
 }
