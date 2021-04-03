@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByStructure.treeSearch;
+package com.jetbrains.zCompanyInterviewPrep.tictok;
 
 import com.jetbrains.innerStructure.TreeNode;
 
