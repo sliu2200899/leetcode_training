@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByAlgorithm;
+package com.jetbrains.classic.searchByAlgorithm.bfs;
 
 import java.util.Deque;
 import java.util.LinkedList;

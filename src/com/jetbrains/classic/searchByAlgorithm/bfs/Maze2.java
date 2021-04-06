@@ -1,4 +1,4 @@
-package com.jetbrains.classic.searchByAlgorithm;
+package com.jetbrains.classic.searchByAlgorithm.bfs;
 
 import java.util.Arrays;
 import java.util.Deque;
@@ -8,6 +8,16 @@ import java.util.PriorityQueue;
 public class Maze2 {
     /*
         bfs w/o visited
+
+        // bfs
+        // queue
+        // set/array to check visited
+
+        // first problem:
+        //    while()
+        // second problem: how to update visited array
+        //    1.use step + 2D array  -> problem
+        //    2.distance -> problem.
      */
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
         int[][] distance = new int[maze.length][maze[0].length];
