@@ -1,0 +1,16 @@
+classic problems
+    Different ways to compute   -> D/C
+    expression Add operators   ->  split + recursion
+    basic calculator:
+        1. +/-  + ()   ->  use stack to store result and sign for each group
+        2. +/-/*//    -> use stack to store computed value
+        3. +,-,*,/ + ()    -> RPN
+
+    longest valid parenthesis  -> dp
+    remove invalid parenthesis  -> recursion keep/remove
+
+
+
+
+key explanation
+

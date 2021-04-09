@@ -2,48 +2,46 @@ package com.jetbrains.classic.searchByStructure.treeSearch;
 
 import com.jetbrains.innerStructure.TreeNode;
 
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class SerializeBT {
-    /*
-         1 2 # # 3 4 ...
-     */
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
-        dfsSerialize(root, sb);
-
+        dfs(root, sb);
         return sb.toString().trim();
     }
 
-    private void dfsSerialize(TreeNode root, StringBuilder sb) {
+    private void dfs(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append("#").append(" ");
             return;
         }
 
         sb.append(root.val).append(" ");
-        dfsSerialize(root.left, sb);
-        dfsSerialize(root.right, sb);
+        dfs(root.left, sb);
+        dfs(root.right, sb);
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        String[] strs = data.split(" ");
-        int[] index = new int[1];
-        return dfsDeserialize(strs, index);
+        Deque<String> nodes = new LinkedList<>();
+        nodes.addAll(Arrays.asList(data.split(" ")));
+        return buildTree(nodes);
     }
 
-    private TreeNode dfsDeserialize(String[] strs, int[] index) {
-        if (strs[index[0]].equals("#")) {
-            index[0]++;
+    private TreeNode buildTree(Deque<String> nodes) {
+        String val = nodes.poll();
+        if (val.equals("#")) {
             return null;
+        } else {
+            TreeNode root = new TreeNode(Integer.parseInt(val));
+            root.left = buildTree(nodes);
+            root.right = buildTree(nodes);
+            return root;
         }
-
-        TreeNode root = new TreeNode(Integer.parseInt(strs[index[0]]));  // don't know the length of the left sub tree, how to do that...
-        index[0]++;
-        root.left = dfsDeserialize(strs, index);
-        root.right = dfsDeserialize(strs, index);
-
-        return root;
     }
 
     /*

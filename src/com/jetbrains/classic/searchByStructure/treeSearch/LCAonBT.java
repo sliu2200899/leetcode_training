@@ -106,31 +106,34 @@ public class LCAonBT {
         return root;
     }
 
-    // follow up: we need to consider the node doesn't exist in the tree (LCAonBT)
-    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
-        // clarify the validness and existance. what if root. or at least one of the node is empty?
-        if (root == null || p == null || q == null) return null;
+    // follow up: we need to consider the node doesn't exist in the tree (LCAonBT)  w/o checking nodes existence
+    boolean pFound = false;
+    boolean qFound = false;
 
-        // do we need to consider the situation where the node doesn't exist in the tree?
-        if (!preorderSearch(root, p)) return null;
-        if (!preorderSearch(root, q)) return null;
-
-        return getLCA(root, p, q);
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode LCA = LCA(root, p, q);
+        return pFound && qFound ? LCA : null;
     }
 
-    private boolean preorderSearch(TreeNode root, TreeNode x) {
-        if (root == null) return false;
-        if (root == x) return true;
+    public TreeNode LCA(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return root;
+        TreeNode left = LCA(root.left, p, q);
+        TreeNode right = LCA(root.right, p, q);
 
-        return preorderSearch(root.left, x) || preorderSearch(root.right, x);
-    }
+        // those two part should be placed after lca(left) and lca(right)
+        // because Keep traversing down the entire tree. If you return early, the above example would be null, because the code stops when it finds 5 and does not keep searching for 4.
+        if (root == p) {
+            pFound = true;
+            return root;
+        }
+        if (root == q) {
+            qFound = true;
+            return root;
+        }
+        if (left != null && right != null) {
+            return root;
+        }
 
-    private TreeNode getLCA(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) return root;
-
-        TreeNode left = getLCA(root.left, p, q);
-        TreeNode right = getLCA(root.right, p, q);
-        if (left != null && right != null) return root;
         return left == null ? right : left;
     }
 

@@ -10,6 +10,19 @@ classic problems:
     morris traversal
 
     path sum
+        1, 2   ->  recursion
+        3  -> double recursion
+
+    maximum path sum
+    LCA
+        1, 2 -> DC
+        3 ->
+
+    serialize binary tree
+    construct binary tree
+
+
+
 
 
 
