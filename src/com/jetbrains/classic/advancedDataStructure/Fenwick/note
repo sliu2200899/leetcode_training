@@ -1,0 +1,4 @@
+Fenwick tree was proposed to solve the prefix sum problem
+prefix sum has one disadvantage:
+    disabled when some node is changed
+
