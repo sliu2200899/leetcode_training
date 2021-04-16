@@ -3,9 +3,85 @@ package com.jetbrains.classic.advancedDataStructure.Fenwick;
 import java.util.*;
 
 public class CountSmallerNumberAfterSelf {
+
     /*
-        BST, but not balanced, time: O(nlogn) ~ O(n^2)
+        fanwick tree
      */
+
+    /*
+        idea of Fenwick tree
+
+        nums
+        [5,2,6,1]
+
+        sorted   // be used later to get ranks
+        [1,2,5,6]
+
+        ranks  // mapping
+        reverse nums:
+        [1,6,2,5]
+        [1,4,2,3]
+
+
+        tree
+    */
+    public List<Integer> countSmaller2(int[] nums) {
+        int[] sorted = Arrays.copyOf(nums, nums.length);
+        // sort the unique numbers
+        Arrays.sort(sorted);
+        // map the number to its rank
+        Map<Integer, Integer> ranks = new HashMap<>();
+        int rank = 0;
+        for (int i = 0; i < sorted.length; ++i) {
+            if (i == 0 || sorted[i] != sorted[i-1]) {
+                ranks.put(sorted[i], ++rank);
+            }
+        }
+
+        List<Integer> ans = new ArrayList<>();
+        FenwickTree tree = new FenwickTree(ranks.size());
+        // scan the numbers in reversed order
+        for (int i = nums.length - 1; i >= 0; --i) {
+            ans.add(tree.query(ranks.get(nums[i]) - 1));   // get the count of smaller numbers
+            tree.update(ranks.get(nums[i]), 1);   // 1  is delta... just increase the count of the rank of current number
+        }
+
+        Collections.reverse(ans);
+
+        return ans;
+    }
+
+    class FenwickTree{
+        int[] BIT;
+        int size;
+
+        public FenwickTree(int n) {
+            this.size = n;
+            BIT = new int[n + 1];
+        }
+
+        public void update(int i, int delta) {
+
+            while (i <= size) {
+                BIT[i] += delta;
+                i += (i & -i);
+            }
+        }
+
+        public int query(int i) {
+            int sum = 0;
+            while (i > 0) {
+                sum += BIT[i];
+                i -= (i & -i);
+            }
+
+            return sum;
+        }
+    }
+
+    /*
+    BST, but not balanced, time: O(nlogn) ~ O(n^2)
+ */
     class Node {
         int val;
         int count;
@@ -46,56 +122,5 @@ public class CountSmallerNumberAfterSelf {
             }
             return root.less_or_equal() + insert(root.right, val);
         }
-    }
-
-    /*
-        fanwick tree
-     */
-
-    private static int lowbit(int x) { return x & (-x); }
-
-    class FenwickTree {
-        private int[] sums;
-
-        public FenwickTree(int n) {
-            sums = new int[n + 1];
-        }
-
-        public void update(int i, int delta) {
-            while (i < sums.length) {
-                sums[i] += delta;
-                i += lowbit(i);
-            }
-        }
-
-        public int query(int i) {
-            int sum = 0;
-            while (i > 0) {
-                sum += sums[i];
-                i -= lowbit(i);
-            }
-            return sum;
-        }
-    };
-
-    public List<Integer> countSmaller2(int[] nums) {
-        int[] sorted = Arrays.copyOf(nums, nums.length);
-        Arrays.sort(sorted);
-        Map<Integer, Integer> ranks = new HashMap<>();
-        int rank = 0;
-        for (int i = 0; i < sorted.length; ++i)
-            if (i == 0 || sorted[i] != sorted[i - 1])
-                ranks.put(sorted[i], ++rank);
-
-        FenwickTree tree = new FenwickTree(ranks.size());
-        List<Integer> ans = new ArrayList<Integer>();
-        for (int i = nums.length - 1; i >= 0; --i) {
-            int sum = tree.query(ranks.get(nums[i]) - 1);
-            ans.add(tree.query(ranks.get(nums[i]) - 1));
-            tree.update(ranks.get(nums[i]), 1);
-        }
-
-        Collections.reverse(ans);
-        return ans;
     }
 }

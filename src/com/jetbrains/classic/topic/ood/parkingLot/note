@@ -1,0 +1,14 @@
+
+what type of vehicles it can support
+whether the parking lot has multiple levels
+
+//-> make assumptions
+//the parking lot has multiple levels, each level has multiple rows of spots
+//the parking lot can park motorcycles, cars, and buses
+//the parking lot has motorcycle spots, compact spots, and large spots
+//a motorcycle could park in any spots
+//a car can park in either a single compact spot or a single large spot
+//a bus can park in five large spots that are consecutive and within the same row, it cannot park in small spots
+
+//abstract class for vehicle, car, bus and motorcycle inherit.
+//parkingspot to handle the different parking spot size
