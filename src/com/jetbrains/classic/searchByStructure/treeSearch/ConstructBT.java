@@ -14,7 +14,7 @@ public class ConstructBT {
 
     private TreeNode helper1(int[] pre, int preStart, int[] in, int inStart, int len) {
         // base case
-        if (len <= 0) return null;
+        if (len <= 0) return null;    // don't forget
         if (len == 1) return new TreeNode(pre[preStart]);
 
         // recursive case

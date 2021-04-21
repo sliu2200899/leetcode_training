@@ -6,7 +6,7 @@ import com.jetbrains.innerStructure.TreeNode;
 public class InorderSuccessorInBST {
 
     /*
-        my solution...
+        my solution... good solution preferrable solution
      */
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         if (root == null) return null;
@@ -108,6 +108,12 @@ public class InorderSuccessorInBST {
         The successor of a node is the node with the smallest key greater than node.val.
 
         You will have direct access to the node but not to the root of the tree. Each node will have a reference to its parent node. Below is the definition for Node:
+
+
+        Follow up: Could you solve it without looking up any of the node's values?
+
+        time: O(H) where H is hte height of the bianry tree
+        space: O(1)
      */
 
     private class Node{
@@ -117,23 +123,23 @@ public class InorderSuccessorInBST {
         public Node parent;
     }
     public Node inorderSuccessor(Node node) {
-        if (node == null) return null;
-
-        if (node.right == null) return findSuccessor(node);
-
-        Node cur = node.right;
-        while (cur.left != null) {
-            cur = cur.left;
+        if (node == null) {
+            return null;
         }
-        return cur;
-    }
 
-    private Node findSuccessor(Node node) {
-        int target = node.val;
-        Node cur = node.parent;
-        while (cur != null && cur.val < target) {
-            cur = cur.parent;
+        if (node.right != null) {
+            Node n = node.right;
+            while (n.left != null) {
+                n = n.left;
+            }
+            return n;
+
         }
-        return cur;
+
+        while (node.parent != null && node == node.parent.right) {
+            node = node.parent;
+        }
+
+        return node.parent;
     }
 }

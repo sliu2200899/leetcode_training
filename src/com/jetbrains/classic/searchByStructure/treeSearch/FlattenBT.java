@@ -23,43 +23,47 @@ public class FlattenBT {
 
         Next we have to return the tail of the final, flattened out tree rooted at node. So, if the node has a right child, then we will return the rightTail, else, we'll return the leftTail.
      */
-    private TreeNode flattenTree(TreeNode node) {
-        // handle the null scenario
-        if (node == null) return null;
-
-        // for a leaf node, we simple return the node as is.
-        if (node.left == null && node.right == null) {
-            return node;
+    public void flatten(TreeNode root) {
+        if (root == null) {
+            return;
         }
 
-        // recursively flatten the left subtree
-        TreeNode left = this.flattenTree(node.left);
+        helper(root);
+    }
 
-        // recursively flatten the right subtree
-        TreeNode right = this.flattenTree(node.right);
-
-        // if there is no left subtree, we only need to return teh root node, since we have shuffle the connections in hte right subtree
-        if (left == null) return node;
-
-        if (right == null) {
-            node.left = null;
-            node.right = left;
+    private TreeNode helper(TreeNode root) {
+        if (root == null) {
+            return null;
         }
+        // for a leaf node, we simply return teh node as is
+        if (root.left == null && root.right == null) {
+            return root;
+        }
+
+        // recursively flatten the left and right subtree
+        TreeNode leftRoot = helper(root.left);
+        TreeNode rightRoot = helper(root.right);
+
+        // if there is no left subtree, we only need to return the root node, since we have shuffle the connection in the right subtree
+        if (leftRoot == null) return root;
+
+        if (rightRoot == null) {
+            root.left = null;
+            root.right = leftRoot;
+        }
+
         // if there was a left subtree, we shuffle the connections around
         // so that there is nothing on hte left side anymore
         // the first step is to find the right most node in the left subtree
-        TreeNode cur = left;
-        while (cur.right != null) {
-            cur = cur.right;
+        TreeNode rightMost = leftRoot;
+        while (rightMost.right != null) {
+            rightMost = rightMost.right;
         }
 
-        node.right = left;
-        node.left = null;
-        node.right = right;
+        rightMost.right = rightRoot;
+        root.left = null;
+        root.right = leftRoot;
 
-        return node;
-    }
-    public void flatten(TreeNode root) {
-        this.flattenTree(root);
+        return root;
     }
 }
