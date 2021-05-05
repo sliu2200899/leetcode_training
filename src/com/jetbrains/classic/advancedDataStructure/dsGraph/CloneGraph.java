@@ -65,12 +65,67 @@ public class CloneGraph {
     }
 
     /*
+        another version of dfs
+     */
+        /*
+        clarify
+            1. input, output, example
+
+        algo:
+            node
+                val
+                neighbors
+
+            dfs to explore all the neighbors and create the new node
+            then, traverse the graph again and set the neighbors
+
+    */
+    public Node cloneGraph2(Node node) {
+        if (node == null) {
+            return null;
+        }
+
+        Map<Node, Node> map = new HashMap<>();   // store the original node and newly-created node
+        createAllNodes(node, map);
+
+        setNeighbors(node, map, new HashSet<>());
+
+        return map.get(node);
+    }
+
+    private void createAllNodes(Node node, Map<Node, Node> map) {
+        if (map.containsKey(node)) {
+            return;
+        }
+
+        Node newNode = new Node(node.val);
+        map.put(node, newNode);
+
+        for (Node neighbor : node.neighbors) {
+            createAllNodes(neighbor, map);
+        }
+    }
+
+    private void setNeighbors(Node node, Map<Node, Node> map, HashSet<Node> set) {
+        if (set.contains(node)) {
+            return;
+        }
+
+        set.add(node);
+        for (Node neighbor : node.neighbors) {
+            map.get(node).neighbors.add(map.get(neighbor));
+            setNeighbors(neighbor, map, set);
+        }
+    }
+
+
+    /*
         bfs
         time complexity: O(N + M)
         space complexity: O(N)
      */
 
-    public Node cloneGraph2(Node node) {
+    public Node cloneGraph3(Node node) {
         if (node == null) {
             return node;
         }

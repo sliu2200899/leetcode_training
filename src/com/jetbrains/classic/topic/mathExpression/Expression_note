@@ -6,7 +6,7 @@ classic problems
         2. +/-/*//    -> use stack to store computed value
         3. +,-,*,/ + ()    -> RPN
 
-    longest valid parenthesis  -> dp
+    longest valid parenthesis  -> two pointers  or [ dp ]
     remove invalid parenthesis  -> recursion keep/remove
 
 
