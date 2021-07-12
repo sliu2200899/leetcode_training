@@ -84,7 +84,7 @@ public class SortColor {
         while (cur <= end) {
             // just before the swap, we need to check hte number at low index is the relevant number...
             if (nums[cur] == 0) {
-                // after the while loop, low will points at 1, we just swap 1 and nums[cur]
+                // after the while loop, low will skip all of the irrelevant numbers, finally points at 1, we just swap 1 and nums[cur]
                 while (nums[start] != nums[cur] &&
                         nums[start] != 0 &&
                         nums[start] != 1 &&

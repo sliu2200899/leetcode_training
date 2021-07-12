@@ -118,7 +118,7 @@ public class QuickSort {
 
 
     /*
-        quick sort
+        preferred way to do:  quick sort
      */
     public static void quick_sort4(int[] arr) {
         if (arr == null) return;
@@ -139,11 +139,14 @@ public class QuickSort {
     }
 
     private static int partition4(int[] arr, int start, int end) {
+
+        if (start == end) return start;
+
         // get the partition element
         // put all the elements smaller than the partition element to the left part, and all the elements larger or equal to the partition element to teh right part.
 
         Random r = new Random();
-        int partition_index = r.nextInt(end - start + 1) + start;
+        int partition_index = r.nextInt(end - start + 1) + start;  // or we can use (int)Math.floor(Math.random() * (end - start + 1) + start)
         int p_value = arr[partition_index];
 
         swap(arr, partition_index, end);

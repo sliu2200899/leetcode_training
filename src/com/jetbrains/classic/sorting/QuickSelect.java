@@ -10,6 +10,11 @@ Input: arr[] = {7, 10, 4, 3, 20, 15}
 Output: 7
 
 Input: arr[] = {7, 10, 4, 3, 20, 15}
+
+3,4,7,10,15,20
+7
+7- 4 = 3
+
            k = 4
 Output: 10
 
@@ -37,18 +42,19 @@ public class QuickSelect {
         if (start == end) {
             return nums[start];
         }
+
+        int partition_index = partition(nums, start, end);
+
+        if (k == partition_index) return nums[partition_index];
+        else if (k < partition_index) return quick_select(nums, k, start, partition_index - 1);
+        else return quick_select(nums, k, partition_index + 1, end);
+    }
+
+    private int partition(int[] nums, int start, int end) {
+
         // choose pivot_index
         Random random = new Random();
         int pivot_index = start + random.nextInt(end - start);
-
-        pivot_index = partition(nums, start, end, pivot_index);
-
-        if (k == pivot_index) return nums[pivot_index];
-        else if (k < pivot_index) return quick_select(nums, k, start, pivot_index - 1);
-        else return quick_select(nums, k, pivot_index + 1, end);
-    }
-
-    private int partition(int[] nums, int start, int end, int pivot_index) {
 
         // move pivot to end
         int pivot = nums[pivot_index];

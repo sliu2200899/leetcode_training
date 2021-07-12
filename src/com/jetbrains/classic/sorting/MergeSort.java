@@ -52,7 +52,7 @@ public class MergeSort {
             arr[base++] = startArr[i++];
         }
 
-        while (i < n2) {
+        while (j < n2) {
             arr[base++] = endArr[j++];
         }
     }

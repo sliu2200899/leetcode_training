@@ -6,6 +6,7 @@ import com.jetbrains.classic.advancedDataStructure.dsGraph.NumberOfConnectedComp
 import com.jetbrains.classic.searchByAlgorithm.dfs.ConcatenatedWords;
 import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
+import com.jetbrains.classic.sorting.QuickSelect;
 import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.classic.topic.design.KthFreqElementsStream;
 import com.jetbrains.master.RemoveDuplicate;
@@ -164,14 +165,14 @@ public class Main {
 
         // merge sort
 //        int[] arr = {2, 1, 4, 6, 2, 9};
-//        MergeSort.mergeSort3(arr, 0, arr.length - 1);
+//        MergeSort.sort(arr);
 //        for (int i : arr) {
 //            System.out.println(i);
 //        }
 
         // quick sort
 //        int[] arr = {2, 1, 3, 6, 1, 3, 5};
-//        QuickSort.quick_sort5(arr);
+//        QuickSort.quick_sort4(arr);
 //        for (int i : arr) {
 //            System.out.println(i);
 //        }
@@ -376,9 +377,9 @@ public class Main {
 //        System.out.println(m.maxOperations(nums, 6));
 
         // quick select
-//        int[] nums = {7,6,5,4,3,2,1};
-//        QuickSelect q = new QuickSelect();
-//        System.out.println(q.findKthLargest3(nums, 2));
+        int[] nums = {7,6,5,4,3,2,1};
+        QuickSelect q = new QuickSelect();
+        System.out.println(q.findKthLargest3(nums, 2));
 
         // top k freq elements
 //        int[] nums = {1,1,1,2,2,3};
@@ -562,10 +563,10 @@ public class Main {
 //        System.out.println(Arrays.toString(s.read(5, 3)));
 
         // random
-        System.out.println((int)(Math.random() * 20));
-        System.out.println((int)(Math.random() * 20));
-        System.out.println((int)(Math.random() * 20));
-        System.out.println((int)(Math.random() * 20));
-        System.out.println((int)(Math.random() * 20));
+//        System.out.println((int)(Math.random() * 20));
+//        System.out.println((int)(Math.random() * 20));
+//        System.out.println((int)(Math.random() * 20));
+//        System.out.println((int)(Math.random() * 20));
+//        System.out.println((int)(Math.random() * 20));
     }
 }
