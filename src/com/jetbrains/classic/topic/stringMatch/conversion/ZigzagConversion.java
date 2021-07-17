@@ -47,6 +47,12 @@ public class ZigzagConversion {
             rows.add(new StringBuilder());
         }
 
+        /*
+            Iterate through s from left to right, appending each character to the appropriate row.
+            The appropriate row can be tracked using two variables: the current row and the current direction.
+            The current direction changes only when we moved up to the topmost row or moved down to the bottommost row.
+         */
+
         boolean turn = true;
         int curRow = 0;
 
@@ -54,7 +60,7 @@ public class ZigzagConversion {
             char ch = s.charAt(i);
 
             rows.get(curRow).append(ch);
-
+            // rule !!!
             curRow += (turn ? 1 : -1);
             if (curRow == 0 || curRow == numRows - 1) {
                 turn = !turn;
