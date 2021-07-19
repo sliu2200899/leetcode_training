@@ -1,51 +1,63 @@
 package com.jetbrains.classic.topic.stringMatch;
 
 public class RegularExpressionMatching {
+    /*
+           time:  refer to:  https://levelup.gitconnected.com/solving-for-recursive-complexity-736439987cb0
+           space:
+     */
     public boolean isMatch(String s, String p) {
-        // recursion
-        // base case
-
         /*
-            1. first character matching or not.
-            2. second character is * sign or not.
+            rule:
+                1. if p is empty, just check if s is empty or not
+                2. if p is not empty,
+                        first, check the first character
+                            s is empty. -> false
+                            s is not empty. ->  1. the first character of p and s are the same. It's a lowercase letter. 2. the first character of p is '.' sign.
+                        second, check the second character
+                            first char not match   ->. isMatch(s, p.substring(2))
+                            first char match   -> (first_match && isMatch(s.substring(1), p))
 
-            time:
-         */
-        if (p.isEmpty()) return s.isEmpty();
+        */
+        // p is empty
+        if (p.isEmpty()) {
+            return s.isEmpty();
+        }
 
+        // p is not empty, check first character matching
         boolean first_match = (!s.isEmpty() &&
                 (p.charAt(0) == s.charAt(0) || p.charAt(0) == '.'));
 
+        // check if the second character is the kleene star
         if (p.length() >= 2 && p.charAt(1) == '*') {
-            return (isMatch(s, p.substring(2)) ||   // first not match
-                    (first_match && isMatch(s.substring(1), p)));    // first match
+            return (isMatch(s, p.substring(2)) ||
+                    (first_match && isMatch(s.substring(1), p)));
         }
 
+        // If there were no Kleene stars (the * wildcard character for regular expressions), the problem would be easier -
+        // we simply check from left to right if each character of the text matches the pattern.
         return first_match && isMatch(s.substring(1), p.substring(1));
     }
 
     /*
-        use enum to represent the true or false
-        Result - two dimensional array
+        Dp: top-down approach
+        we use dp(i, j) to handle those calls saving us expensive string-building operations and allowing us to cache the intermediate results.
      */
-    enum Result{
-        TRUE, FALSE
-    }
+    Boolean[][] cache;
 
-    Result[][] memo;
     public boolean isMatch2(String s, String p) {
         // recursion
-        // base case
-        memo = new Result[s.length()+1][p.length()+1];
+        cache = new Boolean[s.length()+1][p.length()+1];
         return dp(0,0,s,p);
     }
 
-    public boolean dp(int i, int j, String text, String pattern) {
-        if (memo[i][j] != null) {
-            return memo[i][j] == Result.TRUE;
+    private boolean dp(int i, int j, String text, String pattern) {
+
+        if (cache[i][j] != null) {
+            return cache[i][j];
         }
 
-        boolean ans;
+        Boolean ans;
+
         if (j == pattern.length()) {
             ans = i == text.length();
         } else {
@@ -61,7 +73,8 @@ public class RegularExpressionMatching {
             }
         }
 
-        memo[i][j] = ans ? Result.TRUE : Result.FALSE;
+
+        cache[i][j] = ans;
         return ans;
     }
 

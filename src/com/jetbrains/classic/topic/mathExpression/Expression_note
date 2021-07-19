@@ -8,9 +8,12 @@ classic problems
 
     longest valid parenthesis  -> two pointers  or [ dp ]
     remove invalid parenthesis  -> recursion keep/remove
-
+    valid parenthesis -> stack
 
 
 
 key explanation
-
+()    parenthesis
+[]    brackets
+{}    braces
+<>    angle brackets
