@@ -5,7 +5,8 @@ import com.jetbrains.innerStructure.ListNode;
 import java.util.PriorityQueue;
 
 public class MergeKLists {
-    // time: O(nlogK)    space:  O(k)
+    // time: O(nlogK)    where n is the number of nodes in the final linked list, k is the number of the input linked lists
+    // space:  O(k)
     public static ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> {
             return a.val - b.val;
@@ -32,10 +33,17 @@ public class MergeKLists {
     }
 
 
-    // time: O(nlogK)    space:  O(1)
+    // time: O(nlogK)
+    // space:  O(1)
     public static ListNode mergeKList2(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
 
+        /*
+            1. Pair up k lists and merge each pair.
+            2. After the first pairing, k lists are merged into k/2 lists with average 2N/k length,
+                then k/4, k/8 and so on.
+            3. Repeat this procedure until we get the final sorted linked list.
+         */
         int interval = 1;
         while (interval < lists.length) {
 

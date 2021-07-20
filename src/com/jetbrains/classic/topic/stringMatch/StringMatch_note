@@ -1,2 +1,3 @@
 classic problems:
-    wildcard matching  ->
+    regular expression match  ->  DP(top-down approach with memoization)
+    wildcard matching  -> DP(bottom-up approach with tabular form)

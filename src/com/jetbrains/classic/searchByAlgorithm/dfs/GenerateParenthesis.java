@@ -4,79 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateParenthesis {
+    /*
+        n = 3
+        left = 3, right = 3
+        recursion method to enumarate all of the combinations of well-formed parentheses.
+
+    */
     public List<String> generateParenthesis(int n) {
-        // offset:
-        /*
-            analyze:
-                '('
-                    offset++
-                ')'
-                    if offset == 0
-                        return;
-                    else
-                        add ')' to result
-                        offset--
+        List<String> list = new ArrayList<>();
 
-            algo:
-                dfs(s, left, right, offset, res)
-                   if left == 0 && right == 0
-                        add s to res
+        dfs(0,0,n, "", list);
 
-                   if (left < 0 || right < 0)
-                        return
-
-                   if (left > 0) {
-                        dfs(s + '(', left-1, right, offset+1, res)
-                   }
-
-                   if (right > 0) {
-                        if (offset == 0) return;
-                        dfs(s + ')', left, right-1, offset+1, res)
-                   }
-
-            test:
-                     n = 1
-                     left = 1
-                     right = 1
-
-                     res = []
-
-                     s = '('
-                     []
-
-                  (
-
-               ((   ()
-
-        */
-
-        List<String> res = new ArrayList<>();
-
-        dfs("", n, n, 0, res);
-
-        return res;
+        return list;
     }
 
-    private void dfs(String s, int left, int right, int offset, List<String> res) {
-        if (left == 0 && right == 0){
-            res.add(s);
+    private void dfs(int left, int right, int n, String s, List<String> list) {
+        if (left == n && right == n) {
+            list.add(s);
             return;
         }
 
-        if (left < 0 || right < 0) {
+        if (left < right) {
             return;
         }
 
-        if (left > 0) {
-            dfs(s + '(', left-1, right, offset+1, res);
+        if (left > n || right > n) {
+            return;
         }
 
-        if (right > 0) {
-            if (offset == 0) {
-                return;
-            }
+        if (left <= n) {
+            dfs(left+1, right, n, s + '(', list);
+        }
 
-            dfs(s + ')', left, right-1, offset-1, res);
+        if (right <= n) {
+            dfs(left, right+1, n, s + ')', list);
         }
     }
 }
