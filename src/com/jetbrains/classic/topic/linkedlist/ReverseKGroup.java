@@ -4,66 +4,86 @@ import com.jetbrains.innerStructure.ListNode;
 
 public class ReverseKGroup {
     /*
-    clarify:
-        1. input, output, example
-        2. space: O(1)
-        3. other constraints .... cannot alter the values in the list's nodes
+        clarify:
+            1, input, output, example
+            2. corner cases
+            3. constraints
+                space: O(1)
+                cannot alter the values of hte nodes
 
-    algo:
+        algo:
+            get teh number of the nodes in the list
 
-        dummyNode cur
-        iterate over the list
-            reverse(list, start, end)
+            each time, prev, head and tail of the sublist, next
 
-        reverser(list, start, end)
+            reverse teh sublist
 
-        use a couple additional variables to maintain the proper connections along the way.
+            reshuffle rest of the node
 
-        key is that when doing reverse(), you need to bring the next node in the function
+            repeat the above procedural until we reach the end of the list
 
-    time: O(N)
-    space: O(1)
+        test:
+            1,    2,    3,    4,    5
 
-*/
+
+            i: 5
+    */
     public ListNode reverseKGroup(ListNode head, int k) {
-        if (head == null || k <= 1) {
-            return head;
+        if (head == null) {
+            return null;
         }
 
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-
-        ListNode cur = dummyNode;
+        // get the length of teh list
+        ListNode cur = head;
+        int i = 1;
         while (cur != null) {
-            ListNode prev = cur, tail = prev.next;
-            int num = 1;
-            cur = tail;
-            while(cur != null && num < k) {
-                cur = cur.next;
-                num++;
-            }
-
-            if (cur != null && num == k) {
-                ListNode next = cur.next;
-                prev.next = reverseGroup(tail, next);
-                tail.next = next;
-                cur = tail;
-            }
+            cur = cur.next;
+            i++;
         }
 
-        return dummyNode.next;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+        cur = head;
+        int j = 0;
+        while (j + k < i) {
+            // find some listnodes
+            ListNode h = cur;
+            int step = 1;
+            while (step < k) {
+                cur = cur.next;
+                step++;
+            }
+
+            ListNode tail = cur;
+            ListNode next = cur.next;
+
+            // reverse the sublist
+            prev.next = reverseList(h, tail.next);
+
+            // reshuffle listnodes
+            h.next = next;
+
+            // update the variables
+            prev = h;
+            cur = next;
+            j += k;
+        }
+
+        return dummy.next;
     }
 
-    private ListNode reverseGroup(ListNode tail, ListNode next) {
-        ListNode pre = null;
-        while (tail != next) {
-            ListNode temp = tail.next;
-            tail.next = pre;
+    private ListNode reverseList(ListNode head, ListNode tail) {
+        ListNode prev = null;
+        while (head != tail) {
+            ListNode next = head.next;
+            head.next = prev;
 
-            pre = tail;
-            tail = temp;
+            prev = head;
+            head = next;
         }
 
-        return pre;
+        return prev;
     }
 }

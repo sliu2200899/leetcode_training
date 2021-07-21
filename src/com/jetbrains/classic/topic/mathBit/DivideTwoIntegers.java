@@ -1,38 +1,64 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.topic.mathBit;
 
 public class DivideTwoIntegers {
     // brute force method  TLE
-    public int divide(int dividend, int divisor) {
+    /*
+        clarify:
+            1. input, output, example
+            2. constraints
+                overflow...
 
-        // Special case: overflow
+            3. corner cases
+
+        algo:
+            dividend = 10, divisor = 3
+
+            10
+            3
+
+            while loop to substrate 3 until there is no more to substract.
+            use num to record the number of the divisor we have substract...
+
+
+            7
+            -3
+
+
+            if dividend is 0, return 0 directly
+            if divisor is 1, return divident directly..
+
+
+    */
+    public int divide(int dividend, int divisor) {
+        // corner case: overflow
         if (dividend == Integer.MIN_VALUE && divisor == -1) {
             return Integer.MAX_VALUE;
         }
 
-        // Count the nunmber of negatives + convert parameters to positives
-        int negatives = 2;
-        if (dividend > 0) {
-            negatives--;
-            dividend = -dividend;
+        if (dividend == 0) {
+            return 0;
         }
 
-        if (divisor > 0) {
-            negatives--;
-            divisor = -divisor;
+        if (divisor == 1) {
+            return dividend;
         }
 
-        // Count the number of subtractions
-        int quotient = 0;
-        while (dividend - divisor <= 0) {
-            quotient--;
-            dividend -= divisor;
+        if (divisor == -1) {
+            return -dividend;
         }
 
-        // Convert back to negative if needed.
-        if (negatives != 1) {
-            quotient = -quotient;
+        boolean sign = (!(dividend < 0) && !(divisor < 0));
+
+        int absDivd = Math.abs(dividend);
+        int absDivs = Math.abs(divisor);
+
+        int quotient = 0, base = 0;
+        while (base + absDivs <= absDivd) {
+            quotient++;
+            base += absDivs;
         }
-        return quotient;
+
+        return (sign ? quotient : -quotient);
     }
 
     // linear search is too slow, we can speed up the search by doubling the amount
@@ -79,6 +105,9 @@ public class DivideTwoIntegers {
         }
         return quotient;
     }
+
+
+
 
     // some code patterns
     private int exponentialSearch(int dividend, int divisor) {
