@@ -2,11 +2,21 @@ package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
 public class PowMath {
 
+    // fast power approach
+
     // x^n  x to the power of n  (n th power)
     // x^(n/2)   x to the power of n over 2
-    // we can use the binary representation of n to better understand the problem.
+
+    // step 1:
     /*
-        It seems to have no differences with this representation. But with this formula,
+         we can use the binary representation of n to better understand the problem.
+        let binary representation of n to be b1, b2, ..., blength_limit, from the LSB to MSB.
+        For the ith bit, if bi = 1, it means we need to multiple the result by x ^ (2^i))
+     */
+
+    // step 2:
+    /*
+        But with this formula,
          (x ^ n) ^ 2 = x ^ (2 * n)      we can see some difference.
         Initially x^1 = x, and for each i > 1, we can use the result of x ^ (2 ^ (i - 1)) to get x ^ (2 ^ i)
         in one step. Since the number of b_i is at most O(log n), we can get all x ^ (2 ^ i) in O(log n) time.

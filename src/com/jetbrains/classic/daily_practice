@@ -1,0 +1,9 @@
+math
+dividing_two_integers
+pow
+
+
+binary search
+first Last element    ->  find the first target element in the array
+                          find the last target element in the array
+search insert position   -> find the first element that is large or equal to the specific element

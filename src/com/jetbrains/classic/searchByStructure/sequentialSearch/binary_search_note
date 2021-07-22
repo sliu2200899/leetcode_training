@@ -9,6 +9,7 @@ code pattern
 classic problems
     search insert position
     search value in rotated sorted array
+    find fist and last element in the sorted array
     find minimum value in rotated sorted array
     find peak element
     sqrt

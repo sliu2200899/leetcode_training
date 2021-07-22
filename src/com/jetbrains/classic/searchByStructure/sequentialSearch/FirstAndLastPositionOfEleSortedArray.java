@@ -1,4 +1,4 @@
-package com.jetbrains.master;
+package com.jetbrains.classic.searchByStructure.sequentialSearch;
 
 public class FirstAndLastPositionOfEleSortedArray {
     public int[] searchRange(int[] nums, int target) {
