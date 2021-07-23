@@ -9,9 +9,9 @@ public class PowMath {
 
     // step 1:
     /*
-         we can use the binary representation of n to better understand the problem.
+        we can use the binary representation of n to better understand the problem.
         let binary representation of n to be b1, b2, ..., blength_limit, from the LSB to MSB.
-        For the ith bit, if bi = 1, it means we need to multiple the result by x ^ (2^i))
+        For the ith bit, if bi = 1, it means we need to multiply the result by x ^ (2^i)
      */
 
     // step 2:

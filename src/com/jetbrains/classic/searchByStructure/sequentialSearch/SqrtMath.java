@@ -14,21 +14,26 @@ public class SqrtMath {
     // use binary search
     // Set the left boundary to 2, and the right boundary to x / 2.
     public int mySqrt2(int x) {
-        if (x <= 1) return x;
-        // find the last element that meet the condition that num * num < x
+        // Set the left boundary to 2, and the right boundary to x / 2.
+        if (x <= 1) {
+            return x;
+        }
+
+        // find the last element that meets the condition: num * num < x
         int start = 1, end = x;
         while (start <= end) {
             int mid = start + (end - start) / 2;
-            if ((long)mid * mid > x) {
-                end = mid - 1;
-            } else if ((long)mid * mid == x) {
-                return mid;
-            } else {
+            if ((long)mid * mid < x) {
                 if ((long)(mid + 1) * (mid + 1) > x) {
                     return mid;
                 } else {
                     start = mid + 1;
                 }
+            } else if ((long)mid * mid == x) {
+                return mid;
+            } else {
+                // mid * mid > x
+                end = mid - 1;
             }
         }
 

@@ -37,43 +37,6 @@ public class SearchRotatedArray {
         return -1;
     }
 
-    // old way
-    public int searchold(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-        int n = nums.length;
-        int start = 0, end = n - 1;
-        while (start + 1 < end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] == target) {
-                return mid;
-            }
-            if (nums[mid] > nums[end]) {
-                if (nums[mid] > target && target >= nums[start]) {
-                    end = mid;
-                } else {
-                    start = mid;
-                }
-            } else {
-                if (nums[mid] < target && target <= nums[end]) {
-                    start = mid;
-                } else {
-                    end = mid;
-                }
-            }
-        }
-
-        if (nums[start] == target) {
-            return start;
-        }
-        if (nums[end] == target) {
-            return end;
-        }
-
-        return -1;
-    }
-
     /*
     follow up, find target value in sorted array including duplicates
      */
@@ -104,42 +67,6 @@ public class SearchRotatedArray {
             } else {
                 end--;
             }
-        }
-
-        return false;
-    }
-
-    public boolean searc2old(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return false;
-        }
-
-        int n = nums.length;
-        int start = 0, end = n - 1;
-        while (start + 1 < end) {
-            int mid = (start + end) / 2;
-            if (nums[mid] == target) {
-                return true;
-            }
-            if (nums[mid] > nums[end]) {
-                if (nums[mid] > target && target >= nums[start]) {
-                    end = mid;
-                } else {
-                    start = mid;
-                }
-            } else if (nums[mid] < nums[end]) {
-                if (nums[mid] < target && target <= nums[end]) {
-                    start = mid;
-                } else {
-                    end = mid;
-                }
-            } else {
-                end--;
-            }
-        }
-
-        if (nums[start] == target || nums[end] == target) {
-            return true;
         }
 
         return false;
