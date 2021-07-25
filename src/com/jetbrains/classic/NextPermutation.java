@@ -26,20 +26,34 @@ public class NextPermutation {
 
      */
     public void nextPermutation(int[] nums) {
-        int i = nums.length - 2;
-        // find the first pair of two successive numbers a[i] and a[i - 1],  from the right to left, which satisfy a[i] > a[i - 1].
-        while (i >= 0 && nums[i + 1] <= nums[i]) i--;
+        if (nums == null || nums.length == 0) {
+            return;
+        }
 
-        //
+        // just find the first pair of two successive numbers a[i] and a[i+1], fro the right,
+        // which satisfy a[i] > a[i+1]
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i + 1] <= nums[i]) {
+            i--;
+        }
+
+        // need to replace the number a[i-1] with the number which is just larger than itself among the nubers lying to its right section
         if (i >= 0) {
             int j = nums.length - 1;
-            // find the number which is just larger than itself among the numbers lying to its right section
-            while (j >= 0 && nums[j] <= nums[i]) j--;
-
+            while (nums[j] <= nums[i]) {
+                j--;
+            }
             swap(nums, i, j);
         }
 
+        // need the smallest permuation that can be formed by using the numbers only to the right of a[i-1]
         reverse(nums, i + 1);
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     private void reverse(int[] nums, int start) {
@@ -49,11 +63,5 @@ public class NextPermutation {
             i++;
             j--;
         }
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
     }
 }
