@@ -2,6 +2,37 @@ package com.jetbrains.classic.searchByAlgorithm.dfs;
 
 import java.util.*;
 
+/*
+    refer to:  https://leetcode.com/problems/permutations/discuss/18239/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partioning
+    refer to:  https://leetcode.com/problems/palindrome-permutation-ii/discuss/69717/Backtrack-Summary%3A-General-Solution-for-10-Questions!!!!!!!!-Python-(Combination-Sum-Subsets-Permutation-Palindrome)
+
+    combination 1,2
+    subsets 1,2
+    permutation 1,2
+    next permutation *
+    Permutation Sequence *
+    Palindrome Partitioning 1,2(*)
+    Palindrome Permutation 1,2(*)
+
+ */
+
+
+/*
+    how to describe the backtracking?
+    for the base case:
+        If the current combination is done - add it to output.
+
+    for the recursive case:
+        Iterate over the integers from first to n.
+
+            Add integer i into the current combination curr.
+
+            Proceed to add more integers into the combination : backtrack(i + 1, curr).
+
+            Backtrack by removing i from curr.
+ */
+
+
 public class Permutation {
     /*
     Analyzing the Time Complexity :
@@ -15,7 +46,7 @@ public class Permutation {
         2. How many times does function perm get called before its base case?
         Consider that lines 9 through 12 are hit n number of times. Therefore, there will be no more than (n * n!) function calls.
 
-        3. How long does each function call take?
+        3. How long does each function call take? (optional)
         Since, each character of string prefix needs to be printed, thus executing line 7 will take O(n) time. Line 10 and line 11 will also take O(n)
         time combined due to string concatenation, as sum of rem, prefix and str.charAt(i) will always be n. Each function call therefore corresponds to O(n) work.
 
@@ -103,46 +134,6 @@ public class Permutation {
             list.remove(list.size() - 1);
             visited[i] = false;
 
-        }
-    }
-
-
-
-
-
-
-
-
-    public List<List<Integer>> permuteUnique2(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        if (nums == null) return res;
-
-        Set<String> set = new HashSet<>();
-        dfs3(nums, res, new ArrayList<>(), new boolean[nums.length], set);
-
-        return res;
-    }
-
-    private void dfs3(int[] nums, List<List<Integer>> res, List<Integer> list, boolean[] visited, Set<String> set) {
-        // base case
-        if (list.size() == nums.length) {
-            if (!set.contains(list.toString())) {
-                List<Integer> tmp = new ArrayList<>(list);
-                set.add(tmp.toString());
-                res.add(tmp);
-            }
-            return;
-        }
-
-        // recursive case
-        for (int i = 0; i < nums.length; ++i) {
-            if (visited[i]) continue;
-
-            visited[i] = true;
-            list.add(nums[i]);
-            dfs3(nums, res, list, visited, set);
-            list.remove(list.size() - 1);
-            visited[i] = false;
         }
     }
 }
