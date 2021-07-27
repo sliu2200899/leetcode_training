@@ -61,6 +61,7 @@ public class RotateImage {
 
     /*
         approach 2:
+        reverse on diagnal and reverse from left to right. those operations are commonly called transpose and reflect.
         rotate 90 degrees could be implemented by transpose and reflect
 
         swap based on the diagnal
