@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpiralMatrix {
-    //matrix 1: return all elements of the matrix in spiral order.
+    //matrix 1: return all elements of the matrix in spiral order.   from matrix to list
     /*
         time complexity: O(N),
         space complexity: O(1),  without considering the output array, since we don't use any additional data structures
@@ -18,36 +18,36 @@ public class SpiralMatrix {
 
         int m = matrix.length, n = matrix[0].length;
 
-        int top = 0, bottom = m  - 1, left = 0, right = n - 1, total = n * m; //. the purpose of total is that we need to check every element
-        while (top <= bottom && left <= right && total > 0) {
-            if (total > 0 && left <= right) {
+        int top = 0, bottom = m  - 1, left = 0, right = n - 1, total = 0; //. the purpose of total is that we need to check every element
+        while (top <= bottom && left <= right && total < n * m) {
+            if (total < n * m && left <= right) {
                 for (int i = left; i <= right; ++i) {
                     res.add(matrix[top][i]);
-                    total--;
+                    total++;
                 }
                 top++;
             }
 
-            if (total > 0 && top <= bottom) {
+            if (total < n * m && top <= bottom) {
                 for (int i = top; i <= bottom; ++i) {
                     res.add(matrix[i][right]);
-                    total--;
+                    total++;
                 }
                 right--;
             }
 
-            if (total > 0 && left <= right) {
+            if (total < n * m && left <= right) {
                 for (int i = right; i >= left; --i) {
                     res.add(matrix[bottom][i]);
-                    total--;
+                    total++;
                 }
                 bottom--;
             }
 
-            if (total > 0 && top <= bottom) {
+            if (total < n * m && top <= bottom) {
                 for (int i = bottom; i >= top; --i) {
                     res.add(matrix[i][left]);
-                    total--;
+                    total++;
                 }
                 left++;
             }
@@ -56,7 +56,7 @@ public class SpiralMatrix {
         return res;
     }
 
-    // matrix 2:  from array to matrix...
+    // matrix 2:  generate matrix...
     public int[][] generateMatrix(int n) {
         if (n <= 0) return new int[0][0];
 

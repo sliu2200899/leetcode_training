@@ -2,6 +2,30 @@ package com.jetbrains.classic.ideologyAlgo.greedy;
 
 public class JumpGame {
     /*
+        approach 1: backtracking
+
+
+     */
+    public boolean canJumpFromPosition(int position, int[] nums) {
+        if (position == nums.length - 1) {
+            return true;
+        }
+
+        int furthestJump = Math.min(position + nums[position], nums.length - 1);
+        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
+            if (canJumpFromPosition(nextPosition, nums)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canJump(int[] nums) {
+        return canJumpFromPosition(0, nums);
+    }
+
+    /*
         dfs + memo
 
      */
@@ -21,9 +45,10 @@ public class JumpGame {
 
         space: O(n)
     */
-    public boolean canJump(int[] nums) {
+    public boolean canJump1(int[] nums) {
         return canJump(nums, 0, new Boolean[nums.length]);
     }
+
     private boolean canJump(int[] nums, int index, Boolean[] memo) {
         if (index == nums.length - 1) {
             return true;
@@ -46,11 +71,51 @@ public class JumpGame {
     }
 
     /*
-        greedy
-        time: O()
-        space: O()
+        dynamic programming: bottom-up approach
+
+        Top-down to bottom-up conversion is done by eliminating recursion. In practice, this achieves better performance as we no longer have
+        the method stack overhead and might even benefit from some caching. More importantly, this step opens up possibilities for future optimization.
+        The recursion is usually eliminated by trying to reverse the order of the steps from the top-down approach.
+
+
+        The observation to make here is that we only ever jump to the right. This means that if we start from the right of the array, every time we will query a position to our right,
+        that position has already be determined as being GOOD or BAD. This means we don't need to recurse anymore, as we will always hit the memo table.
      */
     public boolean canJump2(int[] nums) {
+        boolean[] memo = new boolean[nums.length];
+
+        memo[nums.length - 1] = true;
+
+        for (int i = nums.length - 2; i >= 0; --i) {
+            int furthestJump = Math.min(i + nums[i], nums.length - 1);
+
+            for (int j = i + 1; j <= furthestJump; ++j) {
+                if (memo[j] == true) {
+                    memo[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return memo[0];
+    }
+
+
+    /*
+        greedy:  update the leftmost good index
+
+        algo:
+            Iterating right-to-left, for each position we check if there is a potential jump that reaches a GOOD index
+            (currPosition + nums[currPosition] >= leftmostGoodIndex). If we can reach a GOOD index, then our position is itself GOOD.
+            Also, this new GOOD position will be the new leftmost GOOD index.
+
+            Iteration continues until the beginning of the array. If first position is a GOOD index
+            then we can reach the last index from the first position.
+
+        time: O(n)
+        space: O(1)
+     */
+    public boolean canJump3(int[] nums) {
         int lastPos = nums.length - 1;
         for (int i = nums.length - 1; i >= 0; --i) {
             if (i + nums[i] >= lastPos) {
@@ -64,24 +129,18 @@ public class JumpGame {
         jump game 2
         greedy
 
-        the key is first jump to the currentJumpEnd
-        then check the farthest next jump reach from the [i, currentJumpEnd)
-        if i == currentJumpEnd, we need to be forced to jump again.
-
-        [2,               3,               1,              1,            4]
-                         i
-                                    currentJumpEnd
-                                       farthest
+    The main idea is based on greedy.
+    Let's say the range of the current jump is [curBegin, curEnd], curFarthest is the farthest point that all points in [curBegin, curEnd] can reach.
+    Once the current point reaches curEnd, then trigger another jump, and set the new curEnd with curFarthest, then keep the above steps, as the following:
 
      */
     public int jump(int[] nums) {
-        int jumps = 0, currentJumpEnd = 0, farthest = 0;
-        for (int i = 0; i < nums.length - 1; ++i) {
-            // we continuously find how far we can reach in the current jump
-            farthest = Math.max(farthest, i + nums[i]);
-            if(i == currentJumpEnd) {
+        int jumps = 0, curEnd = 0, curFarthest = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            curFarthest = Math.max(curFarthest, i + nums[i]);
+            if (i == curEnd) {
                 jumps++;
-                currentJumpEnd = farthest;
+                curEnd = curFarthest;
             }
         }
         return jumps;

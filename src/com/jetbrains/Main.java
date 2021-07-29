@@ -9,11 +9,13 @@ import com.jetbrains.classic.sorting.MergeSort;
 import com.jetbrains.classic.sorting.QuickSelect;
 import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.classic.topic.design.KthFreqElementsStream;
+import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 import com.jetbrains.master.RemoveDuplicate;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Main {
 
@@ -377,9 +379,9 @@ public class Main {
 //        System.out.println(m.maxOperations(nums, 6));
 
         // quick select
-        int[] nums = {7,6,5,4,3,2,1};
-        QuickSelect q = new QuickSelect();
-        System.out.println(q.findKthLargest3(nums, 2));
+//        int[] nums = {7,6,5,4,3,2,1};
+//        QuickSelect q = new QuickSelect();
+//        System.out.println(q.findKthLargest3(nums, 2));
 
         // top k freq elements
 //        int[] nums = {1,1,1,2,2,3};
