@@ -2,7 +2,7 @@ package com.jetbrains.classic.topic.mathBit;
 
 public class AddBinary {
     /*
-        bit by bit compuptation
+        bit by bit computation
 
         That's a good old classical algorithm, and there is no conversion from binary string to decimal and back here. Let's consider the numbers bit by bit starting from the lowest one and compute the carry this bit will add.
         Start from carry = 0. If number a has 1-bit in this lowest bit, add 1 to the carry. The same for number b: if number b has 1-bit in the lowest bit, add 1 to the carry. At this point the carry for the lowest bit could be equal to

@@ -45,21 +45,23 @@ public class InsertInterval {
      */
     public int[][] insert2(int[][] intervals, int[] newInterval) {
 
-        int newStart = newInterval[0], newEnd = newInterval[1];
-        int i = 0, n = intervals.length;
         List<int[]> res = new ArrayList<>();
 
-        // add all intervals before newInterval
+        int newStart = newInterval[0], newEnd = newInterval[1];
+        int i = 0, n = intervals.length;
+
+        // add all intervals ending before start of newInterval
         while (i < n && newStart > intervals[i][1]) {
             res.add(intervals[i++]);
         }
 
-        // merge newInterval
-        int[] interval = new int[2];
+        // merge newInterval until start of intervals is large than end of newInterval
+        // select as newStart the smaller one between newStart and start of current interval
+        // select as newEnd the larger one between newEnd and end of the current interval
         while (i < n && intervals[i][0] <= newEnd) {
             newStart = Math.min(newStart, intervals[i][0]);
             newEnd = Math.max(newEnd, intervals[i][1]);
-            ++i;
+            i++;
         }
 
         res.add(new int[]{newStart, newEnd});
@@ -70,6 +72,5 @@ public class InsertInterval {
         }
 
         return res.toArray(new int[res.size()][2]);
-
     }
 }
