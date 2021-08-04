@@ -1,5 +1,7 @@
 package com.jetbrains.classic.topic.mathBit;
 
+import java.math.BigInteger;
+
 public class AddBinary {
     /*
         bit by bit computation
@@ -13,22 +15,20 @@ public class AddBinary {
         space: O(max(n, m))
      */
     public String addBinary(String a, String b) {
-        int idxa = a.length() - 1, idxb = b.length() - 1;
+        // bit by bit computation
         StringBuilder sb = new StringBuilder();
+        int idxa = a.length() - 1, idxb = b.length() - 1;
         int carry = 0;
-        while (idxa >= 0 || idxb >= 0) {
-            int numa = (idxa < 0 ? 0 : a.charAt(idxa) - '0');
-            int numb = (idxb < 0 ? 0 : b.charAt(idxb) - '0');
+        while (idxa >= 0 || idxb >= 0 || carry == 1) {
+            int numA = (idxa < 0 ? 0 : a.charAt(idxa) - '0');
+            int numB = (idxb < 0 ? 0 : b.charAt(idxb) - '0');
 
-            int num = numa + numb + carry;
-            carry = num / 2;
-
+            int num = (numA + numB + carry);
             sb.insert(0, num % 2);
+
+            carry = num / 2;
             if (idxa >= 0) idxa--;
             if (idxb >= 0) idxb--;
-        }
-        if (carry != 0) {
-            sb.insert(0, carry);
         }
 
         return sb.toString();
@@ -38,6 +38,34 @@ public class AddBinary {
         follow up from facebook:
             provides you two numbers and asks to sum them up without using addition operation.
             bit manipulation
-     */
 
+        Algorithm
+            Just try to summarize in my own words:
+
+            1.sum without considering carry: x ^ y (XOR)
+            2.get the carry bits: x & y (AND)
+            3.shift carry bits 1 bit left: x & y << 1. so that carry is applied to the right position
+            4.By above step. x + y becomes "sum without carries" + "all the carries"
+            5.we repeat 1 - 3 in the loop. "sum without carries" + "all the carries" until carries becomes 0.
+            6.When carries = 0, "sum without carries" is the actual sum.
+
+        time:  O(N + M)  where N and M are the length of the input string a and b
+        space: O(max(N, M))
+     */
+    public String addBinary2(String a, String b) {
+        BigInteger x = new BigInteger(a, 2);
+        BigInteger y = new BigInteger(b, 2);
+
+        BigInteger zero = new BigInteger("0", 2);
+        BigInteger carry, answer;
+        while (y.compareTo(zero) != 0) {
+            answer = x.xor(y);
+            carry = x.and(y).shiftLeft(1);
+
+            x = answer;
+            y = carry;
+        }
+
+        return x.toString(2);  // return String value of x using radix 2
+    }
 }
