@@ -5,44 +5,49 @@ import java.util.Arrays;
 public class LIS {
     /*
         LIS is a DP with  state: one dimension, time: two dimension
+
+        Algorithm
+
+        Initialize an array dp with length nums.length and all elements equal to 1. dp[i] represents the length of the longest increasing subsequence
+        that ends with the element at index i.
+
+        Iterate from i = 1 to i = nums.length - 1. At each iteration, use a second for loop to iterate from j = 0 to j = i - 1 (all the elements before i).
+        For each element before i, check if that element is smaller than nums[i]. If so, set dp[i] = max(dp[i], dp[j] + 1).
+
+        Return the max value from dp.
+
         time: O(n^2)
         space: O(n)
      */
     public int lengthOfLIS(int[] nums) {
-        if (nums == null || nums.length == 0) return 0;
 
-        int[] dp = new int[nums.length];
+        int n = nums.length;
+
+        // step1 : we need some function or array that represents the answer to the problem for a given state
+        // dp[i] represents the length of the longest increasing subsequence that ends with the ith element.
+        int[] dp = new int[n];
+
+        // step3 : the third component is simplest, we need a base case or some kind of initialization
         Arrays.fill(dp, 1);
 
-        int max = 1;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (nums[i] > nums[j]) {
+        // step2 : we need a way to transition between states, such as dp[5] and dp[7]. This is called a recurrence relation.
+        // dp[i] = max(dp[j] + 1) for all j where nums[j] < nums[i] and j < i.
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[j] < nums[i]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
-                    max = Math.max(max, dp[i]);
                 }
             }
         }
 
-        /*
-            print LIS values
-         */
-        printLIS(dp, dp.length-1, nums, max);
 
-        return max;
-    }
-
-    private void printLIS(int[] lis, int lisIndex, int[] arr, int max) {
-        if (max == 0) {
-            return;
+        // get the LIS
+        int longest = 0;
+        for (int c : dp) {
+            longest = Math.max(longest, c);
         }
 
-        if (lis[lisIndex] == max) {
-            printLIS(lis, lisIndex-1, arr, max-1);
-            System.out.println(arr[lisIndex] + " ");
-        } else {
-            printLIS(lis, lisIndex-1, arr, max);
-        }
+        return longest;
     }
 
     /*
@@ -72,10 +77,55 @@ public class LIS {
 
         for (int num : nums) {
             int i = Arrays.binarySearch(dp, 0, len, num);
+            // int i = binarySearch(dp, 0, len, num);
             if (i < 0) {
                 i = -(i+1);
             }
+
             dp[i] = num;
+
+            // this algorithm does not always generate a valid subsequence of the input, but the length of the subsequence will always equal
+            // the length of the longest increasing subsequence. For example, with the input [3, 4, 5, 1], at the end we will have sub = [1, 4, 5],
+            // which isn't a subsequence, but the length is still correct.
+
+            // The length remains correct because the length only changes when a new element is larger than any element in the subsequence.
+            // In that case, the element is appended to the subsequence instead of replacing an existing element.
+            if (i == len) {
+                len++;
+            }
+        }
+        return len;
+    }
+
+    // can we implement the binary search
+    public int lengthOfLIS3(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+
+        int[] dp = new int[nums.length];
+        int len = 0;
+
+        for (int num : nums) {
+
+            // int i = Arrays.binarySearch(dp, 0, len, num);
+
+            // // find the first elements that is larger than or equal to num
+            int left = 0, right = len - 1;
+            int i = len;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                if (dp[mid] < num) {
+                    left = mid + 1;
+                } else {
+                    if (mid == 0 || (dp[mid-1] < num)) {
+                        i = mid;
+                        break;
+                    }
+                    right = mid - 1;
+                }
+            }
+
+            dp[i] = num;
+
             if (i == len) {
                 len++;
             }
