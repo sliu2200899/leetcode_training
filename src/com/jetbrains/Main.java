@@ -3,6 +3,7 @@ package com.jetbrains;
 //import com.jetbrains.OOD.Elevator;
 
 import com.jetbrains.classic.advancedDataStructure.dsGraph.NumberOfConnectedComponentsUndire;
+import com.jetbrains.classic.advancedDataStructure.dsStack.LargestRectangleHistogram;
 import com.jetbrains.classic.searchByAlgorithm.dfs.ConcatenatedWords;
 import com.jetbrains.classic.searchByStructure.treeSearch.LongestUniValue;
 import com.jetbrains.classic.sorting.MergeSort;
@@ -570,5 +571,10 @@ public class Main {
 //        System.out.println((int)(Math.random() * 20));
 //        System.out.println((int)(Math.random() * 20));
 //        System.out.println((int)(Math.random() * 20));
+
+        // largestRectangleArea2
+        int[] data = {2,1,5,6,2,3};
+        LargestRectangleHistogram lrh = new LargestRectangleHistogram();
+        System.out.println(lrh.largestRectangleArea2(data));
     }
 }

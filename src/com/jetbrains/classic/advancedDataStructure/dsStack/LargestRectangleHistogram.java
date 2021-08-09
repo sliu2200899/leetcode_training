@@ -4,6 +4,31 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class LargestRectangleHistogram {
+
+    /*
+        brute force approach
+        this is a better brute force approach
+        We can do one slight modification in the previous approach to optimize it to some extent.
+        Instead of taking every possible pair and then finding the bar of minimum height lying between them everytime,
+        we can find the bar of minimum height for current pair by using the minimum height bar of the previous pair.
+
+        time: O(n^2)
+        space: O(1)
+     */
+    public int largestRectangleArea(int[] heights) {
+        int maxArea = 0;
+        int length = heights.length;
+
+        for (int i = 0; i < length; ++i) {
+            int minHeight = Integer.MAX_VALUE;
+            for (int j = i; j < length; ++j) {
+                minHeight = Math.min(minHeight, heights[j]);
+                maxArea = Math.max(maxArea, (j - i + 1) * minHeight);
+            }
+        }
+        return maxArea;
+    }
+
     /*
         Divide and Conquer
 
@@ -13,7 +38,7 @@ public class LargestRectangleHistogram {
         The largest rectangle confined to the left of the shortest bar(subproblem).
         The largest rectangle confined to the right of the shortest bar(subproblem).
      */
-    public int largestRectangleArea(int[] heights) {
+    public int largestRectangleArea2(int[] heights) {
         return calculateArea(heights, 0, heights.length - 1);
     }
 
@@ -42,7 +67,7 @@ public class LargestRectangleHistogram {
             [2,     1,      5,      6,      2,      3]
                             i
      */
-    public int largestRectangleArea2(int[] heights) {
+    public int largestRectangleArea3(int[] heights) {
         Deque<Integer> stack = new ArrayDeque<>();   // monotonic stack with ascending order
         stack.push(-1);
         int length = heights.length;
