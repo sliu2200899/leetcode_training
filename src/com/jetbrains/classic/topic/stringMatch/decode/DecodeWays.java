@@ -1,52 +1,49 @@
 package com.jetbrains.classic.topic.stringMatch.decode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DecodeWays {
     /*
-        split the s
+        s = "12"
 
-        226
-        2 + f(26)  =>   find 1 way
-        22 + f(6)   =>  find 1 way
-        226
+             |
 
-        f
-        2   2   6
-        i
+             1, -> further search
+             12,  -> further seach
 
+             base case
 
+             The problem deals with finding number of ways of decoding a string. What helps to crack the problem is to think
+             why there would be many ways to decode a string. The reason is simple since at any given point we either decode
+             using two digits or single digit. This choice while decoding can lead to different combinations.
     */
     public int numDecodings(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
-
-        return dfs(s, 0, new Integer[s.length()]);
+        Map<Integer, Integer> memo = new HashMap<>();
+        return helper(s, 0, memo);
     }
 
-    private int dfs(String s, int index, Integer[] memo) {
-        if (index == s.length()) {
+    private int helper(String s, int idx, Map<Integer, Integer> memo) {
+        if (memo.containsKey(idx)) {
+            return memo.get(idx);
+        }
+
+        // if you reach the end of the string
+        if (idx == s.length()) {
             return 1;
         }
 
-        Integer ans = memo[index];
-        if (ans != null) {
-            return ans;
+        if (s.charAt(idx) == '0') {
+            return 0;
         }
 
-        if (s.charAt(index) == '0') {
-            memo[index] = 0;
-            return memo[index];
+        int ans = helper(s, idx + 1, memo);
+        if (idx + 2 <= s.length() && Integer.valueOf(s.substring(idx, idx+2)) <= 26) {
+            ans += helper(s, idx + 2, memo);
         }
 
-        ans = 0;
-        for (int i = index+1; i <= s.length(); ++i) {
-            String numStr = s.substring(index, i);
-            if (numStr.length() >= 3 || (numStr.length() == 2 && Integer.parseInt(numStr) > 26)) {
-                continue;
-            }
-            ans += dfs(s, i, memo);
-        }
-        memo[index] = ans;
+        memo.put(idx, ans);
+
         return ans;
     }
 }
