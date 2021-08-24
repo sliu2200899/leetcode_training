@@ -1,4 +1,4 @@
-package com.jetbrains.classic.topic.mathBit;
+package com.jetbrains.zCompanyInterviewPrep.amazon;
 
 import java.util.Arrays;
 

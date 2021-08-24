@@ -5,74 +5,86 @@ import java.util.*;
 public class CountSmallerNumberAfterSelf {
 
     /*
-        fanwick tree
-     */
+       BIT
 
-    /*
-        idea of Fenwick tree
+       nums:        5,2,6,1
 
-        nums
-        [5,2,6,1]
+       sorted:      1,2,5,6
+       rank:        1,2,3,4    will be used later
 
-        sorted   // be used later to get ranks
-        [1,2,5,6]
+       reversed:    1,6,2,5   // get the smaller number after self
+       rank:        1,4,2,3
 
-        ranks  // mapping
-        reverse nums:
-        [1,6,2,5]
-        [1,4,2,3]
+       the original problem has been reduced into this simple problem
+           how many smaller number have we met before self?  kind of freq problem...
 
+       every time, increase freq[rank] by 1
+       num.  rank.      freq        prefix sum / query(rank - 1)
+       -      -     [0,0,0,0,0]
+       1      1     [0,1,0,0,0]       0
+       6      4     [0,1,0,0,1]       1
+       2      2     [0,1,1,0,1]       1
+       5      3     [0,1,1,1,1]       2
 
-        tree
-    */
-    public List<Integer> countSmaller2(int[] nums) {
+       binary index tree => freq
+       update & query O(log(n))
+       total time complexity would be O(nlog(n))
+
+   */
+    public List<Integer> countSmaller1(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return res;
+        }
+
+        // get sorted array
         int[] sorted = Arrays.copyOf(nums, nums.length);
-        // sort the unique numbers
         Arrays.sort(sorted);
-        // map the number to its rank
-        Map<Integer, Integer> ranks = new HashMap<>();
-        int rank = 0;
+
+        // get the rank
+        int rank = 1;
+        Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < sorted.length; ++i) {
             if (i == 0 || sorted[i] != sorted[i-1]) {
-                ranks.put(sorted[i], ++rank);
+                map.put(sorted[i], rank++);
             }
         }
 
-        List<Integer> ans = new ArrayList<>();
-        FenwickTree tree = new FenwickTree(ranks.size());
-        // scan the numbers in reversed order
+        FenwichTree tree = new FenwichTree(map.size());
         for (int i = nums.length - 1; i >= 0; --i) {
-            ans.add(tree.query(ranks.get(nums[i]) - 1));   // get the count of smaller numbers
-            tree.update(ranks.get(nums[i]), 1);   // 1  is delta... just increase the count of the rank of current number
+            res.add(tree.query(map.get(nums[i]) - 1));
+            tree.update(map.get(nums[i]), 1);
         }
 
-        Collections.reverse(ans);
+        Collections.reverse(res);
 
-        return ans;
+
+        return res;
     }
 
-    class FenwickTree{
-        int[] BIT;
+    private class FenwichTree{
         int size;
+        int[] BIT;
 
-        public FenwickTree(int n) {
+        public FenwichTree(int n) {
             this.size = n;
-            BIT = new int[n + 1];
+            this.BIT = new int[n+1];
         }
 
-        public void update(int i, int delta) {
-
+        public void update(int i, int val) {
+            i++;
             while (i <= size) {
-                BIT[i] += delta;
-                i += (i & -i);
+                BIT[i] += val;
+                i += (i & (-i));
             }
         }
 
         public int query(int i) {
+            i++;
             int sum = 0;
             while (i > 0) {
                 sum += BIT[i];
-                i -= (i & -i);
+                i -= (i & (-i));
             }
 
             return sum;

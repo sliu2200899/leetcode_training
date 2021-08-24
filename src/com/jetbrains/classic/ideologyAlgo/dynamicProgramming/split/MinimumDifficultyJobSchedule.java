@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class MinimumDifficultyJobSchedule {
     /*
-         k-1.                 1
-      1 ...   j            j+1. ... i
-       dp[j][k-1]       max(jobs[j+1~i])
+         k-1.                 1            days
+      1 ...   j            j+1. ... i      jobs
+       dp[j][k-1]       max(jobs[j+1~i])   difficulty
      dp[i][k] := min difficulty to schedule the first i jobs(1-based) in k days
-     dp[i][k] = min(dp[j][k-1] + max(jobs[j+1 ~ j])) where k-1 <= j < i
+     dp[i][k] = min(dp[j][k-1] + max(jobs[j+1 ~ i])) where k-1 <= j < i
 
 
      time: O(nnd)

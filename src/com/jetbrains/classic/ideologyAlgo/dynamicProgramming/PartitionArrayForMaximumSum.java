@@ -2,6 +2,7 @@ package com.jetbrains.classic.ideologyAlgo.dynamicProgramming;
 
 public class PartitionArrayForMaximumSum {
     /*
+          1043
           recursion + memoization
 
           time: O(kn) , n is the length of the arr
@@ -9,48 +10,32 @@ public class PartitionArrayForMaximumSum {
      */
     public int maxSumAfterPartitioning(int[] arr, int k) {
         /*
-            "you should partition the array into (contiguous) subarrays of length at most k"
-            At each index i of the array, we have k decision to make on how to partition the array as follows,
-                Partition at index i so we will have array of size 1.
-                Partition at index i + 1 so we will have array of size 2.
-                ...
-                Partition at index i + k - 1 so we will have array of size k.
+            for each of the starting point 'i', we are able to choose the values from 'i' -> 'i+k-1'
+                then convert all of the values to the largest element within the range.
 
-            "After partitioning, each subarray has their values changed to become the maximum value of that subarray"
-            Since the problem says all the elements in the partition become the maximum value.
-            We maintain the partition array running max and multiply the max with number of elements in the partition.
+                then our next range will start right after our currrent range
 
-
-            After each partition the array we get on the right side of the partition is a sub problem (optimal substructure) so we call the recursion on it. And add the result with previously computed current left array partition max sum.
+            we will want to pick the choice which will give us the highest sum
         */
-        Integer[] memo = new Integer[arr.length];
-        return maxSumAfterPartitioning(arr, k, 0, memo);
+
+        return maxSumAfterPartitioning(0, arr, k, new int[arr.length]);
     }
 
-    private int maxSumAfterPartitioning(int[] arr, int k, int i, Integer[] memo) {
-        if (i == arr.length) {
-            return 0;
+    private int maxSumAfterPartitioning(int start, int[] A, int K, int[] memo) {
+        if (start >= A.length) return 0;
+
+        if (memo[start] != 0) return memo[start];
+
+        int max = 0;
+        int maxSum = 0;
+
+        for (int i = start; i < Math.min(A.length, start + K); ++i) {
+            max = Math.max(max, A[i]);
+            maxSum = Math.max(maxSum, maxSumAfterPartitioning(i + 1, A, K, memo) + (i - start + 1) * max);
         }
 
-        if (memo[i] != null) {
-            return memo[i];
-        }
-
-        int currMax = 0;
-        int sumMax = 0;
-        for (int j = 0; j < k; ++j) {
-            int to = i + j;
-            if (to >= arr.length) {
-                break;
-            }
-            currMax = Math.max(currMax, arr[to]);
-            int leftSum = currMax * (j + 1);
-            int rightSum = maxSumAfterPartitioning(arr, k, to + 1, memo);
-            sumMax = Math.max(sumMax, leftSum + rightSum);
-        }
-
-        memo[i] = sumMax;
-        return sumMax;
+        memo[start] = maxSum;
+        return maxSum;
     }
 
     /*

@@ -1,4 +1,4 @@
-package com.jetbrains.hard;
+package com.jetbrains.classic.searchByAlgorithm.dfs;
 
 import com.jetbrains.innerStructure.TreeNode;
 

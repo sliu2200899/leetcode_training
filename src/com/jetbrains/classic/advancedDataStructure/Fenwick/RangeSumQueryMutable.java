@@ -18,7 +18,6 @@ public class RangeSumQueryMutable {
     public void NumArray(int[] nums) {
         this.size = nums.length;
         this.BIT = new int[size + 1];
-        this.nums = new int[size];
         this.nums = nums;
 
         for (int i = 0; i < size; ++i) {
@@ -41,7 +40,7 @@ public class RangeSumQueryMutable {
         i++;
         while (i <= size) {
             BIT[i] += val;
-            i += (i & (-i));
+            i += (i & (-i));  // parent_index = cur_index + lowbit(cur_index)   <=  lowbit(i) = i & (-i)
         }
     }
 
@@ -59,7 +58,7 @@ public class RangeSumQueryMutable {
                                                                         7
            0001   0010    0011    0100          0101    0110          0111     1000
      */
-    private int getSum(int i) {
+    private int queryTree(int i) {
         int sum = 0;
         i++;
         while(i > 0) {
@@ -70,7 +69,7 @@ public class RangeSumQueryMutable {
     }
 
     public int sumRange(int left, int right) {
-        if (left == 0) return getSum(right);
-        return getSum(right) - getSum(left - 1);
+        if (left == 0) return queryTree(right);
+        return queryTree(right) - queryTree(left - 1);
     }
 }

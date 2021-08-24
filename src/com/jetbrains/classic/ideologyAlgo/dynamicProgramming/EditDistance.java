@@ -2,66 +2,57 @@ package com.jetbrains.classic.ideologyAlgo.dynamicProgramming;
 
 public class EditDistance {
     public int minDistance(String word1, String word2) {
-        // a = "hrorse"
-        // b = "hros"
 
-        // if a[i] == b[j], check a[i+1] == b[j+1] or not
-        // else if a[i] != b[j],
-        //.   1. remove a[i], and check a[i+1] and b[i]
-        //.   2. remove b[j], and check a[i] and b[j+1]
-        //.   3. add the same character as b[j] in front of a[i], and check a[i] and b[j+1]
-        //.   4. add the same character as a[i] in front of b[j], and check a[i+1] and b[j]
-        //.   5. replace a[i] with b[j] or vice versa. and check a[i+1] and b[j+1]
+/*
+        word1 = "hrorse"
+        word2 = "hros"
 
-        // draw the recursion tree based on the above description
-        // notice that there exists lots of overlapping subproblems
-        // minDist(i, j) = min(minDist(i-1, j)+1, minDist(i, j-1)+1, minDist(i-1, j-1)) , if a[i] == b[j]
-        //                 min(minDist(i-1, j)+1, minDist(i, j-1)+1, minDist(i-1, j-1)+1), if a[i] != n[j]
+        f(i, j) := minimum cost (or steps) required to convert first i characters of word1 to first j characters of word2
 
-        if (word1 == null || word2 == null) return 0;
-        if (word1.length() == 0) return word2.length();
-        if (word2.length() == 0) return word1.length();
+        Case 1: word1[i] == word2[j], i.e. the ith the jth character matches.
 
-        int n1 = word1.length(), n2 = word2.length();
-        char[] a = word1.toCharArray(), b = word2.toCharArray();
+                f(i, j) = f(i - 1, j - 1)
 
-        int[][] dp = new int[n1][n2];
-        for (int i = 0; i < n1; i++) {
-            // 初始化第0列:a[0..i]与b[0..0]的编辑距离
-            if (a[i] == b[0]) {
-                //
-                dp[i][0] = i;
-            } else if (i != 0) {
-                // add one character
-                dp[i][0] = dp[i-1][0]+1;
-            } else {
-                //
-                dp[i][0] = 1;
-            }
+        Case 2: word1[i] != word2[j], then we must either insert, delete or replace, whichever is cheaper
+
+                f(i, j) = 1 + min { f(i, j - 1), f(i - 1, j), f(i - 1, j - 1) }
+
+                    f(i, j - 1) represents insert operation
+                    f(i - 1, j) represents delete operation
+                    f(i - 1, j - 1) represents replace operation
+
+        Here, we consider any operation from word1 to word2. It means, when we say insert operation, we insert a new character
+        after word1 that matches the jth character of word2. So, now have to match i characters of word1 to j - 1 characters of word2.
+        Same goes for other 2 operations as well.
+
+        time: O(nm)
+        space: O(nm)
+*/
+
+        int m = word1.length();
+        int n = word2.length();
+
+        int[][] cost = new int[m + 1][n + 1];
+        // initialization
+        for (int i = 0; i <= m; ++i) {
+            cost[i][0] = i;
         }
 
-
-        for (int j = 0; j < n2; ++j) {
-            if (a[0] == b[j]) {
-                dp[0][j] = j;
-            } else if (j != 0) {
-                dp[0][j] = dp[0][j-1]+1;
-            } else {
-                dp[0][j] = 1;
-            }
+        for (int i = 0; i <= n; ++i) {
+            cost[0][i] = i;
         }
 
-        for (int i = 1; i < n1; ++i) {
-            for (int j = 1; j < n2; ++j) {
-                if (a[i] == b[j]) {
-                    dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]);
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (word1.charAt(i-1) == word2.charAt(j-1)) {
+                    cost[i][j] = cost[i-1][j-1];
                 } else {
-                    dp[i][j] = min(dp[i-1][j]+1, dp[i][j-1]+1, dp[i-1][j-1]+1);
+                    cost[i][j] = 1 + min(cost[i-1][j], cost[i][j-1], cost[i-1][j-1]);
                 }
             }
         }
 
-        return dp[n1-1][n2-1];
+        return cost[m][n];
     }
 
     private int min(int a, int b, int c) {

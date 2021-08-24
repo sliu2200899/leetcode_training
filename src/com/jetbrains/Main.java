@@ -12,8 +12,10 @@ import com.jetbrains.classic.sorting.QuickSort;
 import com.jetbrains.classic.topic.design.KthFreqElementsStream;
 import com.jetbrains.classic.topic.mathExpression.RemoveInvalidParenthesis;
 import com.jetbrains.master.RemoveDuplicate;
+import com.jetbrains.zCompanyInterviewPrep.amazon.*;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -573,8 +575,53 @@ public class Main {
 //        System.out.println((int)(Math.random() * 20));
 
         // largestRectangleArea2
-        int[] data = {2,1,5,6,2,3};
-        LargestRectangleHistogram lrh = new LargestRectangleHistogram();
-        System.out.println(lrh.largestRectangleArea2(data));
+//        int[] data = {2,1,5,6,2,3};
+//        LargestRectangleHistogram lrh = new LargestRectangleHistogram();
+//        System.out.println(lrh.largestRectangleArea2(data));
+
+        // maximize socre after n operations
+//        int[] nums = {1,2,3,4,5,6};
+//        MaximizeScoresAfterNOperation a = new MaximizeScoresAfterNOperation();
+//        System.out.println(a.maxScore(nums));
+
+        // print_all_sum
+//        int num = 5;
+//        FindAllCombinationOfNumbers a = new FindAllCombinationOfNumbers();
+//        List<List<Integer>> list = a.print_all_sum(num);
+//        for (List<Integer> l : list) {
+//            System.out.println(l);
+//        }
+
+        // maximumUnits
+//        MaximumUnitsOnATruck a = new MaximumUnitsOnATruck();
+//        int[][] boxTypes = {{5,10}, {2,5}, {4,7}, {3,9}};
+//        int truckSize = 10;
+//        System.out.println(a.maximumUnits(boxTypes, truckSize));
+
+        //findNumberOfWays
+//        SplitStringIntoUniquePrimes a = new SplitStringIntoUniquePrimes();
+//        String s = "31173";
+//        System.out.println(a.findNumberOfWays(s));
+
+        // utilization check
+//        int[] arr = {25,23,1,2,3,4,5,6,7,8,9,10,76,80};
+//        int[] arr2 = {1,3,5,10,80};
+//        UtilizationCheck a = new UtilizationCheck();
+//        System.out.println(a.check(arr2, 1));
+
+        // findUniquePair
+//        TwoSumUniquePairs a = new TwoSumUniquePairs();
+//        int[] arr = {1,5,1,5};
+//
+//        System.out.println(a.findUniquePairs2(arr, 6));
+
+        //shopping options
+        ShoppingOptions a = new ShoppingOptions();
+        List<Integer> priceOfJeans = Arrays.asList(2,3);
+        List<Integer> priceOfShoes = Arrays.asList(4);
+        List<Integer> priceOfSkirts = Arrays.asList(2,3);
+        List<Integer> priceOfTops = Arrays.asList(1,2);
+        int budgeted = 10;
+        System.out.println(a.getNumberOfOptions(priceOfJeans, priceOfShoes, priceOfSkirts, priceOfTops, budgeted));
     }
 }
