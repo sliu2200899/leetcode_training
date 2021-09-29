@@ -5,8 +5,24 @@ import com.jetbrains.innerStructure.ListNode;
 import java.util.PriorityQueue;
 
 public class MergeKLists {
-    // time: O(nlogK)    where n is the number of nodes in the final linked list, k is the number of the input linked lists
-    // space:  O(k)
+    /*
+        pair up k lists and merge each pair
+        after the first pairing, k lists are merged into k/2 lists with average 2N/k length, then, k/4, k/8 and so on.
+        repeat this procedure until we get the final sorted linked list
+
+        The complexity analysis here is a bit confusing, because N is the total number of nodes. If we express the complexity in the terms of average size of each list "n", it would be better to catch it (at least for me).
+        E.g. the Approach 4: Merge lists one by one. Say, for the sake of simplicity, all lists have the same size "n".
+        At the first step of the algorithm we merge 2 lists with O(n) and get a list with size "2n".
+        At the second step we merge a "2n" list with a "n" list, in the worse case we have to visit "2n" nodes
+        and get a list with size "3n". And so on. At the end we have n + 2n + ... + kn = n(1+2 + .. + k) = n * k * (k + 1) / 2.
+        So in average we have here O(nk^2).
+        
+        In the Approach 5 we have then O(nk*log(k)).
+        Don't confuse N and n on the real interview :)
+
+        time: O(nklogk)    where n is teh average size of nodes in a linked list, k is the number of the input linked lists
+        space:  O(1)  we can merge the linked list in constant space
+     */
     public static ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a, b) -> {
             return a.val - b.val;

@@ -4,7 +4,11 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class BasicCalculator {
+    // leetcode 224
+
     /*
+    approach: stack and string reversal
+
     Iterate the expression string in reverse order one character at a time. Since we are reading the expression character by character, we need to be careful when we are reading digits and non-digits.
 
     The operands could be formed by multiple characters. A string "123" would mean a numeric 123, which could be formed as: 123 >> 120 + 3 >> 100 + 20 + 3. Thus, if the character read is a digit we need to form the operand by multiplying a power of 10 to the current digit and adding it to the overall operand. We do this since we are processing the string in the reverse order.
@@ -90,6 +94,9 @@ public class BasicCalculator {
 
 
     /*
+    approach: stack without string reversal  (preferring method...)
+
+    used for +, -, non-negative integers and ()
 
     1. Iterate the expression string one character at a time. Since we are reading the expression character by character, we need to be careful when we are reading digits and non-digits.
 

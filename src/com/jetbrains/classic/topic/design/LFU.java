@@ -86,7 +86,7 @@ public class LFU {
         time: O(1) for get() and put() operation
         space: O(c)  c : capacity
      */
-    HashMap<Integer, DoubleLinkedList> freqMap = new HashMap<>(); // HashMap<freq, ddl>
+    HashMap<Integer, DLL> freqMap = new HashMap<>(); // HashMap<freq, ddl>
     HashMap<Integer, Node> map = new HashMap<>(); // HashMap<Key, Node>
     int minFreq;
     int count, capacity;
@@ -94,7 +94,7 @@ public class LFU {
         this.capacity = capacity;
         count = 0;
         minFreq = 1;
-        freqMap.put(1, new DoubleLinkedList());
+        freqMap.put(1, new DLL());
     }
 
     public int get1(int key) {
@@ -103,13 +103,13 @@ public class LFU {
         //1. Get the node
         Node node = map.get(key);
         //2. remove from original frequency
-        DoubleLinkedList curList = freqMap.get(node.freq);
+        DLL curList = freqMap.get(node.freq);
         curList.removeNode(node);
         //3. increase frequency + add to new frequency
         node.freq ++;
         if(!freqMap.containsKey(node.freq))
-            freqMap.put(node.freq, new DoubleLinkedList());
-        DoubleLinkedList newList = freqMap.get(node.freq);
+            freqMap.put(node.freq, new DLL());
+        DLL newList = freqMap.get(node.freq);
         newList.addToHead(node);
 
         if(freqMap.get(minFreq).isEmpty())             // Update minFreq !!!
@@ -126,13 +126,13 @@ public class LFU {
             //2. Change its value
             node.val = value;
             //3. remove from original frequency
-            DoubleLinkedList curList = freqMap.get(node.freq);
+            DLL curList = freqMap.get(node.freq);
             curList.removeNode(node);
             //4. increase frequency + add to new frequency
             node.freq ++;
             if(!freqMap.containsKey(node.freq))
-                freqMap.put(node.freq, new DoubleLinkedList());
-            DoubleLinkedList newList = freqMap.get(node.freq);
+                freqMap.put(node.freq, new DLL());
+            DLL newList = freqMap.get(node.freq);
             newList.addToHead(node);
 
             if(freqMap.get(minFreq).isEmpty())        // Update minFreq !!!
@@ -148,15 +148,15 @@ public class LFU {
         //2. if count > capacity, evict the last --> update the last
         count ++;
         if(count > capacity) {
-            DoubleLinkedList remove = freqMap.get(minFreq);   // Remove minFreq !!!
+            DLL remove = freqMap.get(minFreq);   // Remove minFreq !!!
             Node last = remove.popTail();
             map.remove(last.key);
             count --;
         }
         //3. add the node to the list
         if(!freqMap.containsKey(node.freq))
-            freqMap.put(node.freq, new DoubleLinkedList());
-        DoubleLinkedList newList = freqMap.get(node.freq);
+            freqMap.put(node.freq, new DLL());
+        DLL newList = freqMap.get(node.freq);
         newList.addToHead(node);
 
         minFreq = 1;                                 // Update minFreq !!!
@@ -174,9 +174,9 @@ public class LFU {
             freq = f;
         }
     }
-    class DoubleLinkedList {
+    class DLL {
         Node head, tail;
-        public DoubleLinkedList() {
+        public DLL() {
             head = new Node(-1,-1,-1);
             tail = new Node(-1,-1,-1);
             head.next = tail;

@@ -19,8 +19,10 @@ public class WordBreak2 {
         return helper(s, map, set);
     }
 
-    private List<String> helper(String s, Map<String, List<String>>map, Set<String> set) {
-        if (map.containsKey(s)) return map.get(s);
+    private List<String> helper(String s, Map<String, List<String>> map, Set<String> set) {
+        if (map.containsKey(s)) {
+            return map.get(s);
+        }
 
         List<String> res = new ArrayList<>();
         if (s.length() == 0) {
@@ -28,21 +30,24 @@ public class WordBreak2 {
             return res;
         }
 
-        for (String word : set) {
-            if (s.startsWith(word)) {
-                List<String> sublist = helper(s.substring(word.length()), map, set);
+        for (int i = 1; i <= s.length(); ++i) {
+            if (set.contains(s.substring(0, i))) {
+                String prefix = s.substring(0, i);
+                List<String> sublist = helper(s.substring(i), map, set);
                 for (String sub : sublist) {
-                    res.add(word + (sub.isEmpty() ? "" : " ") + sub);
+                    res.add(prefix + (sub.isEmpty() ? "" : " ") + sub);
                 }
             }
         }
+
         map.put(s, res);
+
         return res;
     }
 
     /*
         backtracking + pruning
-        Recursion + Memoization
+        the following approach didn't use memoization, just dfs + backtracking...
         time: O(n^2)
             w/o memorization,
             T(n) = T(n-1) + T(n-2) + T(n-3) + .... + T(1)   => exponential

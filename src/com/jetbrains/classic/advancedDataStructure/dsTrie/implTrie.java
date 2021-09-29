@@ -1,6 +1,14 @@
 package com.jetbrains.classic.advancedDataStructure.dsTrie;
 
 public class implTrie {
+
+    /*
+    overall time: O(S)
+        trie build:  O(S) where S is all the characters in the string array
+        trie query: O(m) where m is the average length of the string.
+
+    space: O(S)
+     */
     private class TrieNode{
         public String word;
         public TrieNode[] children;
